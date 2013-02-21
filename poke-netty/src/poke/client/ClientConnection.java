@@ -37,7 +37,7 @@ import eye.Comm.Request;
 /**
  * provides an abstraction of the communication to the remote server.
  * 
- * @author gash
+ * @author gash and Rohini
  * 
  */
 public class ClientConnection {
