@@ -109,6 +109,7 @@ public class ServerConf {
 	@XmlRootElement(name = "general")
 	@XmlAccessorType(XmlAccessType.FIELD)
 	public static final class GeneralConf {
+		// Treemap for general object
 		private TreeMap<String, String> general;
 
 		public String getProperty(String name) {
