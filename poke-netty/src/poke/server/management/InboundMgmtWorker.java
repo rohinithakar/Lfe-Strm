@@ -58,8 +58,16 @@ public class InboundMgmtWorker extends Thread {
 
 					if (n.getAction().getNumber() == Action.NODEJOIN_VALUE) {
 						if (msg.channel.isOpen()) {
-							ServerHeartbeat.getInstance().addChannel(
-									n.getNodeId(), msg.channel, msg.sa);
+							logger.info("******** in inbound management worker..*******");
+							//ServerHeartbeat.getInstance().addChannel(
+							//		n.getNodeId(), msg.channel, msg.sa);
+							logger.info("Going to create instance....");
+							//logger.info(msg.channel.);
+							ServerHeartbeat s = ServerHeartbeat.getInstance("one");
+							if(s != null)
+								logger.info("instance created");
+							logger.info(n.getNodeId() + "...."+msg.channel+"...."+msg.sa);
+							s.addChannel(n.getNodeId(), msg.channel, msg.sa);
 						} else
 							logger.warn(n.getNodeId() + " not writable");
 					} else if (n.getAction().getNumber() == Action.NODEDEAD_VALUE) {
