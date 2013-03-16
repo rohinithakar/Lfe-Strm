@@ -22,6 +22,8 @@ import org.jboss.netty.channel.Channel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
+
 import eye.Comm.Management;
 
 /**
@@ -51,6 +53,16 @@ public class ManagementQueue {
 		iworker = new InboundMgmtWorker(tgroup, 1);
 		iworker.start();
 		oworker = new OutboundMgmtWorker(tgroup, 1);
+		oworker.start();
+	}
+	
+	public static void startup(Server svr) {
+		if (iworker != null)
+			return;
+
+		iworker = new InboundMgmtWorker(svr, tgroup, 1);
+		iworker.start();
+		oworker = new OutboundMgmtWorker(svr, tgroup, 1);
 		oworker.start();
 	}
 

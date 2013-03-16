@@ -19,6 +19,7 @@ import org.jboss.netty.channel.ChannelFuture;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
 import poke.server.management.ManagementQueue.ManagementQueueEntry;
 
 public class OutboundMgmtWorker extends Thread {
@@ -26,10 +27,20 @@ public class OutboundMgmtWorker extends Thread {
 
 	int workerId;
 	boolean forever = true;
+	Server svr = null;
 
 	public OutboundMgmtWorker(ThreadGroup tgrp, int workerId) {
 		super(tgrp, "outbound-mgmt-" + workerId);
 		this.workerId = workerId;
+
+		if (ManagementQueue.outbound == null)
+			throw new RuntimeException("management worker detected null queue");
+	}
+	
+	public OutboundMgmtWorker(Server svr, ThreadGroup tgrp, int workerId) {
+		super(tgrp, "outbound-mgmt-" + workerId);
+		this.workerId = workerId;
+		this.svr = svr;
 
 		if (ManagementQueue.outbound == null)
 			throw new RuntimeException("management worker detected null queue");

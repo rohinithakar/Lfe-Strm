@@ -72,6 +72,9 @@ public class Server {
 	protected ChannelFactory cf, mgmtCF;
 	protected ServerConf conf;
 	protected ServerHeartbeat heartbeat;
+	
+	public String id = null;
+	
 
 	/**
 	 * static because we need to get a handle to the factory from the shutdown
@@ -97,6 +100,10 @@ public class Server {
 	 */
 	public Server(File cfg) {
 		init(cfg);
+	}
+	
+	public Server(ServerConf conf) {
+		this.conf = conf;
 	}
 
 	private void init(File cfg) {
@@ -185,7 +192,8 @@ public class Server {
 		logger.info("Starting server, listening on port = " + port);
 	}
 
-	protected void run() {
+	protected void run(String id) {
+		this.id = id;
 		List<ServerConf.GeneralConf> servers = conf.getServer();
 		for(ServerConf.GeneralConf server : servers){
 			String str = server.getProperty("port");
@@ -235,6 +243,6 @@ public class Server {
 		}
 
 		Server svr = new Server(cfg);
-		svr.run();
+		svr.run("one");
 	}
 }

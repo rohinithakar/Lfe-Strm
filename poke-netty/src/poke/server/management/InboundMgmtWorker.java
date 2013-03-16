@@ -18,6 +18,7 @@ package poke.server.management;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
 import poke.server.management.ManagementQueue.ManagementQueueEntry;
 import eye.Comm.Management;
 import eye.Comm.Network;
@@ -28,7 +29,17 @@ public class InboundMgmtWorker extends Thread {
 
 	int workerId;
 	boolean forever = true;
+	Server svr = null;
 
+	public InboundMgmtWorker(Server svr, ThreadGroup tgrp, int workerId) {
+		super(tgrp, "inbound-mgmt-" + workerId);
+		this.workerId = workerId;
+		this.svr = svr;
+
+		if (ManagementQueue.outbound == null)
+			throw new RuntimeException("connection worker detected null queue");
+	}
+	
 	public InboundMgmtWorker(ThreadGroup tgrp, int workerId) {
 		super(tgrp, "inbound-mgmt-" + workerId);
 		this.workerId = workerId;
@@ -63,7 +74,7 @@ public class InboundMgmtWorker extends Thread {
 							//		n.getNodeId(), msg.channel, msg.sa);
 							logger.info("Going to create instance....");
 							//logger.info(msg.channel.);
-							ServerHeartbeat s = ServerHeartbeat.getInstance("one");
+							ServerHeartbeat s = ServerHeartbeat.getInstance(svr.id);
 							if(s != null)
 								logger.info("instance created");
 							logger.info(n.getNodeId() + "...."+msg.channel+"...."+msg.sa);
