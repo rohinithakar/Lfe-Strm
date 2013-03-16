@@ -14,17 +14,8 @@
  * under the License.
  */
 
-//Server.java/// 
-
-//Server.java///
-
-//Server.java///
-
 package poke.server;
 
-import java.io.BufferedInputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.net.InetSocketAddress;
 import java.util.HashMap;
 import java.util.List;
@@ -43,12 +34,10 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import poke.server.conf.JsonUtil;
 import poke.server.conf.ServerConf;
 import poke.server.management.ManagementDecoderPipeline;
 import poke.server.management.ManagementQueue;
 import poke.server.management.ServerHeartbeat;
-import poke.server.resources.ResourceFactory;
 import poke.server.routing.ServerDecoderPipeline;
 
 /**
@@ -73,8 +62,7 @@ public class Server {
 	protected ServerConf conf;
 	protected ServerHeartbeat heartbeat;
 	
-	public String id = null;
-	
+	public String id = null;	
 
 	/**
 	 * static because we need to get a handle to the factory from the shutdown
@@ -98,26 +86,12 @@ public class Server {
 	 * 
 	 * @param cfg
 	 */
-	public Server(File cfg) {
-		init(cfg);
-	}
-	
 	public Server(ServerConf conf) {
 		this.conf = conf;
+		init();
 	}
 
-	private void init(File cfg) {
-		// resource initialization - how message are processed
-		BufferedInputStream br = null;
-		try {
-			byte[] raw = new byte[(int) cfg.length()];
-			br = new BufferedInputStream(new FileInputStream(cfg));
-			br.read(raw);
-			conf = JsonUtil.decode(new String(raw), ServerConf.class);
-			ResourceFactory.initialize(conf);
-		} catch (Exception e) {
-		}
-
+	private void init() {
 		// communication - external (TCP) using asynchronous communication
 		cf = new NioServerSocketChannelFactory(Executors.newCachedThreadPool(),
 				Executors.newCachedThreadPool());
@@ -192,7 +166,7 @@ public class Server {
 		logger.info("Starting server, listening on port = " + port);
 	}
 
-	protected void run(String id) {
+	public void run(ServerConf.GeneralConf svrConf) {
 		this.id = id;
 		List<ServerConf.GeneralConf> servers = conf.getServer();
 		for(ServerConf.GeneralConf server : servers){
@@ -222,27 +196,5 @@ public class Server {
 			logger.info("Server " + str+ " ready on port: "+ port);
 			
 		}
-		
-		
-	}
-
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-//		if (args.length != 1) {
-//			System.err.println("Usage: java "
-//					+ Server.class.getClass().getName() + " conf-file");
-//			System.exit(1);
-//		}
-
-		File cfg = new File("runtime/server.conf");
-		if (!cfg.exists()) {
-			Server.logger.error("configuration file does not exist: " + cfg);
-			System.exit(2);
-		}
-
-		Server svr = new Server(cfg);
-		svr.run("one");
 	}
 }
