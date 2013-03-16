@@ -101,24 +101,10 @@ public class HeartMonitor {
 					"Not able to establish connection to server");
 	}
 
-	public void waitForever() {
+	protected void waitForever() {
 		try {
-			logger.info("In waitForever*******");
-			Channel ch = connect();
-			Network.Builder n = Network.newBuilder();
-			n.setNodeId("monitor");
-			n.setAction(Action.NODEJOIN);
-			logger.info("nodejoin done");
 			
-			Management.Builder m = Management.newBuilder();
-			
-			
-			m.setGraph(n.build());
-			//problem during ch.write
-			ch.write(m.build());
-			//Thread.sleep(10000);
-			logger.info("All settings done*******");
-
+			init();
 			while (true) {
 				//logger.info("In while loop....");
 				Thread.sleep(1000);
@@ -126,6 +112,24 @@ public class HeartMonitor {
 		} catch (InterruptedException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void init() {
+		logger.info("In waitForever*******");
+		Channel ch = connect();
+		Network.Builder n = Network.newBuilder();
+		n.setNodeId("monitor");
+		n.setAction(Action.NODEJOIN);
+		logger.info("nodejoin done");
+		
+		Management.Builder m = Management.newBuilder();
+		
+		
+		m.setGraph(n.build());
+		//problem during ch.write
+		ch.write(m.build());
+		//Thread.sleep(10000);
+		logger.info("All settings done*******");
 	}
 
 	/**

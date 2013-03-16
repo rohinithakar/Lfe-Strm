@@ -29,13 +29,13 @@ public class OutboundMgmtWorker extends Thread {
 	boolean forever = true;
 	Server svr = null;
 
-	public OutboundMgmtWorker(ThreadGroup tgrp, int workerId) {
-		super(tgrp, "outbound-mgmt-" + workerId);
-		this.workerId = workerId;
-
-		if (ManagementQueue.outbound == null)
-			throw new RuntimeException("management worker detected null queue");
-	}
+//	public OutboundMgmtWorker(ThreadGroup tgrp, int workerId) {
+//		super(tgrp, "outbound-mgmt-" + workerId);
+//		this.workerId = workerId;
+//
+//		if (ManagementQueue.outbound == null)
+//			throw new RuntimeException("management worker detected null queue");
+//	}
 	
 	public OutboundMgmtWorker(Server svr, ThreadGroup tgrp, int workerId) {
 		super(tgrp, "outbound-mgmt-" + workerId);

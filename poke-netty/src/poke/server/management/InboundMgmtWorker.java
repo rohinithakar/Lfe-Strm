@@ -40,13 +40,13 @@ public class InboundMgmtWorker extends Thread {
 			throw new RuntimeException("connection worker detected null queue");
 	}
 	
-	public InboundMgmtWorker(ThreadGroup tgrp, int workerId) {
-		super(tgrp, "inbound-mgmt-" + workerId);
-		this.workerId = workerId;
-
-		if (ManagementQueue.outbound == null)
-			throw new RuntimeException("connection worker detected null queue");
-	}
+//	public InboundMgmtWorker(ThreadGroup tgrp, int workerId) {
+//		super(tgrp, "inbound-mgmt-" + workerId);
+//		this.workerId = workerId;
+//
+//		if (ManagementQueue.outbound == null)
+//			throw new RuntimeException("connection worker detected null queue");
+//	}
 
 	@Override
 	public void run() {

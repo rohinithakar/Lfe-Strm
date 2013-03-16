@@ -35,7 +35,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.monitor.HeartMonitor;
-import poke.server.conf.JsonUtil;
 import poke.server.conf.ServerConf;
 import poke.server.management.ManagementDecoderPipeline;
 import poke.server.management.ManagementQueue;
@@ -172,13 +171,7 @@ public class Server {
 		this.id = generalConf.getProperty("node.id");
 		List<ServerConf.GeneralConf> servers = conf.getServer();
 		int edgeToNodePort;
-		for(ServerConf.GeneralConf server : servers){
-			if(server.getProperty("node.id").trim().equalsIgnoreCase(generalConf.getProperty("edgeToNode"))){
-				edgeToNodePort = Integer.parseInt(server.getProperty("port"));
-				HeartMonitor hm = new HeartMonitor("localhost", edgeToNodePort);
-				hm.waitForever();
-			}
-		}
+	
 		String str = generalConf.getProperty("port");
 		if (str == null)
 			str = "5570";
@@ -196,7 +189,7 @@ public class Server {
 		createManagementBoot(mport);
 		
 		// start management
-		ManagementQueue.startup();
+		ManagementQueue.startup(this);
 
 		// start heartbeat
 		str = generalConf.getProperty("node.id");
@@ -205,6 +198,19 @@ public class Server {
 		
 
 		logger.info("Server " + str+ " ready on port: "+ port);
-			
+		
+		for(ServerConf.GeneralConf server : servers){
+			String e2n = generalConf.getProperty("edgeToNode");
+			if( e2n != null && !e2n.isEmpty() ) {
+				if(server.getProperty("node.id").trim().equalsIgnoreCase(e2n)){
+					edgeToNodePort = Integer.parseInt(server.getProperty("port.mgmt"));
+					HeartMonitor hm = new HeartMonitor("localhost", edgeToNodePort);
+					logger.info("Starting to Node:" + edgeToNodePort);
+					hm.init();
+				}
+			}
+		}
+		
+		logger.info("Server HB Monitor Started" + this.id); 
 	}
 }

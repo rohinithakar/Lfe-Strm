@@ -62,7 +62,7 @@
 	</target>
 
 	<target name="server" depends="build">
-		<java fork="yes" maxmemory="1024m" classname="poke.server.Server">
+		<java fork="yes" maxmemory="1024m" classname="poke.server.Launcher.ServerLauncher">
 			<arg value="${basedir}/runtime/server.conf" />
 			<classpath refid="project.classpath" />
 		</java>

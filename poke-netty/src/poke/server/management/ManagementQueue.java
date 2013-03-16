@@ -46,15 +46,15 @@ public class ManagementQueue {
 	private static ThreadGroup tgroup = new ThreadGroup("ManagementQueue-"
 			+ System.nanoTime());
 
-	public static void startup() {
-		if (iworker != null)
-			return;
-
-		iworker = new InboundMgmtWorker(tgroup, 1);
-		iworker.start();
-		oworker = new OutboundMgmtWorker(tgroup, 1);
-		oworker.start();
-	}
+//	public static void startup() {
+//		if (iworker != null)
+//			return;
+//
+//		iworker = new InboundMgmtWorker(tgroup, 1);
+//		iworker.start();
+//		oworker = new OutboundMgmtWorker(tgroup, 1);
+//		oworker.start();
+//	}
 	
 	public static void startup(Server svr) {
 		if (iworker != null)
