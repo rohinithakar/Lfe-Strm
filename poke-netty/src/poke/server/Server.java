@@ -34,6 +34,8 @@ import org.jboss.netty.channel.socket.nio.NioServerSocketChannelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.monitor.HeartMonitor;
+import poke.server.conf.JsonUtil;
 import poke.server.conf.ServerConf;
 import poke.server.management.ManagementDecoderPipeline;
 import poke.server.management.ManagementQueue;
@@ -166,35 +168,43 @@ public class Server {
 		logger.info("Starting server, listening on port = " + port);
 	}
 
-	public void run(ServerConf.GeneralConf svrConf) {
-		this.id = id;
+	protected void run(ServerConf.GeneralConf generalConf) {
+		this.id = generalConf.getProperty("node.id");
 		List<ServerConf.GeneralConf> servers = conf.getServer();
+		int edgeToNodePort;
 		for(ServerConf.GeneralConf server : servers){
-			String str = server.getProperty("port");
-			if (str == null)
-				str = "5570";
-
-			int port = Integer.parseInt(str);
-
-			str = server.getProperty("port.mgmt");
-			int mport = Integer.parseInt(str);
-
-			// storage initialization
-			// TODO storage init
-			
-			// start communication
-			createPublicBoot(port);
-			createManagementBoot(mport);
-
-			// start management
-			ManagementQueue.startup();
-
-			// start heartbeat
-			str = server.getProperty("node.id");
-			heartbeat = ServerHeartbeat.getInstance(str);
-			heartbeat.start();
-			logger.info("Server " + str+ " ready on port: "+ port);
-			
+			if(server.getProperty("node.id").trim().equalsIgnoreCase(generalConf.getProperty("edgeToNode"))){
+				edgeToNodePort = Integer.parseInt(server.getProperty("port"));
+				HeartMonitor hm = new HeartMonitor("localhost", edgeToNodePort);
+				hm.waitForever();
+			}
 		}
+		String str = generalConf.getProperty("port");
+		if (str == null)
+			str = "5570";
+		
+		int port = Integer.parseInt(str);
+
+		str = generalConf.getProperty("port.mgmt");
+		int mport = Integer.parseInt(str);
+			
+		// storage initialization
+		// TODO storage init
+			
+		// start communication
+		createPublicBoot(port);
+		createManagementBoot(mport);
+		
+		// start management
+		ManagementQueue.startup();
+
+		// start heartbeat
+		str = generalConf.getProperty("node.id");
+		heartbeat = ServerHeartbeat.getInstance(str);
+		heartbeat.start();
+		
+
+		logger.info("Server " + str+ " ready on port: "+ port);
+			
 	}
 }

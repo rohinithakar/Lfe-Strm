@@ -41,7 +41,7 @@ public class HeartMonitor {
 
 	// protected ChannelFactory cf;
 
-	protected HeartMonitor(String host, int port) {
+	public HeartMonitor(String host, int port) {
 		this.host = host;
 		this.port = port;
 
@@ -101,7 +101,7 @@ public class HeartMonitor {
 					"Not able to establish connection to server");
 	}
 
-	protected void waitForever() {
+	public void waitForever() {
 		try {
 			logger.info("In waitForever*******");
 			Channel ch = connect();
