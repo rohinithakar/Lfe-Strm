@@ -4751,20 +4751,725 @@ public final class Comm {
     // @@protoc_insertion_point(class_scope:Header)
   }
   
+  public interface RegisterOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required string emailid = 1;
+    boolean hasEmailid();
+    String getEmailid();
+    
+    // required string fname = 2;
+    boolean hasFname();
+    String getFname();
+    
+    // required string lname = 3;
+    boolean hasLname();
+    String getLname();
+    
+    // required string password = 4;
+    boolean hasPassword();
+    String getPassword();
+  }
+  public static final class Register extends
+      com.google.protobuf.GeneratedMessage
+      implements RegisterOrBuilder {
+    // Use Register.newBuilder() to construct.
+    private Register(Builder builder) {
+      super(builder);
+    }
+    private Register(boolean noInit) {}
+    
+    private static final Register defaultInstance;
+    public static Register getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public Register getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eye.Comm.internal_static_Register_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eye.Comm.internal_static_Register_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required string emailid = 1;
+    public static final int EMAILID_FIELD_NUMBER = 1;
+    private java.lang.Object emailid_;
+    public boolean hasEmailid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getEmailid() {
+      java.lang.Object ref = emailid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          emailid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailidBytes() {
+      java.lang.Object ref = emailid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        emailid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string fname = 2;
+    public static final int FNAME_FIELD_NUMBER = 2;
+    private java.lang.Object fname_;
+    public boolean hasFname() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public String getFname() {
+      java.lang.Object ref = fname_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          fname_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getFnameBytes() {
+      java.lang.Object ref = fname_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        fname_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string lname = 3;
+    public static final int LNAME_FIELD_NUMBER = 3;
+    private java.lang.Object lname_;
+    public boolean hasLname() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getLname() {
+      java.lang.Object ref = lname_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          lname_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getLnameBytes() {
+      java.lang.Object ref = lname_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        lname_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required string password = 4;
+    public static final int PASSWORD_FIELD_NUMBER = 4;
+    private java.lang.Object password_;
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      emailid_ = "";
+      fname_ = "";
+      lname_ = "";
+      password_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasEmailid()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasFname()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasLname()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      if (!hasPassword()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getEmailidBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        output.writeBytes(2, getFnameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeBytes(3, getLnameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeBytes(4, getPasswordBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getEmailidBytes());
+      }
+      if (((bitField0_ & 0x00000002) == 0x00000002)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(2, getFnameBytes());
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(3, getLnameBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(4, getPasswordBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eye.Comm.Register parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eye.Comm.Register parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.Register parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eye.Comm.Register parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.Register parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eye.Comm.Register parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.Register parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eye.Comm.Register parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eye.Comm.Register parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eye.Comm.Register parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eye.Comm.Register prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.RegisterOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eye.Comm.internal_static_Register_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eye.Comm.internal_static_Register_fieldAccessorTable;
+      }
+      
+      // Construct using eye.Comm.Register.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        emailid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        fname_ = "";
+        bitField0_ = (bitField0_ & ~0x00000002);
+        lname_ = "";
+        bitField0_ = (bitField0_ & ~0x00000004);
+        password_ = "";
+        bitField0_ = (bitField0_ & ~0x00000008);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eye.Comm.Register.getDescriptor();
+      }
+      
+      public eye.Comm.Register getDefaultInstanceForType() {
+        return eye.Comm.Register.getDefaultInstance();
+      }
+      
+      public eye.Comm.Register build() {
+        eye.Comm.Register result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eye.Comm.Register buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eye.Comm.Register result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eye.Comm.Register buildPartial() {
+        eye.Comm.Register result = new eye.Comm.Register(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.emailid_ = emailid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
+        result.fname_ = fname_;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        result.lname_ = lname_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.password_ = password_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eye.Comm.Register) {
+          return mergeFrom((eye.Comm.Register)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eye.Comm.Register other) {
+        if (other == eye.Comm.Register.getDefaultInstance()) return this;
+        if (other.hasEmailid()) {
+          setEmailid(other.getEmailid());
+        }
+        if (other.hasFname()) {
+          setFname(other.getFname());
+        }
+        if (other.hasLname()) {
+          setLname(other.getLname());
+        }
+        if (other.hasPassword()) {
+          setPassword(other.getPassword());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasEmailid()) {
+          
+          return false;
+        }
+        if (!hasFname()) {
+          
+          return false;
+        }
+        if (!hasLname()) {
+          
+          return false;
+        }
+        if (!hasPassword()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              emailid_ = input.readBytes();
+              break;
+            }
+            case 18: {
+              bitField0_ |= 0x00000002;
+              fname_ = input.readBytes();
+              break;
+            }
+            case 26: {
+              bitField0_ |= 0x00000004;
+              lname_ = input.readBytes();
+              break;
+            }
+            case 34: {
+              bitField0_ |= 0x00000008;
+              password_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required string emailid = 1;
+      private java.lang.Object emailid_ = "";
+      public boolean hasEmailid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getEmailid() {
+        java.lang.Object ref = emailid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          emailid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmailid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmailid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        emailid_ = getDefaultInstance().getEmailid();
+        onChanged();
+        return this;
+      }
+      void setEmailid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+      }
+      
+      // required string fname = 2;
+      private java.lang.Object fname_ = "";
+      public boolean hasFname() {
+        return ((bitField0_ & 0x00000002) == 0x00000002);
+      }
+      public String getFname() {
+        java.lang.Object ref = fname_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          fname_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setFname(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000002;
+        fname_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearFname() {
+        bitField0_ = (bitField0_ & ~0x00000002);
+        fname_ = getDefaultInstance().getFname();
+        onChanged();
+        return this;
+      }
+      void setFname(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000002;
+        fname_ = value;
+        onChanged();
+      }
+      
+      // required string lname = 3;
+      private java.lang.Object lname_ = "";
+      public boolean hasLname() {
+        return ((bitField0_ & 0x00000004) == 0x00000004);
+      }
+      public String getLname() {
+        java.lang.Object ref = lname_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          lname_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setLname(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000004;
+        lname_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLname() {
+        bitField0_ = (bitField0_ & ~0x00000004);
+        lname_ = getDefaultInstance().getLname();
+        onChanged();
+        return this;
+      }
+      void setLname(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000004;
+        lname_ = value;
+        onChanged();
+      }
+      
+      // required string password = 4;
+      private java.lang.Object password_ = "";
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setPassword(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000008;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      void setPassword(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000008;
+        password_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:Register)
+    }
+    
+    static {
+      defaultInstance = new Register(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:Register)
+  }
+  
   public interface ImageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required bytes actualImage = 1;
+    // required string emailid = 1;
+    boolean hasEmailid();
+    String getEmailid();
+    
+    // required bytes actualImage = 2;
     boolean hasActualImage();
     com.google.protobuf.ByteString getActualImage();
     
-    // optional int32 msgLength = 2;
-    boolean hasMsgLength();
-    int getMsgLength();
+    // optional string title = 3;
+    boolean hasTitle();
+    String getTitle();
     
-    // optional string msgSenderName = 3;
-    boolean hasMsgSenderName();
-    String getMsgSenderName();
+    // optional double latitude = 4;
+    boolean hasLatitude();
+    double getLatitude();
+    
+    // optional double longitude = 5;
+    boolean hasLongitude();
+    double getLongitude();
+    
+    // optional int64 timestamp = 6;
+    boolean hasTimestamp();
+    long getTimestamp();
+    
+    // optional string imgid = 7;
+    boolean hasImgid();
+    String getImgid();
   }
   public static final class Image extends
       com.google.protobuf.GeneratedMessage
@@ -4795,34 +5500,14 @@ public final class Comm {
     }
     
     private int bitField0_;
-    // required bytes actualImage = 1;
-    public static final int ACTUALIMAGE_FIELD_NUMBER = 1;
-    private com.google.protobuf.ByteString actualImage_;
-    public boolean hasActualImage() {
+    // required string emailid = 1;
+    public static final int EMAILID_FIELD_NUMBER = 1;
+    private java.lang.Object emailid_;
+    public boolean hasEmailid() {
       return ((bitField0_ & 0x00000001) == 0x00000001);
     }
-    public com.google.protobuf.ByteString getActualImage() {
-      return actualImage_;
-    }
-    
-    // optional int32 msgLength = 2;
-    public static final int MSGLENGTH_FIELD_NUMBER = 2;
-    private int msgLength_;
-    public boolean hasMsgLength() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
-    }
-    public int getMsgLength() {
-      return msgLength_;
-    }
-    
-    // optional string msgSenderName = 3;
-    public static final int MSGSENDERNAME_FIELD_NUMBER = 3;
-    private java.lang.Object msgSenderName_;
-    public boolean hasMsgSenderName() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
-    }
-    public String getMsgSenderName() {
-      java.lang.Object ref = msgSenderName_;
+    public String getEmailid() {
+      java.lang.Object ref = emailid_;
       if (ref instanceof String) {
         return (String) ref;
       } else {
@@ -4830,17 +5515,121 @@ public final class Comm {
             (com.google.protobuf.ByteString) ref;
         String s = bs.toStringUtf8();
         if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          msgSenderName_ = s;
+          emailid_ = s;
         }
         return s;
       }
     }
-    private com.google.protobuf.ByteString getMsgSenderNameBytes() {
-      java.lang.Object ref = msgSenderName_;
+    private com.google.protobuf.ByteString getEmailidBytes() {
+      java.lang.Object ref = emailid_;
       if (ref instanceof String) {
         com.google.protobuf.ByteString b = 
             com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        msgSenderName_ = b;
+        emailid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // required bytes actualImage = 2;
+    public static final int ACTUALIMAGE_FIELD_NUMBER = 2;
+    private com.google.protobuf.ByteString actualImage_;
+    public boolean hasActualImage() {
+      return ((bitField0_ & 0x00000002) == 0x00000002);
+    }
+    public com.google.protobuf.ByteString getActualImage() {
+      return actualImage_;
+    }
+    
+    // optional string title = 3;
+    public static final int TITLE_FIELD_NUMBER = 3;
+    private java.lang.Object title_;
+    public boolean hasTitle() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public String getTitle() {
+      java.lang.Object ref = title_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          title_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getTitleBytes() {
+      java.lang.Object ref = title_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        title_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional double latitude = 4;
+    public static final int LATITUDE_FIELD_NUMBER = 4;
+    private double latitude_;
+    public boolean hasLatitude() {
+      return ((bitField0_ & 0x00000008) == 0x00000008);
+    }
+    public double getLatitude() {
+      return latitude_;
+    }
+    
+    // optional double longitude = 5;
+    public static final int LONGITUDE_FIELD_NUMBER = 5;
+    private double longitude_;
+    public boolean hasLongitude() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public double getLongitude() {
+      return longitude_;
+    }
+    
+    // optional int64 timestamp = 6;
+    public static final int TIMESTAMP_FIELD_NUMBER = 6;
+    private long timestamp_;
+    public boolean hasTimestamp() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public long getTimestamp() {
+      return timestamp_;
+    }
+    
+    // optional string imgid = 7;
+    public static final int IMGID_FIELD_NUMBER = 7;
+    private java.lang.Object imgid_;
+    public boolean hasImgid() {
+      return ((bitField0_ & 0x00000040) == 0x00000040);
+    }
+    public String getImgid() {
+      java.lang.Object ref = imgid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          imgid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getImgidBytes() {
+      java.lang.Object ref = imgid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        imgid_ = b;
         return b;
       } else {
         return (com.google.protobuf.ByteString) ref;
@@ -4848,15 +5637,23 @@ public final class Comm {
     }
     
     private void initFields() {
+      emailid_ = "";
       actualImage_ = com.google.protobuf.ByteString.EMPTY;
-      msgLength_ = 0;
-      msgSenderName_ = "";
+      title_ = "";
+      latitude_ = 0D;
+      longitude_ = 0D;
+      timestamp_ = 0L;
+      imgid_ = "";
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasEmailid()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (!hasActualImage()) {
         memoizedIsInitialized = 0;
         return false;
@@ -4869,13 +5666,25 @@ public final class Comm {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, actualImage_);
+        output.writeBytes(1, getEmailidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeInt32(2, msgLength_);
+        output.writeBytes(2, actualImage_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getMsgSenderNameBytes());
+        output.writeBytes(3, getTitleBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        output.writeDouble(4, latitude_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeDouble(5, longitude_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeInt64(6, timestamp_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeBytes(7, getImgidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -4888,15 +5697,31 @@ public final class Comm {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, actualImage_);
+          .computeBytesSize(1, getEmailidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt32Size(2, msgLength_);
+          .computeBytesSize(2, actualImage_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getMsgSenderNameBytes());
+          .computeBytesSize(3, getTitleBytes());
+      }
+      if (((bitField0_ & 0x00000008) == 0x00000008)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(4, latitude_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeDoubleSize(5, longitude_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeInt64Size(6, timestamp_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(7, getImgidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5022,12 +5847,20 @@ public final class Comm {
       
       public Builder clear() {
         super.clear();
-        actualImage_ = com.google.protobuf.ByteString.EMPTY;
+        emailid_ = "";
         bitField0_ = (bitField0_ & ~0x00000001);
-        msgLength_ = 0;
+        actualImage_ = com.google.protobuf.ByteString.EMPTY;
         bitField0_ = (bitField0_ & ~0x00000002);
-        msgSenderName_ = "";
+        title_ = "";
         bitField0_ = (bitField0_ & ~0x00000004);
+        latitude_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000008);
+        longitude_ = 0D;
+        bitField0_ = (bitField0_ & ~0x00000010);
+        timestamp_ = 0L;
+        bitField0_ = (bitField0_ & ~0x00000020);
+        imgid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       
@@ -5069,15 +5902,31 @@ public final class Comm {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.actualImage_ = actualImage_;
+        result.emailid_ = emailid_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.msgLength_ = msgLength_;
+        result.actualImage_ = actualImage_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.msgSenderName_ = msgSenderName_;
+        result.title_ = title_;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
+        }
+        result.latitude_ = latitude_;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        result.longitude_ = longitude_;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        result.timestamp_ = timestamp_;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
+        }
+        result.imgid_ = imgid_;
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -5094,20 +5943,36 @@ public final class Comm {
       
       public Builder mergeFrom(eye.Comm.Image other) {
         if (other == eye.Comm.Image.getDefaultInstance()) return this;
+        if (other.hasEmailid()) {
+          setEmailid(other.getEmailid());
+        }
         if (other.hasActualImage()) {
           setActualImage(other.getActualImage());
         }
-        if (other.hasMsgLength()) {
-          setMsgLength(other.getMsgLength());
+        if (other.hasTitle()) {
+          setTitle(other.getTitle());
         }
-        if (other.hasMsgSenderName()) {
-          setMsgSenderName(other.getMsgSenderName());
+        if (other.hasLatitude()) {
+          setLatitude(other.getLatitude());
+        }
+        if (other.hasLongitude()) {
+          setLongitude(other.getLongitude());
+        }
+        if (other.hasTimestamp()) {
+          setTimestamp(other.getTimestamp());
+        }
+        if (other.hasImgid()) {
+          setImgid(other.getImgid());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
       
       public final boolean isInitialized() {
+        if (!hasEmailid()) {
+          
+          return false;
+        }
         if (!hasActualImage()) {
           
           return false;
@@ -5140,17 +6005,37 @@ public final class Comm {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              actualImage_ = input.readBytes();
+              emailid_ = input.readBytes();
               break;
             }
-            case 16: {
+            case 18: {
               bitField0_ |= 0x00000002;
-              msgLength_ = input.readInt32();
+              actualImage_ = input.readBytes();
               break;
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              msgSenderName_ = input.readBytes();
+              title_ = input.readBytes();
+              break;
+            }
+            case 33: {
+              bitField0_ |= 0x00000008;
+              latitude_ = input.readDouble();
+              break;
+            }
+            case 41: {
+              bitField0_ |= 0x00000010;
+              longitude_ = input.readDouble();
+              break;
+            }
+            case 48: {
+              bitField0_ |= 0x00000020;
+              timestamp_ = input.readInt64();
+              break;
+            }
+            case 58: {
+              bitField0_ |= 0x00000040;
+              imgid_ = input.readBytes();
               break;
             }
           }
@@ -5159,10 +6044,46 @@ public final class Comm {
       
       private int bitField0_;
       
-      // required bytes actualImage = 1;
+      // required string emailid = 1;
+      private java.lang.Object emailid_ = "";
+      public boolean hasEmailid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getEmailid() {
+        java.lang.Object ref = emailid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          emailid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmailid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmailid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        emailid_ = getDefaultInstance().getEmailid();
+        onChanged();
+        return this;
+      }
+      void setEmailid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+      }
+      
+      // required bytes actualImage = 2;
       private com.google.protobuf.ByteString actualImage_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasActualImage() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public com.google.protobuf.ByteString getActualImage() {
         return actualImage_;
@@ -5171,72 +6092,150 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000001;
+  bitField0_ |= 0x00000002;
         actualImage_ = value;
         onChanged();
         return this;
       }
       public Builder clearActualImage() {
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         actualImage_ = getDefaultInstance().getActualImage();
         onChanged();
         return this;
       }
       
-      // optional int32 msgLength = 2;
-      private int msgLength_ ;
-      public boolean hasMsgLength() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
-      }
-      public int getMsgLength() {
-        return msgLength_;
-      }
-      public Builder setMsgLength(int value) {
-        bitField0_ |= 0x00000002;
-        msgLength_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearMsgLength() {
-        bitField0_ = (bitField0_ & ~0x00000002);
-        msgLength_ = 0;
-        onChanged();
-        return this;
-      }
-      
-      // optional string msgSenderName = 3;
-      private java.lang.Object msgSenderName_ = "";
-      public boolean hasMsgSenderName() {
+      // optional string title = 3;
+      private java.lang.Object title_ = "";
+      public boolean hasTitle() {
         return ((bitField0_ & 0x00000004) == 0x00000004);
       }
-      public String getMsgSenderName() {
-        java.lang.Object ref = msgSenderName_;
+      public String getTitle() {
+        java.lang.Object ref = title_;
         if (!(ref instanceof String)) {
           String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          msgSenderName_ = s;
+          title_ = s;
           return s;
         } else {
           return (String) ref;
         }
       }
-      public Builder setMsgSenderName(String value) {
+      public Builder setTitle(String value) {
         if (value == null) {
     throw new NullPointerException();
   }
   bitField0_ |= 0x00000004;
-        msgSenderName_ = value;
+        title_ = value;
         onChanged();
         return this;
       }
-      public Builder clearMsgSenderName() {
+      public Builder clearTitle() {
         bitField0_ = (bitField0_ & ~0x00000004);
-        msgSenderName_ = getDefaultInstance().getMsgSenderName();
+        title_ = getDefaultInstance().getTitle();
         onChanged();
         return this;
       }
-      void setMsgSenderName(com.google.protobuf.ByteString value) {
+      void setTitle(com.google.protobuf.ByteString value) {
         bitField0_ |= 0x00000004;
-        msgSenderName_ = value;
+        title_ = value;
+        onChanged();
+      }
+      
+      // optional double latitude = 4;
+      private double latitude_ ;
+      public boolean hasLatitude() {
+        return ((bitField0_ & 0x00000008) == 0x00000008);
+      }
+      public double getLatitude() {
+        return latitude_;
+      }
+      public Builder setLatitude(double value) {
+        bitField0_ |= 0x00000008;
+        latitude_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLatitude() {
+        bitField0_ = (bitField0_ & ~0x00000008);
+        latitude_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // optional double longitude = 5;
+      private double longitude_ ;
+      public boolean hasLongitude() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public double getLongitude() {
+        return longitude_;
+      }
+      public Builder setLongitude(double value) {
+        bitField0_ |= 0x00000010;
+        longitude_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearLongitude() {
+        bitField0_ = (bitField0_ & ~0x00000010);
+        longitude_ = 0D;
+        onChanged();
+        return this;
+      }
+      
+      // optional int64 timestamp = 6;
+      private long timestamp_ ;
+      public boolean hasTimestamp() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public long getTimestamp() {
+        return timestamp_;
+      }
+      public Builder setTimestamp(long value) {
+        bitField0_ |= 0x00000020;
+        timestamp_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearTimestamp() {
+        bitField0_ = (bitField0_ & ~0x00000020);
+        timestamp_ = 0L;
+        onChanged();
+        return this;
+      }
+      
+      // optional string imgid = 7;
+      private java.lang.Object imgid_ = "";
+      public boolean hasImgid() {
+        return ((bitField0_ & 0x00000040) == 0x00000040);
+      }
+      public String getImgid() {
+        java.lang.Object ref = imgid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          imgid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setImgid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000040;
+        imgid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearImgid() {
+        bitField0_ = (bitField0_ & ~0x00000040);
+        imgid_ = getDefaultInstance().getImgid();
+        onChanged();
+        return this;
+      }
+      void setImgid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000040;
+        imgid_ = value;
         onChanged();
       }
       
@@ -5249,6 +6248,952 @@ public final class Comm {
     }
     
     // @@protoc_insertion_point(class_scope:Image)
+  }
+  
+  public interface UserImageRequestOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // required string emailid = 1;
+    boolean hasEmailid();
+    String getEmailid();
+  }
+  public static final class UserImageRequest extends
+      com.google.protobuf.GeneratedMessage
+      implements UserImageRequestOrBuilder {
+    // Use UserImageRequest.newBuilder() to construct.
+    private UserImageRequest(Builder builder) {
+      super(builder);
+    }
+    private UserImageRequest(boolean noInit) {}
+    
+    private static final UserImageRequest defaultInstance;
+    public static UserImageRequest getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public UserImageRequest getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eye.Comm.internal_static_UserImageRequest_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eye.Comm.internal_static_UserImageRequest_fieldAccessorTable;
+    }
+    
+    private int bitField0_;
+    // required string emailid = 1;
+    public static final int EMAILID_FIELD_NUMBER = 1;
+    private java.lang.Object emailid_;
+    public boolean hasEmailid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getEmailid() {
+      java.lang.Object ref = emailid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          emailid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailidBytes() {
+      java.lang.Object ref = emailid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        emailid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    private void initFields() {
+      emailid_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      if (!hasEmailid()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getEmailidBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getEmailidBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eye.Comm.UserImageRequest parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eye.Comm.UserImageRequest parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eye.Comm.UserImageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eye.Comm.UserImageRequest parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eye.Comm.UserImageRequest prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.UserImageRequestOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eye.Comm.internal_static_UserImageRequest_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eye.Comm.internal_static_UserImageRequest_fieldAccessorTable;
+      }
+      
+      // Construct using eye.Comm.UserImageRequest.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        emailid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eye.Comm.UserImageRequest.getDescriptor();
+      }
+      
+      public eye.Comm.UserImageRequest getDefaultInstanceForType() {
+        return eye.Comm.UserImageRequest.getDefaultInstance();
+      }
+      
+      public eye.Comm.UserImageRequest build() {
+        eye.Comm.UserImageRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eye.Comm.UserImageRequest buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eye.Comm.UserImageRequest result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eye.Comm.UserImageRequest buildPartial() {
+        eye.Comm.UserImageRequest result = new eye.Comm.UserImageRequest(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.emailid_ = emailid_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eye.Comm.UserImageRequest) {
+          return mergeFrom((eye.Comm.UserImageRequest)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eye.Comm.UserImageRequest other) {
+        if (other == eye.Comm.UserImageRequest.getDefaultInstance()) return this;
+        if (other.hasEmailid()) {
+          setEmailid(other.getEmailid());
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        if (!hasEmailid()) {
+          
+          return false;
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              emailid_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // required string emailid = 1;
+      private java.lang.Object emailid_ = "";
+      public boolean hasEmailid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getEmailid() {
+        java.lang.Object ref = emailid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          emailid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmailid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmailid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        emailid_ = getDefaultInstance().getEmailid();
+        onChanged();
+        return this;
+      }
+      void setEmailid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+      }
+      
+      // @@protoc_insertion_point(builder_scope:UserImageRequest)
+    }
+    
+    static {
+      defaultInstance = new UserImageRequest(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:UserImageRequest)
+  }
+  
+  public interface UserImageReplyOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+    
+    // repeated .Image imgs = 1;
+    java.util.List<eye.Comm.Image> 
+        getImgsList();
+    eye.Comm.Image getImgs(int index);
+    int getImgsCount();
+    java.util.List<? extends eye.Comm.ImageOrBuilder> 
+        getImgsOrBuilderList();
+    eye.Comm.ImageOrBuilder getImgsOrBuilder(
+        int index);
+  }
+  public static final class UserImageReply extends
+      com.google.protobuf.GeneratedMessage
+      implements UserImageReplyOrBuilder {
+    // Use UserImageReply.newBuilder() to construct.
+    private UserImageReply(Builder builder) {
+      super(builder);
+    }
+    private UserImageReply(boolean noInit) {}
+    
+    private static final UserImageReply defaultInstance;
+    public static UserImageReply getDefaultInstance() {
+      return defaultInstance;
+    }
+    
+    public UserImageReply getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+    
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eye.Comm.internal_static_UserImageReply_descriptor;
+    }
+    
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eye.Comm.internal_static_UserImageReply_fieldAccessorTable;
+    }
+    
+    // repeated .Image imgs = 1;
+    public static final int IMGS_FIELD_NUMBER = 1;
+    private java.util.List<eye.Comm.Image> imgs_;
+    public java.util.List<eye.Comm.Image> getImgsList() {
+      return imgs_;
+    }
+    public java.util.List<? extends eye.Comm.ImageOrBuilder> 
+        getImgsOrBuilderList() {
+      return imgs_;
+    }
+    public int getImgsCount() {
+      return imgs_.size();
+    }
+    public eye.Comm.Image getImgs(int index) {
+      return imgs_.get(index);
+    }
+    public eye.Comm.ImageOrBuilder getImgsOrBuilder(
+        int index) {
+      return imgs_.get(index);
+    }
+    
+    private void initFields() {
+      imgs_ = java.util.Collections.emptyList();
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+      
+      for (int i = 0; i < getImgsCount(); i++) {
+        if (!getImgs(i).isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+    
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      for (int i = 0; i < imgs_.size(); i++) {
+        output.writeMessage(1, imgs_.get(i));
+      }
+      getUnknownFields().writeTo(output);
+    }
+    
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+    
+      size = 0;
+      for (int i = 0; i < imgs_.size(); i++) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(1, imgs_.get(i));
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+    
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+    
+    public static eye.Comm.UserImageReply parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data).buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return newBuilder().mergeFrom(data, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eye.Comm.UserImageReply parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      Builder builder = newBuilder();
+      if (builder.mergeDelimitedFrom(input, extensionRegistry)) {
+        return builder.buildParsed();
+      } else {
+        return null;
+      }
+    }
+    public static eye.Comm.UserImageReply parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input).buildParsed();
+    }
+    public static eye.Comm.UserImageReply parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return newBuilder().mergeFrom(input, extensionRegistry)
+               .buildParsed();
+    }
+    
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eye.Comm.UserImageReply prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+    
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.UserImageReplyOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eye.Comm.internal_static_UserImageReply_descriptor;
+      }
+      
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eye.Comm.internal_static_UserImageReply_fieldAccessorTable;
+      }
+      
+      // Construct using eye.Comm.UserImageReply.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+      
+      private Builder(BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+          getImgsFieldBuilder();
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+      
+      public Builder clear() {
+        super.clear();
+        if (imgsBuilder_ == null) {
+          imgs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+        } else {
+          imgsBuilder_.clear();
+        }
+        return this;
+      }
+      
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+      
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eye.Comm.UserImageReply.getDescriptor();
+      }
+      
+      public eye.Comm.UserImageReply getDefaultInstanceForType() {
+        return eye.Comm.UserImageReply.getDefaultInstance();
+      }
+      
+      public eye.Comm.UserImageReply build() {
+        eye.Comm.UserImageReply result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+      
+      private eye.Comm.UserImageReply buildParsed()
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        eye.Comm.UserImageReply result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(
+            result).asInvalidProtocolBufferException();
+        }
+        return result;
+      }
+      
+      public eye.Comm.UserImageReply buildPartial() {
+        eye.Comm.UserImageReply result = new eye.Comm.UserImageReply(this);
+        int from_bitField0_ = bitField0_;
+        if (imgsBuilder_ == null) {
+          if (((bitField0_ & 0x00000001) == 0x00000001)) {
+            imgs_ = java.util.Collections.unmodifiableList(imgs_);
+            bitField0_ = (bitField0_ & ~0x00000001);
+          }
+          result.imgs_ = imgs_;
+        } else {
+          result.imgs_ = imgsBuilder_.build();
+        }
+        onBuilt();
+        return result;
+      }
+      
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eye.Comm.UserImageReply) {
+          return mergeFrom((eye.Comm.UserImageReply)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+      
+      public Builder mergeFrom(eye.Comm.UserImageReply other) {
+        if (other == eye.Comm.UserImageReply.getDefaultInstance()) return this;
+        if (imgsBuilder_ == null) {
+          if (!other.imgs_.isEmpty()) {
+            if (imgs_.isEmpty()) {
+              imgs_ = other.imgs_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+            } else {
+              ensureImgsIsMutable();
+              imgs_.addAll(other.imgs_);
+            }
+            onChanged();
+          }
+        } else {
+          if (!other.imgs_.isEmpty()) {
+            if (imgsBuilder_.isEmpty()) {
+              imgsBuilder_.dispose();
+              imgsBuilder_ = null;
+              imgs_ = other.imgs_;
+              bitField0_ = (bitField0_ & ~0x00000001);
+              imgsBuilder_ = 
+                com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders ?
+                   getImgsFieldBuilder() : null;
+            } else {
+              imgsBuilder_.addAllMessages(other.imgs_);
+            }
+          }
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+      
+      public final boolean isInitialized() {
+        for (int i = 0; i < getImgsCount(); i++) {
+          if (!getImgs(i).isInitialized()) {
+            
+            return false;
+          }
+        }
+        return true;
+      }
+      
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder(
+            this.getUnknownFields());
+        while (true) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              this.setUnknownFields(unknownFields.build());
+              onChanged();
+              return this;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                this.setUnknownFields(unknownFields.build());
+                onChanged();
+                return this;
+              }
+              break;
+            }
+            case 10: {
+              eye.Comm.Image.Builder subBuilder = eye.Comm.Image.newBuilder();
+              input.readMessage(subBuilder, extensionRegistry);
+              addImgs(subBuilder.buildPartial());
+              break;
+            }
+          }
+        }
+      }
+      
+      private int bitField0_;
+      
+      // repeated .Image imgs = 1;
+      private java.util.List<eye.Comm.Image> imgs_ =
+        java.util.Collections.emptyList();
+      private void ensureImgsIsMutable() {
+        if (!((bitField0_ & 0x00000001) == 0x00000001)) {
+          imgs_ = new java.util.ArrayList<eye.Comm.Image>(imgs_);
+          bitField0_ |= 0x00000001;
+         }
+      }
+      
+      private com.google.protobuf.RepeatedFieldBuilder<
+          eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder> imgsBuilder_;
+      
+      public java.util.List<eye.Comm.Image> getImgsList() {
+        if (imgsBuilder_ == null) {
+          return java.util.Collections.unmodifiableList(imgs_);
+        } else {
+          return imgsBuilder_.getMessageList();
+        }
+      }
+      public int getImgsCount() {
+        if (imgsBuilder_ == null) {
+          return imgs_.size();
+        } else {
+          return imgsBuilder_.getCount();
+        }
+      }
+      public eye.Comm.Image getImgs(int index) {
+        if (imgsBuilder_ == null) {
+          return imgs_.get(index);
+        } else {
+          return imgsBuilder_.getMessage(index);
+        }
+      }
+      public Builder setImgs(
+          int index, eye.Comm.Image value) {
+        if (imgsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureImgsIsMutable();
+          imgs_.set(index, value);
+          onChanged();
+        } else {
+          imgsBuilder_.setMessage(index, value);
+        }
+        return this;
+      }
+      public Builder setImgs(
+          int index, eye.Comm.Image.Builder builderForValue) {
+        if (imgsBuilder_ == null) {
+          ensureImgsIsMutable();
+          imgs_.set(index, builderForValue.build());
+          onChanged();
+        } else {
+          imgsBuilder_.setMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addImgs(eye.Comm.Image value) {
+        if (imgsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureImgsIsMutable();
+          imgs_.add(value);
+          onChanged();
+        } else {
+          imgsBuilder_.addMessage(value);
+        }
+        return this;
+      }
+      public Builder addImgs(
+          int index, eye.Comm.Image value) {
+        if (imgsBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          ensureImgsIsMutable();
+          imgs_.add(index, value);
+          onChanged();
+        } else {
+          imgsBuilder_.addMessage(index, value);
+        }
+        return this;
+      }
+      public Builder addImgs(
+          eye.Comm.Image.Builder builderForValue) {
+        if (imgsBuilder_ == null) {
+          ensureImgsIsMutable();
+          imgs_.add(builderForValue.build());
+          onChanged();
+        } else {
+          imgsBuilder_.addMessage(builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addImgs(
+          int index, eye.Comm.Image.Builder builderForValue) {
+        if (imgsBuilder_ == null) {
+          ensureImgsIsMutable();
+          imgs_.add(index, builderForValue.build());
+          onChanged();
+        } else {
+          imgsBuilder_.addMessage(index, builderForValue.build());
+        }
+        return this;
+      }
+      public Builder addAllImgs(
+          java.lang.Iterable<? extends eye.Comm.Image> values) {
+        if (imgsBuilder_ == null) {
+          ensureImgsIsMutable();
+          super.addAll(values, imgs_);
+          onChanged();
+        } else {
+          imgsBuilder_.addAllMessages(values);
+        }
+        return this;
+      }
+      public Builder clearImgs() {
+        if (imgsBuilder_ == null) {
+          imgs_ = java.util.Collections.emptyList();
+          bitField0_ = (bitField0_ & ~0x00000001);
+          onChanged();
+        } else {
+          imgsBuilder_.clear();
+        }
+        return this;
+      }
+      public Builder removeImgs(int index) {
+        if (imgsBuilder_ == null) {
+          ensureImgsIsMutable();
+          imgs_.remove(index);
+          onChanged();
+        } else {
+          imgsBuilder_.remove(index);
+        }
+        return this;
+      }
+      public eye.Comm.Image.Builder getImgsBuilder(
+          int index) {
+        return getImgsFieldBuilder().getBuilder(index);
+      }
+      public eye.Comm.ImageOrBuilder getImgsOrBuilder(
+          int index) {
+        if (imgsBuilder_ == null) {
+          return imgs_.get(index);  } else {
+          return imgsBuilder_.getMessageOrBuilder(index);
+        }
+      }
+      public java.util.List<? extends eye.Comm.ImageOrBuilder> 
+           getImgsOrBuilderList() {
+        if (imgsBuilder_ != null) {
+          return imgsBuilder_.getMessageOrBuilderList();
+        } else {
+          return java.util.Collections.unmodifiableList(imgs_);
+        }
+      }
+      public eye.Comm.Image.Builder addImgsBuilder() {
+        return getImgsFieldBuilder().addBuilder(
+            eye.Comm.Image.getDefaultInstance());
+      }
+      public eye.Comm.Image.Builder addImgsBuilder(
+          int index) {
+        return getImgsFieldBuilder().addBuilder(
+            index, eye.Comm.Image.getDefaultInstance());
+      }
+      public java.util.List<eye.Comm.Image.Builder> 
+           getImgsBuilderList() {
+        return getImgsFieldBuilder().getBuilderList();
+      }
+      private com.google.protobuf.RepeatedFieldBuilder<
+          eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder> 
+          getImgsFieldBuilder() {
+        if (imgsBuilder_ == null) {
+          imgsBuilder_ = new com.google.protobuf.RepeatedFieldBuilder<
+              eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder>(
+                  imgs_,
+                  ((bitField0_ & 0x00000001) == 0x00000001),
+                  getParentForChildren(),
+                  isClean());
+          imgs_ = null;
+        }
+        return imgsBuilder_;
+      }
+      
+      // @@protoc_insertion_point(builder_scope:UserImageReply)
+    }
+    
+    static {
+      defaultInstance = new UserImageReply(true);
+      defaultInstance.initFields();
+    }
+    
+    // @@protoc_insertion_point(class_scope:UserImageReply)
   }
   
   public interface PayloadOrBuilder
@@ -5269,10 +7214,20 @@ public final class Comm {
     eye.Comm.NameSpace getSpace();
     eye.Comm.NameSpaceOrBuilder getSpaceOrBuilder();
     
-    // optional .Image img = 4;
-    boolean hasImg();
-    eye.Comm.Image getImg();
-    eye.Comm.ImageOrBuilder getImgOrBuilder();
+    // optional .Register reg = 4;
+    boolean hasReg();
+    eye.Comm.Register getReg();
+    eye.Comm.RegisterOrBuilder getRegOrBuilder();
+    
+    // optional .Image imageup = 5;
+    boolean hasImageup();
+    eye.Comm.Image getImageup();
+    eye.Comm.ImageOrBuilder getImageupOrBuilder();
+    
+    // optional .UserImageRequest imgreq = 6;
+    boolean hasImgreq();
+    eye.Comm.UserImageRequest getImgreq();
+    eye.Comm.UserImageRequestOrBuilder getImgreqOrBuilder();
   }
   public static final class Payload extends
       com.google.protobuf.GeneratedMessage
@@ -5342,24 +7297,52 @@ public final class Comm {
       return space_;
     }
     
-    // optional .Image img = 4;
-    public static final int IMG_FIELD_NUMBER = 4;
-    private eye.Comm.Image img_;
-    public boolean hasImg() {
+    // optional .Register reg = 4;
+    public static final int REG_FIELD_NUMBER = 4;
+    private eye.Comm.Register reg_;
+    public boolean hasReg() {
       return ((bitField0_ & 0x00000008) == 0x00000008);
     }
-    public eye.Comm.Image getImg() {
-      return img_;
+    public eye.Comm.Register getReg() {
+      return reg_;
     }
-    public eye.Comm.ImageOrBuilder getImgOrBuilder() {
-      return img_;
+    public eye.Comm.RegisterOrBuilder getRegOrBuilder() {
+      return reg_;
+    }
+    
+    // optional .Image imageup = 5;
+    public static final int IMAGEUP_FIELD_NUMBER = 5;
+    private eye.Comm.Image imageup_;
+    public boolean hasImageup() {
+      return ((bitField0_ & 0x00000010) == 0x00000010);
+    }
+    public eye.Comm.Image getImageup() {
+      return imageup_;
+    }
+    public eye.Comm.ImageOrBuilder getImageupOrBuilder() {
+      return imageup_;
+    }
+    
+    // optional .UserImageRequest imgreq = 6;
+    public static final int IMGREQ_FIELD_NUMBER = 6;
+    private eye.Comm.UserImageRequest imgreq_;
+    public boolean hasImgreq() {
+      return ((bitField0_ & 0x00000020) == 0x00000020);
+    }
+    public eye.Comm.UserImageRequest getImgreq() {
+      return imgreq_;
+    }
+    public eye.Comm.UserImageRequestOrBuilder getImgreqOrBuilder() {
+      return imgreq_;
     }
     
     private void initFields() {
       finger_ = eye.Comm.Finger.getDefaultInstance();
       doc_ = eye.Comm.Document.getDefaultInstance();
       space_ = eye.Comm.NameSpace.getDefaultInstance();
-      img_ = eye.Comm.Image.getDefaultInstance();
+      reg_ = eye.Comm.Register.getDefaultInstance();
+      imageup_ = eye.Comm.Image.getDefaultInstance();
+      imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -5384,8 +7367,20 @@ public final class Comm {
           return false;
         }
       }
-      if (hasImg()) {
-        if (!getImg().isInitialized()) {
+      if (hasReg()) {
+        if (!getReg().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasImageup()) {
+        if (!getImageup().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
+      if (hasImgreq()) {
+        if (!getImgreq().isInitialized()) {
           memoizedIsInitialized = 0;
           return false;
         }
@@ -5407,7 +7402,13 @@ public final class Comm {
         output.writeMessage(3, space_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, img_);
+        output.writeMessage(4, reg_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        output.writeMessage(5, imageup_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        output.writeMessage(6, imgreq_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -5432,7 +7433,15 @@ public final class Comm {
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, img_);
+          .computeMessageSize(4, reg_);
+      }
+      if (((bitField0_ & 0x00000010) == 0x00000010)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, imageup_);
+      }
+      if (((bitField0_ & 0x00000020) == 0x00000020)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(6, imgreq_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5553,7 +7562,9 @@ public final class Comm {
           getFingerFieldBuilder();
           getDocFieldBuilder();
           getSpaceFieldBuilder();
-          getImgFieldBuilder();
+          getRegFieldBuilder();
+          getImageupFieldBuilder();
+          getImgreqFieldBuilder();
         }
       }
       private static Builder create() {
@@ -5580,12 +7591,24 @@ public final class Comm {
           spaceBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000004);
-        if (imgBuilder_ == null) {
-          img_ = eye.Comm.Image.getDefaultInstance();
+        if (regBuilder_ == null) {
+          reg_ = eye.Comm.Register.getDefaultInstance();
         } else {
-          imgBuilder_.clear();
+          regBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (imageupBuilder_ == null) {
+          imageup_ = eye.Comm.Image.getDefaultInstance();
+        } else {
+          imageupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        if (imgreqBuilder_ == null) {
+          imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
+        } else {
+          imgreqBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -5651,10 +7674,26 @@ public final class Comm {
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        if (imgBuilder_ == null) {
-          result.img_ = img_;
+        if (regBuilder_ == null) {
+          result.reg_ = reg_;
         } else {
-          result.img_ = imgBuilder_.build();
+          result.reg_ = regBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
+        }
+        if (imageupBuilder_ == null) {
+          result.imageup_ = imageup_;
+        } else {
+          result.imageup_ = imageupBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
+        }
+        if (imgreqBuilder_ == null) {
+          result.imgreq_ = imgreq_;
+        } else {
+          result.imgreq_ = imgreqBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -5681,8 +7720,14 @@ public final class Comm {
         if (other.hasSpace()) {
           mergeSpace(other.getSpace());
         }
-        if (other.hasImg()) {
-          mergeImg(other.getImg());
+        if (other.hasReg()) {
+          mergeReg(other.getReg());
+        }
+        if (other.hasImageup()) {
+          mergeImageup(other.getImageup());
+        }
+        if (other.hasImgreq()) {
+          mergeImgreq(other.getImgreq());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -5707,8 +7752,20 @@ public final class Comm {
             return false;
           }
         }
-        if (hasImg()) {
-          if (!getImg().isInitialized()) {
+        if (hasReg()) {
+          if (!getReg().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasImageup()) {
+          if (!getImageup().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasImgreq()) {
+          if (!getImgreq().isInitialized()) {
             
             return false;
           }
@@ -5767,12 +7824,30 @@ public final class Comm {
               break;
             }
             case 34: {
-              eye.Comm.Image.Builder subBuilder = eye.Comm.Image.newBuilder();
-              if (hasImg()) {
-                subBuilder.mergeFrom(getImg());
+              eye.Comm.Register.Builder subBuilder = eye.Comm.Register.newBuilder();
+              if (hasReg()) {
+                subBuilder.mergeFrom(getReg());
               }
               input.readMessage(subBuilder, extensionRegistry);
-              setImg(subBuilder.buildPartial());
+              setReg(subBuilder.buildPartial());
+              break;
+            }
+            case 42: {
+              eye.Comm.Image.Builder subBuilder = eye.Comm.Image.newBuilder();
+              if (hasImageup()) {
+                subBuilder.mergeFrom(getImageup());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setImageup(subBuilder.buildPartial());
+              break;
+            }
+            case 50: {
+              eye.Comm.UserImageRequest.Builder subBuilder = eye.Comm.UserImageRequest.newBuilder();
+              if (hasImgreq()) {
+                subBuilder.mergeFrom(getImgreq());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setImgreq(subBuilder.buildPartial());
               break;
             }
           }
@@ -6051,94 +8126,274 @@ public final class Comm {
         return spaceBuilder_;
       }
       
-      // optional .Image img = 4;
-      private eye.Comm.Image img_ = eye.Comm.Image.getDefaultInstance();
+      // optional .Register reg = 4;
+      private eye.Comm.Register reg_ = eye.Comm.Register.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
-          eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder> imgBuilder_;
-      public boolean hasImg() {
+          eye.Comm.Register, eye.Comm.Register.Builder, eye.Comm.RegisterOrBuilder> regBuilder_;
+      public boolean hasReg() {
         return ((bitField0_ & 0x00000008) == 0x00000008);
       }
-      public eye.Comm.Image getImg() {
-        if (imgBuilder_ == null) {
-          return img_;
+      public eye.Comm.Register getReg() {
+        if (regBuilder_ == null) {
+          return reg_;
         } else {
-          return imgBuilder_.getMessage();
+          return regBuilder_.getMessage();
         }
       }
-      public Builder setImg(eye.Comm.Image value) {
-        if (imgBuilder_ == null) {
+      public Builder setReg(eye.Comm.Register value) {
+        if (regBuilder_ == null) {
           if (value == null) {
             throw new NullPointerException();
           }
-          img_ = value;
+          reg_ = value;
           onChanged();
         } else {
-          imgBuilder_.setMessage(value);
+          regBuilder_.setMessage(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
-      public Builder setImg(
-          eye.Comm.Image.Builder builderForValue) {
-        if (imgBuilder_ == null) {
-          img_ = builderForValue.build();
+      public Builder setReg(
+          eye.Comm.Register.Builder builderForValue) {
+        if (regBuilder_ == null) {
+          reg_ = builderForValue.build();
           onChanged();
         } else {
-          imgBuilder_.setMessage(builderForValue.build());
+          regBuilder_.setMessage(builderForValue.build());
         }
         bitField0_ |= 0x00000008;
         return this;
       }
-      public Builder mergeImg(eye.Comm.Image value) {
-        if (imgBuilder_ == null) {
+      public Builder mergeReg(eye.Comm.Register value) {
+        if (regBuilder_ == null) {
           if (((bitField0_ & 0x00000008) == 0x00000008) &&
-              img_ != eye.Comm.Image.getDefaultInstance()) {
-            img_ =
-              eye.Comm.Image.newBuilder(img_).mergeFrom(value).buildPartial();
+              reg_ != eye.Comm.Register.getDefaultInstance()) {
+            reg_ =
+              eye.Comm.Register.newBuilder(reg_).mergeFrom(value).buildPartial();
           } else {
-            img_ = value;
+            reg_ = value;
           }
           onChanged();
         } else {
-          imgBuilder_.mergeFrom(value);
+          regBuilder_.mergeFrom(value);
         }
         bitField0_ |= 0x00000008;
         return this;
       }
-      public Builder clearImg() {
-        if (imgBuilder_ == null) {
-          img_ = eye.Comm.Image.getDefaultInstance();
+      public Builder clearReg() {
+        if (regBuilder_ == null) {
+          reg_ = eye.Comm.Register.getDefaultInstance();
           onChanged();
         } else {
-          imgBuilder_.clear();
+          regBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
-      public eye.Comm.Image.Builder getImgBuilder() {
+      public eye.Comm.Register.Builder getRegBuilder() {
         bitField0_ |= 0x00000008;
         onChanged();
-        return getImgFieldBuilder().getBuilder();
+        return getRegFieldBuilder().getBuilder();
       }
-      public eye.Comm.ImageOrBuilder getImgOrBuilder() {
-        if (imgBuilder_ != null) {
-          return imgBuilder_.getMessageOrBuilder();
+      public eye.Comm.RegisterOrBuilder getRegOrBuilder() {
+        if (regBuilder_ != null) {
+          return regBuilder_.getMessageOrBuilder();
         } else {
-          return img_;
+          return reg_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Register, eye.Comm.Register.Builder, eye.Comm.RegisterOrBuilder> 
+          getRegFieldBuilder() {
+        if (regBuilder_ == null) {
+          regBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              eye.Comm.Register, eye.Comm.Register.Builder, eye.Comm.RegisterOrBuilder>(
+                  reg_,
+                  getParentForChildren(),
+                  isClean());
+          reg_ = null;
+        }
+        return regBuilder_;
+      }
+      
+      // optional .Image imageup = 5;
+      private eye.Comm.Image imageup_ = eye.Comm.Image.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder> imageupBuilder_;
+      public boolean hasImageup() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public eye.Comm.Image getImageup() {
+        if (imageupBuilder_ == null) {
+          return imageup_;
+        } else {
+          return imageupBuilder_.getMessage();
+        }
+      }
+      public Builder setImageup(eye.Comm.Image value) {
+        if (imageupBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          imageup_ = value;
+          onChanged();
+        } else {
+          imageupBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      public Builder setImageup(
+          eye.Comm.Image.Builder builderForValue) {
+        if (imageupBuilder_ == null) {
+          imageup_ = builderForValue.build();
+          onChanged();
+        } else {
+          imageupBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      public Builder mergeImageup(eye.Comm.Image value) {
+        if (imageupBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              imageup_ != eye.Comm.Image.getDefaultInstance()) {
+            imageup_ =
+              eye.Comm.Image.newBuilder(imageup_).mergeFrom(value).buildPartial();
+          } else {
+            imageup_ = value;
+          }
+          onChanged();
+        } else {
+          imageupBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      public Builder clearImageup() {
+        if (imageupBuilder_ == null) {
+          imageup_ = eye.Comm.Image.getDefaultInstance();
+          onChanged();
+        } else {
+          imageupBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      public eye.Comm.Image.Builder getImageupBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getImageupFieldBuilder().getBuilder();
+      }
+      public eye.Comm.ImageOrBuilder getImageupOrBuilder() {
+        if (imageupBuilder_ != null) {
+          return imageupBuilder_.getMessageOrBuilder();
+        } else {
+          return imageup_;
         }
       }
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder> 
-          getImgFieldBuilder() {
-        if (imgBuilder_ == null) {
-          imgBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+          getImageupFieldBuilder() {
+        if (imageupBuilder_ == null) {
+          imageupBuilder_ = new com.google.protobuf.SingleFieldBuilder<
               eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder>(
-                  img_,
+                  imageup_,
                   getParentForChildren(),
                   isClean());
-          img_ = null;
+          imageup_ = null;
         }
-        return imgBuilder_;
+        return imageupBuilder_;
+      }
+      
+      // optional .UserImageRequest imgreq = 6;
+      private eye.Comm.UserImageRequest imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.UserImageRequest, eye.Comm.UserImageRequest.Builder, eye.Comm.UserImageRequestOrBuilder> imgreqBuilder_;
+      public boolean hasImgreq() {
+        return ((bitField0_ & 0x00000020) == 0x00000020);
+      }
+      public eye.Comm.UserImageRequest getImgreq() {
+        if (imgreqBuilder_ == null) {
+          return imgreq_;
+        } else {
+          return imgreqBuilder_.getMessage();
+        }
+      }
+      public Builder setImgreq(eye.Comm.UserImageRequest value) {
+        if (imgreqBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          imgreq_ = value;
+          onChanged();
+        } else {
+          imgreqBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      public Builder setImgreq(
+          eye.Comm.UserImageRequest.Builder builderForValue) {
+        if (imgreqBuilder_ == null) {
+          imgreq_ = builderForValue.build();
+          onChanged();
+        } else {
+          imgreqBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      public Builder mergeImgreq(eye.Comm.UserImageRequest value) {
+        if (imgreqBuilder_ == null) {
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+              imgreq_ != eye.Comm.UserImageRequest.getDefaultInstance()) {
+            imgreq_ =
+              eye.Comm.UserImageRequest.newBuilder(imgreq_).mergeFrom(value).buildPartial();
+          } else {
+            imgreq_ = value;
+          }
+          onChanged();
+        } else {
+          imgreqBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000020;
+        return this;
+      }
+      public Builder clearImgreq() {
+        if (imgreqBuilder_ == null) {
+          imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
+          onChanged();
+        } else {
+          imgreqBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000020);
+        return this;
+      }
+      public eye.Comm.UserImageRequest.Builder getImgreqBuilder() {
+        bitField0_ |= 0x00000020;
+        onChanged();
+        return getImgreqFieldBuilder().getBuilder();
+      }
+      public eye.Comm.UserImageRequestOrBuilder getImgreqOrBuilder() {
+        if (imgreqBuilder_ != null) {
+          return imgreqBuilder_.getMessageOrBuilder();
+        } else {
+          return imgreq_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.UserImageRequest, eye.Comm.UserImageRequest.Builder, eye.Comm.UserImageRequestOrBuilder> 
+          getImgreqFieldBuilder() {
+        if (imgreqBuilder_ == null) {
+          imgreqBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              eye.Comm.UserImageRequest, eye.Comm.UserImageRequest.Builder, eye.Comm.UserImageRequestOrBuilder>(
+                  imgreq_,
+                  getParentForChildren(),
+                  isClean());
+          imgreq_ = null;
+        }
+        return imgreqBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:Payload)
@@ -6184,6 +8439,11 @@ public final class Comm {
     boolean hasFinger();
     eye.Comm.Document getFinger();
     eye.Comm.DocumentOrBuilder getFingerOrBuilder();
+    
+    // optional .UserImageReply imgreply = 5;
+    boolean hasImgreply();
+    eye.Comm.UserImageReply getImgreply();
+    eye.Comm.UserImageReplyOrBuilder getImgreplyOrBuilder();
   }
   public static final class PayloadReply extends
       com.google.protobuf.GeneratedMessage
@@ -6282,11 +8542,25 @@ public final class Comm {
       return finger_;
     }
     
+    // optional .UserImageReply imgreply = 5;
+    public static final int IMGREPLY_FIELD_NUMBER = 5;
+    private eye.Comm.UserImageReply imgreply_;
+    public boolean hasImgreply() {
+      return ((bitField0_ & 0x00000004) == 0x00000004);
+    }
+    public eye.Comm.UserImageReply getImgreply() {
+      return imgreply_;
+    }
+    public eye.Comm.UserImageReplyOrBuilder getImgreplyOrBuilder() {
+      return imgreply_;
+    }
+    
     private void initFields() {
       docs_ = java.util.Collections.emptyList();
       spaces_ = java.util.Collections.emptyList();
       stats_ = eye.Comm.Document.getDefaultInstance();
       finger_ = eye.Comm.Document.getDefaultInstance();
+      imgreply_ = eye.Comm.UserImageReply.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -6317,6 +8591,12 @@ public final class Comm {
           return false;
         }
       }
+      if (hasImgreply()) {
+        if (!getImgreply().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -6335,6 +8615,9 @@ public final class Comm {
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         output.writeMessage(4, finger_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        output.writeMessage(5, imgreply_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -6360,6 +8643,10 @@ public final class Comm {
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(4, finger_);
+      }
+      if (((bitField0_ & 0x00000004) == 0x00000004)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(5, imgreply_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -6481,6 +8768,7 @@ public final class Comm {
           getSpacesFieldBuilder();
           getStatsFieldBuilder();
           getFingerFieldBuilder();
+          getImgreplyFieldBuilder();
         }
       }
       private static Builder create() {
@@ -6513,6 +8801,12 @@ public final class Comm {
           fingerBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000008);
+        if (imgreplyBuilder_ == null) {
+          imgreply_ = eye.Comm.UserImageReply.getDefaultInstance();
+        } else {
+          imgreplyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       
@@ -6584,6 +8878,14 @@ public final class Comm {
           result.finger_ = finger_;
         } else {
           result.finger_ = fingerBuilder_.build();
+        }
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000004;
+        }
+        if (imgreplyBuilder_ == null) {
+          result.imgreply_ = imgreply_;
+        } else {
+          result.imgreply_ = imgreplyBuilder_.build();
         }
         result.bitField0_ = to_bitField0_;
         onBuilt();
@@ -6659,6 +8961,9 @@ public final class Comm {
         if (other.hasFinger()) {
           mergeFinger(other.getFinger());
         }
+        if (other.hasImgreply()) {
+          mergeImgreply(other.getImgreply());
+        }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
       }
@@ -6684,6 +8989,12 @@ public final class Comm {
         }
         if (hasFinger()) {
           if (!getFinger().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasImgreply()) {
+          if (!getImgreply().isInitialized()) {
             
             return false;
           }
@@ -6742,6 +9053,15 @@ public final class Comm {
               }
               input.readMessage(subBuilder, extensionRegistry);
               setFinger(subBuilder.buildPartial());
+              break;
+            }
+            case 42: {
+              eye.Comm.UserImageReply.Builder subBuilder = eye.Comm.UserImageReply.newBuilder();
+              if (hasImgreply()) {
+                subBuilder.mergeFrom(getImgreply());
+              }
+              input.readMessage(subBuilder, extensionRegistry);
+              setImgreply(subBuilder.buildPartial());
               break;
             }
           }
@@ -7300,6 +9620,96 @@ public final class Comm {
           finger_ = null;
         }
         return fingerBuilder_;
+      }
+      
+      // optional .UserImageReply imgreply = 5;
+      private eye.Comm.UserImageReply imgreply_ = eye.Comm.UserImageReply.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.UserImageReply, eye.Comm.UserImageReply.Builder, eye.Comm.UserImageReplyOrBuilder> imgreplyBuilder_;
+      public boolean hasImgreply() {
+        return ((bitField0_ & 0x00000010) == 0x00000010);
+      }
+      public eye.Comm.UserImageReply getImgreply() {
+        if (imgreplyBuilder_ == null) {
+          return imgreply_;
+        } else {
+          return imgreplyBuilder_.getMessage();
+        }
+      }
+      public Builder setImgreply(eye.Comm.UserImageReply value) {
+        if (imgreplyBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          imgreply_ = value;
+          onChanged();
+        } else {
+          imgreplyBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      public Builder setImgreply(
+          eye.Comm.UserImageReply.Builder builderForValue) {
+        if (imgreplyBuilder_ == null) {
+          imgreply_ = builderForValue.build();
+          onChanged();
+        } else {
+          imgreplyBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      public Builder mergeImgreply(eye.Comm.UserImageReply value) {
+        if (imgreplyBuilder_ == null) {
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+              imgreply_ != eye.Comm.UserImageReply.getDefaultInstance()) {
+            imgreply_ =
+              eye.Comm.UserImageReply.newBuilder(imgreply_).mergeFrom(value).buildPartial();
+          } else {
+            imgreply_ = value;
+          }
+          onChanged();
+        } else {
+          imgreplyBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000010;
+        return this;
+      }
+      public Builder clearImgreply() {
+        if (imgreplyBuilder_ == null) {
+          imgreply_ = eye.Comm.UserImageReply.getDefaultInstance();
+          onChanged();
+        } else {
+          imgreplyBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000010);
+        return this;
+      }
+      public eye.Comm.UserImageReply.Builder getImgreplyBuilder() {
+        bitField0_ |= 0x00000010;
+        onChanged();
+        return getImgreplyFieldBuilder().getBuilder();
+      }
+      public eye.Comm.UserImageReplyOrBuilder getImgreplyOrBuilder() {
+        if (imgreplyBuilder_ != null) {
+          return imgreplyBuilder_.getMessageOrBuilder();
+        } else {
+          return imgreply_;
+        }
+      }
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.UserImageReply, eye.Comm.UserImageReply.Builder, eye.Comm.UserImageReplyOrBuilder> 
+          getImgreplyFieldBuilder() {
+        if (imgreplyBuilder_ == null) {
+          imgreplyBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              eye.Comm.UserImageReply, eye.Comm.UserImageReply.Builder, eye.Comm.UserImageReplyOrBuilder>(
+                  imgreply_,
+                  getParentForChildren(),
+                  isClean());
+          imgreply_ = null;
+        }
+        return imgreplyBuilder_;
       }
       
       // @@protoc_insertion_point(builder_scope:PayloadReply)
@@ -10124,10 +12534,25 @@ public final class Comm {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Header_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Register_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Register_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Image_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Image_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_UserImageRequest_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_UserImageRequest_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_UserImageReply_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_UserImageReply_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Payload_descriptor;
   private static
@@ -10194,24 +12619,32 @@ public final class Comm {
       "\007DOCFIND\020\025\022\r\n\tDOCUPDATE\020\026\022\r\n\tDOCREMOVE\020\027",
       "\"U\n\013ReplyStatus\022\013\n\007SUCCESS\020\001\022\013\n\007FAILURE\020" +
       "\002\022\n\n\006NOAUTH\020\003\022\016\n\nMISSINGARG\020\004\022\020\n\014NOCONNE" +
-      "CTION\020\005\"F\n\005Image\022\023\n\013actualImage\030\001 \002(\014\022\021\n" +
-      "\tmsgLength\030\002 \001(\005\022\025\n\rmsgSenderName\030\003 \001(\t\"" +
-      "j\n\007Payload\022\027\n\006finger\030\001 \001(\0132\007.Finger\022\026\n\003d" +
-      "oc\030\002 \001(\0132\t.Document\022\031\n\005space\030\003 \001(\0132\n.Nam" +
-      "eSpace\022\023\n\003img\030\004 \001(\0132\006.Image\"x\n\014PayloadRe" +
-      "ply\022\027\n\004docs\030\001 \003(\0132\t.Document\022\032\n\006spaces\030\002" +
-      " \003(\0132\n.NameSpace\022\030\n\005stats\030\003 \001(\0132\t.Docume" +
-      "nt\022\031\n\006finger\030\004 \001(\0132\t.Document\":\n\007Request",
-      "\022\027\n\006header\030\001 \002(\0132\007.Header\022\026\n\004body\030\002 \002(\0132" +
-      "\010.Payload\"@\n\010Response\022\027\n\006header\030\001 \002(\0132\007." +
-      "Header\022\033\n\004body\030\002 \002(\0132\r.PayloadReply\",\n\tH" +
-      "eartbeat\022\016\n\006nodeId\030\001 \002(\t\022\017\n\007timeRef\030\002 \002(" +
-      "\003\"\225\001\n\007Network\022\016\n\006nodeId\030\001 \002(\t\022\037\n\006action\030" +
-      "\002 \002(\0162\017.Network.Action\"Y\n\006Action\022\014\n\010NODE" +
-      "JOIN\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEAD\020\003\022\007\n\003M" +
-      "AP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"?\n\nMan" +
-      "agement\022\027\n\005graph\030\001 \001(\0132\010.Network\022\030\n\004beat" +
-      "\030\002 \001(\0132\n.HeartbeatB\007\n\003eyeH\001"
+      "CTION\020\005\"K\n\010Register\022\017\n\007emailid\030\001 \002(\t\022\r\n\005" +
+      "fname\030\002 \002(\t\022\r\n\005lname\030\003 \002(\t\022\020\n\010password\030\004" +
+      " \002(\t\"\203\001\n\005Image\022\017\n\007emailid\030\001 \002(\t\022\023\n\013actua" +
+      "lImage\030\002 \002(\014\022\r\n\005title\030\003 \001(\t\022\020\n\010latitude\030" +
+      "\004 \001(\001\022\021\n\tlongitude\030\005 \001(\001\022\021\n\ttimestamp\030\006 " +
+      "\001(\003\022\r\n\005imgid\030\007 \001(\t\"#\n\020UserImageRequest\022\017" +
+      "\n\007emailid\030\001 \002(\t\"&\n\016UserImageReply\022\024\n\004img" +
+      "s\030\001 \003(\0132\006.Image\"\251\001\n\007Payload\022\027\n\006finger\030\001 ",
+      "\001(\0132\007.Finger\022\026\n\003doc\030\002 \001(\0132\t.Document\022\031\n\005" +
+      "space\030\003 \001(\0132\n.NameSpace\022\026\n\003reg\030\004 \001(\0132\t.R" +
+      "egister\022\027\n\007imageup\030\005 \001(\0132\006.Image\022!\n\006imgr" +
+      "eq\030\006 \001(\0132\021.UserImageRequest\"\233\001\n\014PayloadR" +
+      "eply\022\027\n\004docs\030\001 \003(\0132\t.Document\022\032\n\006spaces\030" +
+      "\002 \003(\0132\n.NameSpace\022\030\n\005stats\030\003 \001(\0132\t.Docum" +
+      "ent\022\031\n\006finger\030\004 \001(\0132\t.Document\022!\n\010imgrep" +
+      "ly\030\005 \001(\0132\017.UserImageReply\":\n\007Request\022\027\n\006" +
+      "header\030\001 \002(\0132\007.Header\022\026\n\004body\030\002 \002(\0132\010.Pa" +
+      "yload\"@\n\010Response\022\027\n\006header\030\001 \002(\0132\007.Head",
+      "er\022\033\n\004body\030\002 \002(\0132\r.PayloadReply\",\n\tHeart" +
+      "beat\022\016\n\006nodeId\030\001 \002(\t\022\017\n\007timeRef\030\002 \002(\003\"\225\001" +
+      "\n\007Network\022\016\n\006nodeId\030\001 \002(\t\022\037\n\006action\030\002 \002(" +
+      "\0162\017.Network.Action\"Y\n\006Action\022\014\n\010NODEJOIN" +
+      "\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEAD\020\003\022\007\n\003MAP\0207" +
+      "\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"?\n\nManagem" +
+      "ent\022\027\n\005graph\030\001 \001(\0132\010.Network\022\030\n\004beat\030\002 \001" +
+      "(\0132\n.HeartbeatB\007\n\003eyeH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -10274,32 +12707,56 @@ public final class Comm {
               new java.lang.String[] { "RoutingId", "Originator", "Tag", "Time", "ReplyCode", "ReplyMsg", },
               eye.Comm.Header.class,
               eye.Comm.Header.Builder.class);
-          internal_static_Image_descriptor =
+          internal_static_Register_descriptor =
             getDescriptor().getMessageTypes().get(7);
+          internal_static_Register_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Register_descriptor,
+              new java.lang.String[] { "Emailid", "Fname", "Lname", "Password", },
+              eye.Comm.Register.class,
+              eye.Comm.Register.Builder.class);
+          internal_static_Image_descriptor =
+            getDescriptor().getMessageTypes().get(8);
           internal_static_Image_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Image_descriptor,
-              new java.lang.String[] { "ActualImage", "MsgLength", "MsgSenderName", },
+              new java.lang.String[] { "Emailid", "ActualImage", "Title", "Latitude", "Longitude", "Timestamp", "Imgid", },
               eye.Comm.Image.class,
               eye.Comm.Image.Builder.class);
+          internal_static_UserImageRequest_descriptor =
+            getDescriptor().getMessageTypes().get(9);
+          internal_static_UserImageRequest_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_UserImageRequest_descriptor,
+              new java.lang.String[] { "Emailid", },
+              eye.Comm.UserImageRequest.class,
+              eye.Comm.UserImageRequest.Builder.class);
+          internal_static_UserImageReply_descriptor =
+            getDescriptor().getMessageTypes().get(10);
+          internal_static_UserImageReply_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_UserImageReply_descriptor,
+              new java.lang.String[] { "Imgs", },
+              eye.Comm.UserImageReply.class,
+              eye.Comm.UserImageReply.Builder.class);
           internal_static_Payload_descriptor =
-            getDescriptor().getMessageTypes().get(8);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_Payload_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Payload_descriptor,
-              new java.lang.String[] { "Finger", "Doc", "Space", "Img", },
+              new java.lang.String[] { "Finger", "Doc", "Space", "Reg", "Imageup", "Imgreq", },
               eye.Comm.Payload.class,
               eye.Comm.Payload.Builder.class);
           internal_static_PayloadReply_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_PayloadReply_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PayloadReply_descriptor,
-              new java.lang.String[] { "Docs", "Spaces", "Stats", "Finger", },
+              new java.lang.String[] { "Docs", "Spaces", "Stats", "Finger", "Imgreply", },
               eye.Comm.PayloadReply.class,
               eye.Comm.PayloadReply.Builder.class);
           internal_static_Request_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(13);
           internal_static_Request_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Request_descriptor,
@@ -10307,7 +12764,7 @@ public final class Comm {
               eye.Comm.Request.class,
               eye.Comm.Request.Builder.class);
           internal_static_Response_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(14);
           internal_static_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Response_descriptor,
@@ -10315,7 +12772,7 @@ public final class Comm {
               eye.Comm.Response.class,
               eye.Comm.Response.Builder.class);
           internal_static_Heartbeat_descriptor =
-            getDescriptor().getMessageTypes().get(12);
+            getDescriptor().getMessageTypes().get(15);
           internal_static_Heartbeat_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Heartbeat_descriptor,
@@ -10323,7 +12780,7 @@ public final class Comm {
               eye.Comm.Heartbeat.class,
               eye.Comm.Heartbeat.Builder.class);
           internal_static_Network_descriptor =
-            getDescriptor().getMessageTypes().get(13);
+            getDescriptor().getMessageTypes().get(16);
           internal_static_Network_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Network_descriptor,
@@ -10331,7 +12788,7 @@ public final class Comm {
               eye.Comm.Network.class,
               eye.Comm.Network.Builder.class);
           internal_static_Management_descriptor =
-            getDescriptor().getMessageTypes().get(14);
+            getDescriptor().getMessageTypes().get(17);
           internal_static_Management_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Management_descriptor,

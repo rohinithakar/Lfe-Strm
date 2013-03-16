@@ -45,17 +45,17 @@ public class PokeResource implements Resource {
 		 // TODO add code to process the message/event received
         logger.info("poke: " + request.getBody().getFinger().getTag());
         
-        File imgPath = new File("/Users/swetapatel/Pictures/image_server"+request.getHeader().getOriginator()+ ".png");
-        try {
-        	DataOutputStream dis = new DataOutputStream((new FileOutputStream(imgPath)));
-            byte [] byteArray = new byte[request.getBody().getImg().getActualImage().size()];
-            request.getBody().getImg().getActualImage().copyTo(byteArray, 0);
-			dis.write(byteArray);
-			dis.close();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+//        File imgPath = new File("/Users/swetapatel/Pictures/image_server"+request.getHeader().getOriginator()+ ".png");
+//        try {
+//        	DataOutputStream dis = new DataOutputStream((new FileOutputStream(imgPath)));
+//            byte [] byteArray = new byte[request.getBody().getImg().getActualImage().size()];
+//            request.getBody().getImg().getActualImage().copyTo(byteArray, 0);
+//			dis.write(byteArray);
+//			dis.close();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
         
 
         Response.Builder r = Response.newBuilder();

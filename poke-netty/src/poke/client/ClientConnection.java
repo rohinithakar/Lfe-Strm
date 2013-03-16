@@ -82,8 +82,8 @@ public class ClientConnection {
 		p.setFinger(f.build());
 		
 		eye.Comm.Image.Builder img = eye.Comm.Image.newBuilder();
-		img.setActualImage(imageBytes);
-		p.setImg(img);
+//		img.setActualImage(imageBytes);
+//		p.setImg(img);
 		
 		r.setBody(p.build());
 

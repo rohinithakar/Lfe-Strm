@@ -79,17 +79,38 @@ message Header {
      	}
 }
 
+message Register {
+	required string emailid = 1;
+	required string fname = 2;
+	required string lname = 3;
+	required string password = 4;
+}
+
 message Image {
-	required bytes actualImage = 1;
-	optional int32 msgLength = 2;
-	optional string msgSenderName = 3;
+	required string emailid = 1;
+	required bytes actualImage = 2;
+	optional string title = 3;
+	optional double latitude = 4;
+	optional double longitude = 5;
+	optional int64 timestamp = 6;
+	optional string imgid = 7;
+}
+
+message UserImageRequest {
+	required string emailid = 1;
+}
+
+message UserImageReply {
+	repeated Image imgs = 1;
 }
 
 message Payload {
     optional Finger finger = 1;
     optional Document doc = 2;
     optional NameSpace space = 3;
-    optional Image img = 4;
+    optional Register reg = 4;
+    optional Image imageup = 5;
+    optional UserImageRequest imgreq = 6;
 }
 
 message PayloadReply {
@@ -97,6 +118,7 @@ message PayloadReply {
     repeated NameSpace spaces = 2;
     optional Document stats = 3;
     optional Document finger = 4;
+    optional UserImageReply imgreply = 5;
 }
 
 message Request {

@@ -7,7 +7,7 @@
 #
 
 # CHANGE ME: this needs to be your specific path to the project
-project_base="./"
+project_base="."
 
 rm -r ${project_base}/generated/*
 protoc --proto_path=${project_base}/resources --java_out=${project_base}/generated ${project_base}/resources/comm.proto
