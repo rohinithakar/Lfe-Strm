@@ -168,7 +168,7 @@ public class Server {
 		logger.info("Starting server, listening on port = " + port);
 	}
 
-	protected void run(ServerConf.GeneralConf generalConf) {
+	public void run(ServerConf.GeneralConf generalConf) {
 		this.id = generalConf.getProperty("node.id");
 		List<ServerConf.GeneralConf> servers = conf.getServer();
 		int edgeToNodePort;

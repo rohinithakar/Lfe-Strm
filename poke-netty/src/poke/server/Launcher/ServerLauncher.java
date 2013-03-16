@@ -38,10 +38,10 @@ public class ServerLauncher {
 		
 		List<ServerConf.GeneralConf> servers = conf.getServer();
 		List<Server> svrs = new LinkedList<Server>();
-		for( ServerConf.GeneralConf svrConf : servers ) {
+		for( ServerConf.GeneralConf generalConf : servers ) {
 			Server svr = new Server(conf);
 			svrs.add(svr);
-			svr.run(svrConf);
+			svr.run(generalConf);
 		}
 	}
 
