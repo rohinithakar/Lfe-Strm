@@ -20,11 +20,15 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import com.google.protobuf.ByteString;
 
 import poke.client.ClientConnection;
 
 public class Jab {
+	protected static Logger logger = LoggerFactory.getLogger("server");
 	private String tag;
 	private int count;
 
@@ -33,6 +37,8 @@ public class Jab {
 	}
 
 	public void run() throws IOException {
+		/*for (int j=5570; j<5574 ;j++){
+			logger.info("*******Client on " + j);*/
 		ClientConnection cc = ClientConnection
 				.initConnection("localhost", 5570);
 		
@@ -45,7 +51,7 @@ public class Jab {
 	
 	public ByteString getImageByteString () throws IOException {
 		 // open image
-		 File imgPath = new File("/usr/share/backgrounds/warty-final-ubuntu.png");
+		 File imgPath = new File("/Users/swetapatel/Pictures/me.jpg");
 		 //File imgPath = new File("/home/user/test.txt");
 		 byte [] fileData = new byte[(int)imgPath.length()];
 		 DataInputStream dis = new DataInputStream((new FileInputStream(imgPath)));

@@ -199,7 +199,7 @@ public class Server {
 
 			// storage initialization
 			// TODO storage init
-
+			
 			// start communication
 			createPublicBoot(port);
 			createManagementBoot(mport);

@@ -17,6 +17,7 @@ package poke.server.management;
 
 import java.net.SocketAddress;
 import java.util.HashMap;
+import java.util.Map;
 import java.util.concurrent.atomic.AtomicReference;
 
 import org.jboss.netty.channel.Channel;
@@ -33,7 +34,7 @@ import eye.Comm.Management;
 public class ServerHeartbeat extends Thread {
 	protected static Logger logger = LoggerFactory.getLogger("management");
 	protected static AtomicReference<ServerHeartbeat> instance = new AtomicReference<ServerHeartbeat>();
-
+	protected static Map<String, ServerHeartbeat> allHeartbeats = new HashMap<String, ServerHeartbeat>();
 	static final int sHeartRate = 5000; // msec
 
 	String nodeId;
@@ -44,11 +45,17 @@ public class ServerHeartbeat extends Thread {
 	public static ServerHeartbeat getInstance(String id) {
 		//instance.compareAndSet(null, new ServerHeartbeat(id));
 		//return instance.get();
-		return new ServerHeartbeat(id);
+		//return new ServerHeartbeat(id);
+		if(!allHeartbeats.containsKey(id)){
+			allHeartbeats.put(id, new ServerHeartbeat(id) );
+		}
+		
+		return allHeartbeats.get(id);
 	}
 
 	public static ServerHeartbeat getInstance() {
 		return instance.get();
+		
 	}
 
 	protected ServerHeartbeat(String nodeId) {
@@ -57,6 +64,7 @@ public class ServerHeartbeat extends Thread {
 	}
 
 	public void addChannel(String nodeId, Channel ch, SocketAddress sa) {
+		logger.info("**********add channel called");
 		if (!group.containsKey(ch)) {
 			HeartData heart = new HeartData(nodeId, ch, sa);
 			group.put(ch, heart);

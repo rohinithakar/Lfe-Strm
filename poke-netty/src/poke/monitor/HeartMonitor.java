@@ -88,6 +88,7 @@ public class HeartMonitor {
 		if (channel == null) {
 			logger.info("connecting");
 			channel = bootstrap.connect(new InetSocketAddress(host, port));
+			logger.info("connection done");
 		}
 
 		// wait for the connection to establish
@@ -102,15 +103,24 @@ public class HeartMonitor {
 
 	protected void waitForever() {
 		try {
+			logger.info("In waitForever*******");
 			Channel ch = connect();
 			Network.Builder n = Network.newBuilder();
 			n.setNodeId("monitor");
 			n.setAction(Action.NODEJOIN);
+			logger.info("nodejoin done");
+			
 			Management.Builder m = Management.newBuilder();
+			
+			
 			m.setGraph(n.build());
+			//problem during ch.write
 			ch.write(m.build());
+			//Thread.sleep(10000);
+			logger.info("All settings done*******");
 
 			while (true) {
+				//logger.info("In while loop....");
 				Thread.sleep(1000);
 			}
 		} catch (InterruptedException e) {

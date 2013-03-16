@@ -45,19 +45,16 @@ public class ServerConf {
 		if (idToRsc != null)
 			return idToRsc;
 
-		if (idToRsc == null) {
-			synchronized (this) {
-				if (idToRsc == null) {
-					idToRsc = new HashMap<Integer, ResourceConf>();
-					if (routing != null) {
-						for (ResourceConf entry : routing) {
-							idToRsc.put(entry.id, entry);
-						}
+		synchronized (this) {
+			if (idToRsc == null) {
+				idToRsc = new HashMap<Integer, ResourceConf>();
+				if (routing != null) {
+					for (ResourceConf entry : routing) {
+						idToRsc.put(entry.id, entry);
 					}
 				}
 			}
 		}
-
 		return idToRsc;
 	}
 
