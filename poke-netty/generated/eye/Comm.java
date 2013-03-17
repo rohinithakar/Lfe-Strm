@@ -4754,19 +4754,15 @@ public final class Comm {
   public interface RegisterOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required string emailid = 1;
-    boolean hasEmailid();
-    String getEmailid();
-    
-    // required string fname = 2;
+    // required string fname = 1;
     boolean hasFname();
     String getFname();
     
-    // required string lname = 3;
+    // required string lname = 2;
     boolean hasLname();
     String getLname();
     
-    // required string password = 4;
+    // required string password = 3;
     boolean hasPassword();
     String getPassword();
   }
@@ -4799,43 +4795,11 @@ public final class Comm {
     }
     
     private int bitField0_;
-    // required string emailid = 1;
-    public static final int EMAILID_FIELD_NUMBER = 1;
-    private java.lang.Object emailid_;
-    public boolean hasEmailid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public String getEmailid() {
-      java.lang.Object ref = emailid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          emailid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getEmailidBytes() {
-      java.lang.Object ref = emailid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        emailid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // required string fname = 2;
-    public static final int FNAME_FIELD_NUMBER = 2;
+    // required string fname = 1;
+    public static final int FNAME_FIELD_NUMBER = 1;
     private java.lang.Object fname_;
     public boolean hasFname() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public String getFname() {
       java.lang.Object ref = fname_;
@@ -4863,11 +4827,11 @@ public final class Comm {
       }
     }
     
-    // required string lname = 3;
-    public static final int LNAME_FIELD_NUMBER = 3;
+    // required string lname = 2;
+    public static final int LNAME_FIELD_NUMBER = 2;
     private java.lang.Object lname_;
     public boolean hasLname() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getLname() {
       java.lang.Object ref = lname_;
@@ -4895,11 +4859,11 @@ public final class Comm {
       }
     }
     
-    // required string password = 4;
-    public static final int PASSWORD_FIELD_NUMBER = 4;
+    // required string password = 3;
+    public static final int PASSWORD_FIELD_NUMBER = 3;
     private java.lang.Object password_;
     public boolean hasPassword() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public String getPassword() {
       java.lang.Object ref = password_;
@@ -4928,7 +4892,6 @@ public final class Comm {
     }
     
     private void initFields() {
-      emailid_ = "";
       fname_ = "";
       lname_ = "";
       password_ = "";
@@ -4938,10 +4901,6 @@ public final class Comm {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
-      if (!hasEmailid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasFname()) {
         memoizedIsInitialized = 0;
         return false;
@@ -4962,16 +4921,13 @@ public final class Comm {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getEmailidBytes());
+        output.writeBytes(1, getFnameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, getFnameBytes());
+        output.writeBytes(2, getLnameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getLnameBytes());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeBytes(4, getPasswordBytes());
+        output.writeBytes(3, getPasswordBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -4984,19 +4940,15 @@ public final class Comm {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getEmailidBytes());
+          .computeBytesSize(1, getFnameBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, getFnameBytes());
+          .computeBytesSize(2, getLnameBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getLnameBytes());
-      }
-      if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(4, getPasswordBytes());
+          .computeBytesSize(3, getPasswordBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5122,14 +5074,12 @@ public final class Comm {
       
       public Builder clear() {
         super.clear();
-        emailid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         fname_ = "";
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         lname_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         password_ = "";
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       
@@ -5171,17 +5121,13 @@ public final class Comm {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.emailid_ = emailid_;
+        result.fname_ = fname_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.fname_ = fname_;
+        result.lname_ = lname_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
-        }
-        result.lname_ = lname_;
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
         }
         result.password_ = password_;
         result.bitField0_ = to_bitField0_;
@@ -5200,9 +5146,6 @@ public final class Comm {
       
       public Builder mergeFrom(eye.Comm.Register other) {
         if (other == eye.Comm.Register.getDefaultInstance()) return this;
-        if (other.hasEmailid()) {
-          setEmailid(other.getEmailid());
-        }
         if (other.hasFname()) {
           setFname(other.getFname());
         }
@@ -5217,10 +5160,6 @@ public final class Comm {
       }
       
       public final boolean isInitialized() {
-        if (!hasEmailid()) {
-          
-          return false;
-        }
         if (!hasFname()) {
           
           return false;
@@ -5261,21 +5200,16 @@ public final class Comm {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              emailid_ = input.readBytes();
+              fname_ = input.readBytes();
               break;
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              fname_ = input.readBytes();
+              lname_ = input.readBytes();
               break;
             }
             case 26: {
               bitField0_ |= 0x00000004;
-              lname_ = input.readBytes();
-              break;
-            }
-            case 34: {
-              bitField0_ |= 0x00000008;
               password_ = input.readBytes();
               break;
             }
@@ -5285,46 +5219,10 @@ public final class Comm {
       
       private int bitField0_;
       
-      // required string emailid = 1;
-      private java.lang.Object emailid_ = "";
-      public boolean hasEmailid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public String getEmailid() {
-        java.lang.Object ref = emailid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          emailid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      public Builder setEmailid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        emailid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearEmailid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        emailid_ = getDefaultInstance().getEmailid();
-        onChanged();
-        return this;
-      }
-      void setEmailid(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
-        emailid_ = value;
-        onChanged();
-      }
-      
-      // required string fname = 2;
+      // required string fname = 1;
       private java.lang.Object fname_ = "";
       public boolean hasFname() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public String getFname() {
         java.lang.Object ref = fname_;
@@ -5340,27 +5238,27 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000001;
         fname_ = value;
         onChanged();
         return this;
       }
       public Builder clearFname() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         fname_ = getDefaultInstance().getFname();
         onChanged();
         return this;
       }
       void setFname(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000001;
         fname_ = value;
         onChanged();
       }
       
-      // required string lname = 3;
+      // required string lname = 2;
       private java.lang.Object lname_ = "";
       public boolean hasLname() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public String getLname() {
         java.lang.Object ref = lname_;
@@ -5376,27 +5274,27 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         lname_ = value;
         onChanged();
         return this;
       }
       public Builder clearLname() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         lname_ = getDefaultInstance().getLname();
         onChanged();
         return this;
       }
       void setLname(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         lname_ = value;
         onChanged();
       }
       
-      // required string password = 4;
+      // required string password = 3;
       private java.lang.Object password_ = "";
       public boolean hasPassword() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public String getPassword() {
         java.lang.Object ref = password_;
@@ -5412,19 +5310,19 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000008;
+  bitField0_ |= 0x00000004;
         password_ = value;
         onChanged();
         return this;
       }
       public Builder clearPassword() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         password_ = getDefaultInstance().getPassword();
         onChanged();
         return this;
       }
       void setPassword(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         password_ = value;
         onChanged();
       }
@@ -5443,31 +5341,27 @@ public final class Comm {
   public interface ImageOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // required string emailid = 1;
-    boolean hasEmailid();
-    String getEmailid();
-    
-    // required bytes actualImage = 2;
+    // required bytes actualImage = 1;
     boolean hasActualImage();
     com.google.protobuf.ByteString getActualImage();
     
-    // optional string title = 3;
+    // optional string title = 2;
     boolean hasTitle();
     String getTitle();
     
-    // optional double latitude = 4;
+    // optional double latitude = 3;
     boolean hasLatitude();
     double getLatitude();
     
-    // optional double longitude = 5;
+    // optional double longitude = 4;
     boolean hasLongitude();
     double getLongitude();
     
-    // optional int64 timestamp = 6;
+    // optional int64 timestamp = 5;
     boolean hasTimestamp();
     long getTimestamp();
     
-    // optional string imgid = 7;
+    // optional string imgid = 6;
     boolean hasImgid();
     String getImgid();
   }
@@ -5500,53 +5394,21 @@ public final class Comm {
     }
     
     private int bitField0_;
-    // required string emailid = 1;
-    public static final int EMAILID_FIELD_NUMBER = 1;
-    private java.lang.Object emailid_;
-    public boolean hasEmailid() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
-    }
-    public String getEmailid() {
-      java.lang.Object ref = emailid_;
-      if (ref instanceof String) {
-        return (String) ref;
-      } else {
-        com.google.protobuf.ByteString bs = 
-            (com.google.protobuf.ByteString) ref;
-        String s = bs.toStringUtf8();
-        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
-          emailid_ = s;
-        }
-        return s;
-      }
-    }
-    private com.google.protobuf.ByteString getEmailidBytes() {
-      java.lang.Object ref = emailid_;
-      if (ref instanceof String) {
-        com.google.protobuf.ByteString b = 
-            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
-        emailid_ = b;
-        return b;
-      } else {
-        return (com.google.protobuf.ByteString) ref;
-      }
-    }
-    
-    // required bytes actualImage = 2;
-    public static final int ACTUALIMAGE_FIELD_NUMBER = 2;
+    // required bytes actualImage = 1;
+    public static final int ACTUALIMAGE_FIELD_NUMBER = 1;
     private com.google.protobuf.ByteString actualImage_;
     public boolean hasActualImage() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000001) == 0x00000001);
     }
     public com.google.protobuf.ByteString getActualImage() {
       return actualImage_;
     }
     
-    // optional string title = 3;
-    public static final int TITLE_FIELD_NUMBER = 3;
+    // optional string title = 2;
+    public static final int TITLE_FIELD_NUMBER = 2;
     private java.lang.Object title_;
     public boolean hasTitle() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public String getTitle() {
       java.lang.Object ref = title_;
@@ -5574,41 +5436,41 @@ public final class Comm {
       }
     }
     
-    // optional double latitude = 4;
-    public static final int LATITUDE_FIELD_NUMBER = 4;
+    // optional double latitude = 3;
+    public static final int LATITUDE_FIELD_NUMBER = 3;
     private double latitude_;
     public boolean hasLatitude() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public double getLatitude() {
       return latitude_;
     }
     
-    // optional double longitude = 5;
-    public static final int LONGITUDE_FIELD_NUMBER = 5;
+    // optional double longitude = 4;
+    public static final int LONGITUDE_FIELD_NUMBER = 4;
     private double longitude_;
     public boolean hasLongitude() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public double getLongitude() {
       return longitude_;
     }
     
-    // optional int64 timestamp = 6;
-    public static final int TIMESTAMP_FIELD_NUMBER = 6;
+    // optional int64 timestamp = 5;
+    public static final int TIMESTAMP_FIELD_NUMBER = 5;
     private long timestamp_;
     public boolean hasTimestamp() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public long getTimestamp() {
       return timestamp_;
     }
     
-    // optional string imgid = 7;
-    public static final int IMGID_FIELD_NUMBER = 7;
+    // optional string imgid = 6;
+    public static final int IMGID_FIELD_NUMBER = 6;
     private java.lang.Object imgid_;
     public boolean hasImgid() {
-      return ((bitField0_ & 0x00000040) == 0x00000040);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public String getImgid() {
       java.lang.Object ref = imgid_;
@@ -5637,7 +5499,6 @@ public final class Comm {
     }
     
     private void initFields() {
-      emailid_ = "";
       actualImage_ = com.google.protobuf.ByteString.EMPTY;
       title_ = "";
       latitude_ = 0D;
@@ -5650,10 +5511,6 @@ public final class Comm {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
-      if (!hasEmailid()) {
-        memoizedIsInitialized = 0;
-        return false;
-      }
       if (!hasActualImage()) {
         memoizedIsInitialized = 0;
         return false;
@@ -5666,25 +5523,22 @@ public final class Comm {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeBytes(1, getEmailidBytes());
+        output.writeBytes(1, actualImage_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeBytes(2, actualImage_);
+        output.writeBytes(2, getTitleBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeBytes(3, getTitleBytes());
+        output.writeDouble(3, latitude_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeDouble(4, latitude_);
+        output.writeDouble(4, longitude_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeDouble(5, longitude_);
+        output.writeInt64(5, timestamp_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeInt64(6, timestamp_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        output.writeBytes(7, getImgidBytes());
+        output.writeBytes(6, getImgidBytes());
       }
       getUnknownFields().writeTo(output);
     }
@@ -5697,31 +5551,27 @@ public final class Comm {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(1, getEmailidBytes());
+          .computeBytesSize(1, actualImage_);
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(2, actualImage_);
+          .computeBytesSize(2, getTitleBytes());
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(3, getTitleBytes());
+          .computeDoubleSize(3, latitude_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(4, latitude_);
+          .computeDoubleSize(4, longitude_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeDoubleSize(5, longitude_);
+          .computeInt64Size(5, timestamp_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeInt64Size(6, timestamp_);
-      }
-      if (((bitField0_ & 0x00000040) == 0x00000040)) {
-        size += com.google.protobuf.CodedOutputStream
-          .computeBytesSize(7, getImgidBytes());
+          .computeBytesSize(6, getImgidBytes());
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -5847,20 +5697,18 @@ public final class Comm {
       
       public Builder clear() {
         super.clear();
-        emailid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000001);
         actualImage_ = com.google.protobuf.ByteString.EMPTY;
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         title_ = "";
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         latitude_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         longitude_ = 0D;
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         timestamp_ = 0L;
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         imgid_ = "";
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       
@@ -5902,29 +5750,25 @@ public final class Comm {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
-        result.emailid_ = emailid_;
+        result.actualImage_ = actualImage_;
         if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
           to_bitField0_ |= 0x00000002;
         }
-        result.actualImage_ = actualImage_;
+        result.title_ = title_;
         if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
           to_bitField0_ |= 0x00000004;
         }
-        result.title_ = title_;
+        result.latitude_ = latitude_;
         if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
           to_bitField0_ |= 0x00000008;
         }
-        result.latitude_ = latitude_;
+        result.longitude_ = longitude_;
         if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
           to_bitField0_ |= 0x00000010;
         }
-        result.longitude_ = longitude_;
+        result.timestamp_ = timestamp_;
         if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
           to_bitField0_ |= 0x00000020;
-        }
-        result.timestamp_ = timestamp_;
-        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
-          to_bitField0_ |= 0x00000040;
         }
         result.imgid_ = imgid_;
         result.bitField0_ = to_bitField0_;
@@ -5943,9 +5787,6 @@ public final class Comm {
       
       public Builder mergeFrom(eye.Comm.Image other) {
         if (other == eye.Comm.Image.getDefaultInstance()) return this;
-        if (other.hasEmailid()) {
-          setEmailid(other.getEmailid());
-        }
         if (other.hasActualImage()) {
           setActualImage(other.getActualImage());
         }
@@ -5969,10 +5810,6 @@ public final class Comm {
       }
       
       public final boolean isInitialized() {
-        if (!hasEmailid()) {
-          
-          return false;
-        }
         if (!hasActualImage()) {
           
           return false;
@@ -6005,36 +5842,31 @@ public final class Comm {
             }
             case 10: {
               bitField0_ |= 0x00000001;
-              emailid_ = input.readBytes();
+              actualImage_ = input.readBytes();
               break;
             }
             case 18: {
               bitField0_ |= 0x00000002;
-              actualImage_ = input.readBytes();
+              title_ = input.readBytes();
               break;
             }
-            case 26: {
+            case 25: {
               bitField0_ |= 0x00000004;
-              title_ = input.readBytes();
+              latitude_ = input.readDouble();
               break;
             }
             case 33: {
               bitField0_ |= 0x00000008;
-              latitude_ = input.readDouble();
-              break;
-            }
-            case 41: {
-              bitField0_ |= 0x00000010;
               longitude_ = input.readDouble();
               break;
             }
-            case 48: {
-              bitField0_ |= 0x00000020;
+            case 40: {
+              bitField0_ |= 0x00000010;
               timestamp_ = input.readInt64();
               break;
             }
-            case 58: {
-              bitField0_ |= 0x00000040;
+            case 50: {
+              bitField0_ |= 0x00000020;
               imgid_ = input.readBytes();
               break;
             }
@@ -6044,46 +5876,10 @@ public final class Comm {
       
       private int bitField0_;
       
-      // required string emailid = 1;
-      private java.lang.Object emailid_ = "";
-      public boolean hasEmailid() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
-      }
-      public String getEmailid() {
-        java.lang.Object ref = emailid_;
-        if (!(ref instanceof String)) {
-          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
-          emailid_ = s;
-          return s;
-        } else {
-          return (String) ref;
-        }
-      }
-      public Builder setEmailid(String value) {
-        if (value == null) {
-    throw new NullPointerException();
-  }
-  bitField0_ |= 0x00000001;
-        emailid_ = value;
-        onChanged();
-        return this;
-      }
-      public Builder clearEmailid() {
-        bitField0_ = (bitField0_ & ~0x00000001);
-        emailid_ = getDefaultInstance().getEmailid();
-        onChanged();
-        return this;
-      }
-      void setEmailid(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000001;
-        emailid_ = value;
-        onChanged();
-      }
-      
-      // required bytes actualImage = 2;
+      // required bytes actualImage = 1;
       private com.google.protobuf.ByteString actualImage_ = com.google.protobuf.ByteString.EMPTY;
       public boolean hasActualImage() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000001) == 0x00000001);
       }
       public com.google.protobuf.ByteString getActualImage() {
         return actualImage_;
@@ -6092,22 +5888,22 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000002;
+  bitField0_ |= 0x00000001;
         actualImage_ = value;
         onChanged();
         return this;
       }
       public Builder clearActualImage() {
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000001);
         actualImage_ = getDefaultInstance().getActualImage();
         onChanged();
         return this;
       }
       
-      // optional string title = 3;
+      // optional string title = 2;
       private java.lang.Object title_ = "";
       public boolean hasTitle() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public String getTitle() {
         java.lang.Object ref = title_;
@@ -6123,90 +5919,90 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000004;
+  bitField0_ |= 0x00000002;
         title_ = value;
         onChanged();
         return this;
       }
       public Builder clearTitle() {
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000002);
         title_ = getDefaultInstance().getTitle();
         onChanged();
         return this;
       }
       void setTitle(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000002;
         title_ = value;
         onChanged();
       }
       
-      // optional double latitude = 4;
+      // optional double latitude = 3;
       private double latitude_ ;
       public boolean hasLatitude() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public double getLatitude() {
         return latitude_;
       }
       public Builder setLatitude(double value) {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000004;
         latitude_ = value;
         onChanged();
         return this;
       }
       public Builder clearLatitude() {
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000004);
         latitude_ = 0D;
         onChanged();
         return this;
       }
       
-      // optional double longitude = 5;
+      // optional double longitude = 4;
       private double longitude_ ;
       public boolean hasLongitude() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public double getLongitude() {
         return longitude_;
       }
       public Builder setLongitude(double value) {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000008;
         longitude_ = value;
         onChanged();
         return this;
       }
       public Builder clearLongitude() {
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000008);
         longitude_ = 0D;
         onChanged();
         return this;
       }
       
-      // optional int64 timestamp = 6;
+      // optional int64 timestamp = 5;
       private long timestamp_ ;
       public boolean hasTimestamp() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public long getTimestamp() {
         return timestamp_;
       }
       public Builder setTimestamp(long value) {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000010;
         timestamp_ = value;
         onChanged();
         return this;
       }
       public Builder clearTimestamp() {
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000010);
         timestamp_ = 0L;
         onChanged();
         return this;
       }
       
-      // optional string imgid = 7;
+      // optional string imgid = 6;
       private java.lang.Object imgid_ = "";
       public boolean hasImgid() {
-        return ((bitField0_ & 0x00000040) == 0x00000040);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public String getImgid() {
         java.lang.Object ref = imgid_;
@@ -6222,19 +6018,19 @@ public final class Comm {
         if (value == null) {
     throw new NullPointerException();
   }
-  bitField0_ |= 0x00000040;
+  bitField0_ |= 0x00000020;
         imgid_ = value;
         onChanged();
         return this;
       }
       public Builder clearImgid() {
-        bitField0_ = (bitField0_ & ~0x00000040);
+        bitField0_ = (bitField0_ & ~0x00000020);
         imgid_ = getDefaultInstance().getImgid();
         onChanged();
         return this;
       }
       void setImgid(com.google.protobuf.ByteString value) {
-        bitField0_ |= 0x00000040;
+        bitField0_ |= 0x00000020;
         imgid_ = value;
         onChanged();
       }
@@ -7199,32 +6995,36 @@ public final class Comm {
   public interface PayloadOrBuilder
       extends com.google.protobuf.MessageOrBuilder {
     
-    // optional .Finger finger = 1;
+    // required string emailid = 1;
+    boolean hasEmailid();
+    String getEmailid();
+    
+    // optional .Finger finger = 2;
     boolean hasFinger();
     eye.Comm.Finger getFinger();
     eye.Comm.FingerOrBuilder getFingerOrBuilder();
     
-    // optional .Document doc = 2;
+    // optional .Document doc = 3;
     boolean hasDoc();
     eye.Comm.Document getDoc();
     eye.Comm.DocumentOrBuilder getDocOrBuilder();
     
-    // optional .NameSpace space = 3;
+    // optional .NameSpace space = 4;
     boolean hasSpace();
     eye.Comm.NameSpace getSpace();
     eye.Comm.NameSpaceOrBuilder getSpaceOrBuilder();
     
-    // optional .Register reg = 4;
+    // optional .Register reg = 5;
     boolean hasReg();
     eye.Comm.Register getReg();
     eye.Comm.RegisterOrBuilder getRegOrBuilder();
     
-    // optional .Image imageup = 5;
+    // optional .Image imageup = 6;
     boolean hasImageup();
     eye.Comm.Image getImageup();
     eye.Comm.ImageOrBuilder getImageupOrBuilder();
     
-    // optional .UserImageRequest imgreq = 6;
+    // optional .UserImageRequest imgreq = 7;
     boolean hasImgreq();
     eye.Comm.UserImageRequest getImgreq();
     eye.Comm.UserImageRequestOrBuilder getImgreqOrBuilder();
@@ -7258,11 +7058,43 @@ public final class Comm {
     }
     
     private int bitField0_;
-    // optional .Finger finger = 1;
-    public static final int FINGER_FIELD_NUMBER = 1;
+    // required string emailid = 1;
+    public static final int EMAILID_FIELD_NUMBER = 1;
+    private java.lang.Object emailid_;
+    public boolean hasEmailid() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    public String getEmailid() {
+      java.lang.Object ref = emailid_;
+      if (ref instanceof String) {
+        return (String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        String s = bs.toStringUtf8();
+        if (com.google.protobuf.Internal.isValidUtf8(bs)) {
+          emailid_ = s;
+        }
+        return s;
+      }
+    }
+    private com.google.protobuf.ByteString getEmailidBytes() {
+      java.lang.Object ref = emailid_;
+      if (ref instanceof String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8((String) ref);
+        emailid_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+    
+    // optional .Finger finger = 2;
+    public static final int FINGER_FIELD_NUMBER = 2;
     private eye.Comm.Finger finger_;
     public boolean hasFinger() {
-      return ((bitField0_ & 0x00000001) == 0x00000001);
+      return ((bitField0_ & 0x00000002) == 0x00000002);
     }
     public eye.Comm.Finger getFinger() {
       return finger_;
@@ -7271,11 +7103,11 @@ public final class Comm {
       return finger_;
     }
     
-    // optional .Document doc = 2;
-    public static final int DOC_FIELD_NUMBER = 2;
+    // optional .Document doc = 3;
+    public static final int DOC_FIELD_NUMBER = 3;
     private eye.Comm.Document doc_;
     public boolean hasDoc() {
-      return ((bitField0_ & 0x00000002) == 0x00000002);
+      return ((bitField0_ & 0x00000004) == 0x00000004);
     }
     public eye.Comm.Document getDoc() {
       return doc_;
@@ -7284,11 +7116,11 @@ public final class Comm {
       return doc_;
     }
     
-    // optional .NameSpace space = 3;
-    public static final int SPACE_FIELD_NUMBER = 3;
+    // optional .NameSpace space = 4;
+    public static final int SPACE_FIELD_NUMBER = 4;
     private eye.Comm.NameSpace space_;
     public boolean hasSpace() {
-      return ((bitField0_ & 0x00000004) == 0x00000004);
+      return ((bitField0_ & 0x00000008) == 0x00000008);
     }
     public eye.Comm.NameSpace getSpace() {
       return space_;
@@ -7297,11 +7129,11 @@ public final class Comm {
       return space_;
     }
     
-    // optional .Register reg = 4;
-    public static final int REG_FIELD_NUMBER = 4;
+    // optional .Register reg = 5;
+    public static final int REG_FIELD_NUMBER = 5;
     private eye.Comm.Register reg_;
     public boolean hasReg() {
-      return ((bitField0_ & 0x00000008) == 0x00000008);
+      return ((bitField0_ & 0x00000010) == 0x00000010);
     }
     public eye.Comm.Register getReg() {
       return reg_;
@@ -7310,11 +7142,11 @@ public final class Comm {
       return reg_;
     }
     
-    // optional .Image imageup = 5;
-    public static final int IMAGEUP_FIELD_NUMBER = 5;
+    // optional .Image imageup = 6;
+    public static final int IMAGEUP_FIELD_NUMBER = 6;
     private eye.Comm.Image imageup_;
     public boolean hasImageup() {
-      return ((bitField0_ & 0x00000010) == 0x00000010);
+      return ((bitField0_ & 0x00000020) == 0x00000020);
     }
     public eye.Comm.Image getImageup() {
       return imageup_;
@@ -7323,11 +7155,11 @@ public final class Comm {
       return imageup_;
     }
     
-    // optional .UserImageRequest imgreq = 6;
-    public static final int IMGREQ_FIELD_NUMBER = 6;
+    // optional .UserImageRequest imgreq = 7;
+    public static final int IMGREQ_FIELD_NUMBER = 7;
     private eye.Comm.UserImageRequest imgreq_;
     public boolean hasImgreq() {
-      return ((bitField0_ & 0x00000020) == 0x00000020);
+      return ((bitField0_ & 0x00000040) == 0x00000040);
     }
     public eye.Comm.UserImageRequest getImgreq() {
       return imgreq_;
@@ -7337,6 +7169,7 @@ public final class Comm {
     }
     
     private void initFields() {
+      emailid_ = "";
       finger_ = eye.Comm.Finger.getDefaultInstance();
       doc_ = eye.Comm.Document.getDefaultInstance();
       space_ = eye.Comm.NameSpace.getDefaultInstance();
@@ -7349,6 +7182,10 @@ public final class Comm {
       byte isInitialized = memoizedIsInitialized;
       if (isInitialized != -1) return isInitialized == 1;
       
+      if (!hasEmailid()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
       if (hasFinger()) {
         if (!getFinger().isInitialized()) {
           memoizedIsInitialized = 0;
@@ -7393,22 +7230,25 @@ public final class Comm {
                         throws java.io.IOException {
       getSerializedSize();
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
-        output.writeMessage(1, finger_);
+        output.writeBytes(1, getEmailidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
-        output.writeMessage(2, doc_);
+        output.writeMessage(2, finger_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
-        output.writeMessage(3, space_);
+        output.writeMessage(3, doc_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
-        output.writeMessage(4, reg_);
+        output.writeMessage(4, space_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
-        output.writeMessage(5, imageup_);
+        output.writeMessage(5, reg_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
-        output.writeMessage(6, imgreq_);
+        output.writeMessage(6, imageup_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        output.writeMessage(7, imgreq_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -7421,27 +7261,31 @@ public final class Comm {
       size = 0;
       if (((bitField0_ & 0x00000001) == 0x00000001)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(1, finger_);
+          .computeBytesSize(1, getEmailidBytes());
       }
       if (((bitField0_ & 0x00000002) == 0x00000002)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(2, doc_);
+          .computeMessageSize(2, finger_);
       }
       if (((bitField0_ & 0x00000004) == 0x00000004)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(3, space_);
+          .computeMessageSize(3, doc_);
       }
       if (((bitField0_ & 0x00000008) == 0x00000008)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(4, reg_);
+          .computeMessageSize(4, space_);
       }
       if (((bitField0_ & 0x00000010) == 0x00000010)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(5, imageup_);
+          .computeMessageSize(5, reg_);
       }
       if (((bitField0_ & 0x00000020) == 0x00000020)) {
         size += com.google.protobuf.CodedOutputStream
-          .computeMessageSize(6, imgreq_);
+          .computeMessageSize(6, imageup_);
+      }
+      if (((bitField0_ & 0x00000040) == 0x00000040)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(7, imgreq_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -7573,42 +7417,44 @@ public final class Comm {
       
       public Builder clear() {
         super.clear();
+        emailid_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
         if (fingerBuilder_ == null) {
           finger_ = eye.Comm.Finger.getDefaultInstance();
         } else {
           fingerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         if (docBuilder_ == null) {
           doc_ = eye.Comm.Document.getDefaultInstance();
         } else {
           docBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         if (spaceBuilder_ == null) {
           space_ = eye.Comm.NameSpace.getDefaultInstance();
         } else {
           spaceBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         if (regBuilder_ == null) {
           reg_ = eye.Comm.Register.getDefaultInstance();
         } else {
           regBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         if (imageupBuilder_ == null) {
           imageup_ = eye.Comm.Image.getDefaultInstance();
         } else {
           imageupBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         if (imgreqBuilder_ == null) {
           imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
         } else {
           imgreqBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       
@@ -7650,45 +7496,49 @@ public final class Comm {
         if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
           to_bitField0_ |= 0x00000001;
         }
+        result.emailid_ = emailid_;
+        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
+          to_bitField0_ |= 0x00000002;
+        }
         if (fingerBuilder_ == null) {
           result.finger_ = finger_;
         } else {
           result.finger_ = fingerBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000002) == 0x00000002)) {
-          to_bitField0_ |= 0x00000002;
+        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
+          to_bitField0_ |= 0x00000004;
         }
         if (docBuilder_ == null) {
           result.doc_ = doc_;
         } else {
           result.doc_ = docBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000004) == 0x00000004)) {
-          to_bitField0_ |= 0x00000004;
+        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
+          to_bitField0_ |= 0x00000008;
         }
         if (spaceBuilder_ == null) {
           result.space_ = space_;
         } else {
           result.space_ = spaceBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000008) == 0x00000008)) {
-          to_bitField0_ |= 0x00000008;
+        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
+          to_bitField0_ |= 0x00000010;
         }
         if (regBuilder_ == null) {
           result.reg_ = reg_;
         } else {
           result.reg_ = regBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000010) == 0x00000010)) {
-          to_bitField0_ |= 0x00000010;
+        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
+          to_bitField0_ |= 0x00000020;
         }
         if (imageupBuilder_ == null) {
           result.imageup_ = imageup_;
         } else {
           result.imageup_ = imageupBuilder_.build();
         }
-        if (((from_bitField0_ & 0x00000020) == 0x00000020)) {
-          to_bitField0_ |= 0x00000020;
+        if (((from_bitField0_ & 0x00000040) == 0x00000040)) {
+          to_bitField0_ |= 0x00000040;
         }
         if (imgreqBuilder_ == null) {
           result.imgreq_ = imgreq_;
@@ -7711,6 +7561,9 @@ public final class Comm {
       
       public Builder mergeFrom(eye.Comm.Payload other) {
         if (other == eye.Comm.Payload.getDefaultInstance()) return this;
+        if (other.hasEmailid()) {
+          setEmailid(other.getEmailid());
+        }
         if (other.hasFinger()) {
           mergeFinger(other.getFinger());
         }
@@ -7734,6 +7587,10 @@ public final class Comm {
       }
       
       public final boolean isInitialized() {
+        if (!hasEmailid()) {
+          
+          return false;
+        }
         if (hasFinger()) {
           if (!getFinger().isInitialized()) {
             
@@ -7797,6 +7654,11 @@ public final class Comm {
               break;
             }
             case 10: {
+              bitField0_ |= 0x00000001;
+              emailid_ = input.readBytes();
+              break;
+            }
+            case 18: {
               eye.Comm.Finger.Builder subBuilder = eye.Comm.Finger.newBuilder();
               if (hasFinger()) {
                 subBuilder.mergeFrom(getFinger());
@@ -7805,7 +7667,7 @@ public final class Comm {
               setFinger(subBuilder.buildPartial());
               break;
             }
-            case 18: {
+            case 26: {
               eye.Comm.Document.Builder subBuilder = eye.Comm.Document.newBuilder();
               if (hasDoc()) {
                 subBuilder.mergeFrom(getDoc());
@@ -7814,7 +7676,7 @@ public final class Comm {
               setDoc(subBuilder.buildPartial());
               break;
             }
-            case 26: {
+            case 34: {
               eye.Comm.NameSpace.Builder subBuilder = eye.Comm.NameSpace.newBuilder();
               if (hasSpace()) {
                 subBuilder.mergeFrom(getSpace());
@@ -7823,7 +7685,7 @@ public final class Comm {
               setSpace(subBuilder.buildPartial());
               break;
             }
-            case 34: {
+            case 42: {
               eye.Comm.Register.Builder subBuilder = eye.Comm.Register.newBuilder();
               if (hasReg()) {
                 subBuilder.mergeFrom(getReg());
@@ -7832,7 +7694,7 @@ public final class Comm {
               setReg(subBuilder.buildPartial());
               break;
             }
-            case 42: {
+            case 50: {
               eye.Comm.Image.Builder subBuilder = eye.Comm.Image.newBuilder();
               if (hasImageup()) {
                 subBuilder.mergeFrom(getImageup());
@@ -7841,7 +7703,7 @@ public final class Comm {
               setImageup(subBuilder.buildPartial());
               break;
             }
-            case 50: {
+            case 58: {
               eye.Comm.UserImageRequest.Builder subBuilder = eye.Comm.UserImageRequest.newBuilder();
               if (hasImgreq()) {
                 subBuilder.mergeFrom(getImgreq());
@@ -7856,12 +7718,48 @@ public final class Comm {
       
       private int bitField0_;
       
-      // optional .Finger finger = 1;
+      // required string emailid = 1;
+      private java.lang.Object emailid_ = "";
+      public boolean hasEmailid() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      public String getEmailid() {
+        java.lang.Object ref = emailid_;
+        if (!(ref instanceof String)) {
+          String s = ((com.google.protobuf.ByteString) ref).toStringUtf8();
+          emailid_ = s;
+          return s;
+        } else {
+          return (String) ref;
+        }
+      }
+      public Builder setEmailid(String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+        return this;
+      }
+      public Builder clearEmailid() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        emailid_ = getDefaultInstance().getEmailid();
+        onChanged();
+        return this;
+      }
+      void setEmailid(com.google.protobuf.ByteString value) {
+        bitField0_ |= 0x00000001;
+        emailid_ = value;
+        onChanged();
+      }
+      
+      // optional .Finger finger = 2;
       private eye.Comm.Finger finger_ = eye.Comm.Finger.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Finger, eye.Comm.Finger.Builder, eye.Comm.FingerOrBuilder> fingerBuilder_;
       public boolean hasFinger() {
-        return ((bitField0_ & 0x00000001) == 0x00000001);
+        return ((bitField0_ & 0x00000002) == 0x00000002);
       }
       public eye.Comm.Finger getFinger() {
         if (fingerBuilder_ == null) {
@@ -7880,7 +7778,7 @@ public final class Comm {
         } else {
           fingerBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder setFinger(
@@ -7891,12 +7789,12 @@ public final class Comm {
         } else {
           fingerBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder mergeFinger(eye.Comm.Finger value) {
         if (fingerBuilder_ == null) {
-          if (((bitField0_ & 0x00000001) == 0x00000001) &&
+          if (((bitField0_ & 0x00000002) == 0x00000002) &&
               finger_ != eye.Comm.Finger.getDefaultInstance()) {
             finger_ =
               eye.Comm.Finger.newBuilder(finger_).mergeFrom(value).buildPartial();
@@ -7907,7 +7805,7 @@ public final class Comm {
         } else {
           fingerBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         return this;
       }
       public Builder clearFinger() {
@@ -7917,11 +7815,11 @@ public final class Comm {
         } else {
           fingerBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000001);
+        bitField0_ = (bitField0_ & ~0x00000002);
         return this;
       }
       public eye.Comm.Finger.Builder getFingerBuilder() {
-        bitField0_ |= 0x00000001;
+        bitField0_ |= 0x00000002;
         onChanged();
         return getFingerFieldBuilder().getBuilder();
       }
@@ -7946,12 +7844,12 @@ public final class Comm {
         return fingerBuilder_;
       }
       
-      // optional .Document doc = 2;
+      // optional .Document doc = 3;
       private eye.Comm.Document doc_ = eye.Comm.Document.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Document, eye.Comm.Document.Builder, eye.Comm.DocumentOrBuilder> docBuilder_;
       public boolean hasDoc() {
-        return ((bitField0_ & 0x00000002) == 0x00000002);
+        return ((bitField0_ & 0x00000004) == 0x00000004);
       }
       public eye.Comm.Document getDoc() {
         if (docBuilder_ == null) {
@@ -7970,7 +7868,7 @@ public final class Comm {
         } else {
           docBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder setDoc(
@@ -7981,12 +7879,12 @@ public final class Comm {
         } else {
           docBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder mergeDoc(eye.Comm.Document value) {
         if (docBuilder_ == null) {
-          if (((bitField0_ & 0x00000002) == 0x00000002) &&
+          if (((bitField0_ & 0x00000004) == 0x00000004) &&
               doc_ != eye.Comm.Document.getDefaultInstance()) {
             doc_ =
               eye.Comm.Document.newBuilder(doc_).mergeFrom(value).buildPartial();
@@ -7997,7 +7895,7 @@ public final class Comm {
         } else {
           docBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         return this;
       }
       public Builder clearDoc() {
@@ -8007,11 +7905,11 @@ public final class Comm {
         } else {
           docBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000002);
+        bitField0_ = (bitField0_ & ~0x00000004);
         return this;
       }
       public eye.Comm.Document.Builder getDocBuilder() {
-        bitField0_ |= 0x00000002;
+        bitField0_ |= 0x00000004;
         onChanged();
         return getDocFieldBuilder().getBuilder();
       }
@@ -8036,12 +7934,12 @@ public final class Comm {
         return docBuilder_;
       }
       
-      // optional .NameSpace space = 3;
+      // optional .NameSpace space = 4;
       private eye.Comm.NameSpace space_ = eye.Comm.NameSpace.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.NameSpace, eye.Comm.NameSpace.Builder, eye.Comm.NameSpaceOrBuilder> spaceBuilder_;
       public boolean hasSpace() {
-        return ((bitField0_ & 0x00000004) == 0x00000004);
+        return ((bitField0_ & 0x00000008) == 0x00000008);
       }
       public eye.Comm.NameSpace getSpace() {
         if (spaceBuilder_ == null) {
@@ -8060,7 +7958,7 @@ public final class Comm {
         } else {
           spaceBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       public Builder setSpace(
@@ -8071,12 +7969,12 @@ public final class Comm {
         } else {
           spaceBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       public Builder mergeSpace(eye.Comm.NameSpace value) {
         if (spaceBuilder_ == null) {
-          if (((bitField0_ & 0x00000004) == 0x00000004) &&
+          if (((bitField0_ & 0x00000008) == 0x00000008) &&
               space_ != eye.Comm.NameSpace.getDefaultInstance()) {
             space_ =
               eye.Comm.NameSpace.newBuilder(space_).mergeFrom(value).buildPartial();
@@ -8087,7 +7985,7 @@ public final class Comm {
         } else {
           spaceBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         return this;
       }
       public Builder clearSpace() {
@@ -8097,11 +7995,11 @@ public final class Comm {
         } else {
           spaceBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000004);
+        bitField0_ = (bitField0_ & ~0x00000008);
         return this;
       }
       public eye.Comm.NameSpace.Builder getSpaceBuilder() {
-        bitField0_ |= 0x00000004;
+        bitField0_ |= 0x00000008;
         onChanged();
         return getSpaceFieldBuilder().getBuilder();
       }
@@ -8126,12 +8024,12 @@ public final class Comm {
         return spaceBuilder_;
       }
       
-      // optional .Register reg = 4;
+      // optional .Register reg = 5;
       private eye.Comm.Register reg_ = eye.Comm.Register.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Register, eye.Comm.Register.Builder, eye.Comm.RegisterOrBuilder> regBuilder_;
       public boolean hasReg() {
-        return ((bitField0_ & 0x00000008) == 0x00000008);
+        return ((bitField0_ & 0x00000010) == 0x00000010);
       }
       public eye.Comm.Register getReg() {
         if (regBuilder_ == null) {
@@ -8150,7 +8048,7 @@ public final class Comm {
         } else {
           regBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder setReg(
@@ -8161,12 +8059,12 @@ public final class Comm {
         } else {
           regBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder mergeReg(eye.Comm.Register value) {
         if (regBuilder_ == null) {
-          if (((bitField0_ & 0x00000008) == 0x00000008) &&
+          if (((bitField0_ & 0x00000010) == 0x00000010) &&
               reg_ != eye.Comm.Register.getDefaultInstance()) {
             reg_ =
               eye.Comm.Register.newBuilder(reg_).mergeFrom(value).buildPartial();
@@ -8177,7 +8075,7 @@ public final class Comm {
         } else {
           regBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         return this;
       }
       public Builder clearReg() {
@@ -8187,11 +8085,11 @@ public final class Comm {
         } else {
           regBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000008);
+        bitField0_ = (bitField0_ & ~0x00000010);
         return this;
       }
       public eye.Comm.Register.Builder getRegBuilder() {
-        bitField0_ |= 0x00000008;
+        bitField0_ |= 0x00000010;
         onChanged();
         return getRegFieldBuilder().getBuilder();
       }
@@ -8216,12 +8114,12 @@ public final class Comm {
         return regBuilder_;
       }
       
-      // optional .Image imageup = 5;
+      // optional .Image imageup = 6;
       private eye.Comm.Image imageup_ = eye.Comm.Image.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.Image, eye.Comm.Image.Builder, eye.Comm.ImageOrBuilder> imageupBuilder_;
       public boolean hasImageup() {
-        return ((bitField0_ & 0x00000010) == 0x00000010);
+        return ((bitField0_ & 0x00000020) == 0x00000020);
       }
       public eye.Comm.Image getImageup() {
         if (imageupBuilder_ == null) {
@@ -8240,7 +8138,7 @@ public final class Comm {
         } else {
           imageupBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       public Builder setImageup(
@@ -8251,12 +8149,12 @@ public final class Comm {
         } else {
           imageupBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       public Builder mergeImageup(eye.Comm.Image value) {
         if (imageupBuilder_ == null) {
-          if (((bitField0_ & 0x00000010) == 0x00000010) &&
+          if (((bitField0_ & 0x00000020) == 0x00000020) &&
               imageup_ != eye.Comm.Image.getDefaultInstance()) {
             imageup_ =
               eye.Comm.Image.newBuilder(imageup_).mergeFrom(value).buildPartial();
@@ -8267,7 +8165,7 @@ public final class Comm {
         } else {
           imageupBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         return this;
       }
       public Builder clearImageup() {
@@ -8277,11 +8175,11 @@ public final class Comm {
         } else {
           imageupBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000010);
+        bitField0_ = (bitField0_ & ~0x00000020);
         return this;
       }
       public eye.Comm.Image.Builder getImageupBuilder() {
-        bitField0_ |= 0x00000010;
+        bitField0_ |= 0x00000020;
         onChanged();
         return getImageupFieldBuilder().getBuilder();
       }
@@ -8306,12 +8204,12 @@ public final class Comm {
         return imageupBuilder_;
       }
       
-      // optional .UserImageRequest imgreq = 6;
+      // optional .UserImageRequest imgreq = 7;
       private eye.Comm.UserImageRequest imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
       private com.google.protobuf.SingleFieldBuilder<
           eye.Comm.UserImageRequest, eye.Comm.UserImageRequest.Builder, eye.Comm.UserImageRequestOrBuilder> imgreqBuilder_;
       public boolean hasImgreq() {
-        return ((bitField0_ & 0x00000020) == 0x00000020);
+        return ((bitField0_ & 0x00000040) == 0x00000040);
       }
       public eye.Comm.UserImageRequest getImgreq() {
         if (imgreqBuilder_ == null) {
@@ -8330,7 +8228,7 @@ public final class Comm {
         } else {
           imgreqBuilder_.setMessage(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       public Builder setImgreq(
@@ -8341,12 +8239,12 @@ public final class Comm {
         } else {
           imgreqBuilder_.setMessage(builderForValue.build());
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       public Builder mergeImgreq(eye.Comm.UserImageRequest value) {
         if (imgreqBuilder_ == null) {
-          if (((bitField0_ & 0x00000020) == 0x00000020) &&
+          if (((bitField0_ & 0x00000040) == 0x00000040) &&
               imgreq_ != eye.Comm.UserImageRequest.getDefaultInstance()) {
             imgreq_ =
               eye.Comm.UserImageRequest.newBuilder(imgreq_).mergeFrom(value).buildPartial();
@@ -8357,7 +8255,7 @@ public final class Comm {
         } else {
           imgreqBuilder_.mergeFrom(value);
         }
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         return this;
       }
       public Builder clearImgreq() {
@@ -8367,11 +8265,11 @@ public final class Comm {
         } else {
           imgreqBuilder_.clear();
         }
-        bitField0_ = (bitField0_ & ~0x00000020);
+        bitField0_ = (bitField0_ & ~0x00000040);
         return this;
       }
       public eye.Comm.UserImageRequest.Builder getImgreqBuilder() {
-        bitField0_ |= 0x00000020;
+        bitField0_ |= 0x00000040;
         onChanged();
         return getImgreqFieldBuilder().getBuilder();
       }
@@ -12619,32 +12517,32 @@ public final class Comm {
       "\007DOCFIND\020\025\022\r\n\tDOCUPDATE\020\026\022\r\n\tDOCREMOVE\020\027",
       "\"U\n\013ReplyStatus\022\013\n\007SUCCESS\020\001\022\013\n\007FAILURE\020" +
       "\002\022\n\n\006NOAUTH\020\003\022\016\n\nMISSINGARG\020\004\022\020\n\014NOCONNE" +
-      "CTION\020\005\"K\n\010Register\022\017\n\007emailid\030\001 \002(\t\022\r\n\005" +
-      "fname\030\002 \002(\t\022\r\n\005lname\030\003 \002(\t\022\020\n\010password\030\004" +
-      " \002(\t\"\203\001\n\005Image\022\017\n\007emailid\030\001 \002(\t\022\023\n\013actua" +
-      "lImage\030\002 \002(\014\022\r\n\005title\030\003 \001(\t\022\020\n\010latitude\030" +
-      "\004 \001(\001\022\021\n\tlongitude\030\005 \001(\001\022\021\n\ttimestamp\030\006 " +
-      "\001(\003\022\r\n\005imgid\030\007 \001(\t\"#\n\020UserImageRequest\022\017" +
-      "\n\007emailid\030\001 \002(\t\"&\n\016UserImageReply\022\024\n\004img" +
-      "s\030\001 \003(\0132\006.Image\"\251\001\n\007Payload\022\027\n\006finger\030\001 ",
-      "\001(\0132\007.Finger\022\026\n\003doc\030\002 \001(\0132\t.Document\022\031\n\005" +
-      "space\030\003 \001(\0132\n.NameSpace\022\026\n\003reg\030\004 \001(\0132\t.R" +
-      "egister\022\027\n\007imageup\030\005 \001(\0132\006.Image\022!\n\006imgr" +
-      "eq\030\006 \001(\0132\021.UserImageRequest\"\233\001\n\014PayloadR" +
-      "eply\022\027\n\004docs\030\001 \003(\0132\t.Document\022\032\n\006spaces\030" +
-      "\002 \003(\0132\n.NameSpace\022\030\n\005stats\030\003 \001(\0132\t.Docum" +
-      "ent\022\031\n\006finger\030\004 \001(\0132\t.Document\022!\n\010imgrep" +
-      "ly\030\005 \001(\0132\017.UserImageReply\":\n\007Request\022\027\n\006" +
-      "header\030\001 \002(\0132\007.Header\022\026\n\004body\030\002 \002(\0132\010.Pa" +
-      "yload\"@\n\010Response\022\027\n\006header\030\001 \002(\0132\007.Head",
-      "er\022\033\n\004body\030\002 \002(\0132\r.PayloadReply\",\n\tHeart" +
-      "beat\022\016\n\006nodeId\030\001 \002(\t\022\017\n\007timeRef\030\002 \002(\003\"\225\001" +
-      "\n\007Network\022\016\n\006nodeId\030\001 \002(\t\022\037\n\006action\030\002 \002(" +
-      "\0162\017.Network.Action\"Y\n\006Action\022\014\n\010NODEJOIN" +
-      "\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEAD\020\003\022\007\n\003MAP\0207" +
-      "\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"?\n\nManagem" +
-      "ent\022\027\n\005graph\030\001 \001(\0132\010.Network\022\030\n\004beat\030\002 \001" +
-      "(\0132\n.HeartbeatB\007\n\003eyeH\001"
+      "CTION\020\005\":\n\010Register\022\r\n\005fname\030\001 \002(\t\022\r\n\005ln" +
+      "ame\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\"r\n\005Image\022\023\n\013" +
+      "actualImage\030\001 \002(\014\022\r\n\005title\030\002 \001(\t\022\020\n\010lati" +
+      "tude\030\003 \001(\001\022\021\n\tlongitude\030\004 \001(\001\022\021\n\ttimesta" +
+      "mp\030\005 \001(\003\022\r\n\005imgid\030\006 \001(\t\"#\n\020UserImageRequ" +
+      "est\022\017\n\007emailid\030\001 \002(\t\"&\n\016UserImageReply\022\024" +
+      "\n\004imgs\030\001 \003(\0132\006.Image\"\272\001\n\007Payload\022\017\n\007emai" +
+      "lid\030\001 \002(\t\022\027\n\006finger\030\002 \001(\0132\007.Finger\022\026\n\003do",
+      "c\030\003 \001(\0132\t.Document\022\031\n\005space\030\004 \001(\0132\n.Name" +
+      "Space\022\026\n\003reg\030\005 \001(\0132\t.Register\022\027\n\007imageup" +
+      "\030\006 \001(\0132\006.Image\022!\n\006imgreq\030\007 \001(\0132\021.UserIma" +
+      "geRequest\"\233\001\n\014PayloadReply\022\027\n\004docs\030\001 \003(\013" +
+      "2\t.Document\022\032\n\006spaces\030\002 \003(\0132\n.NameSpace\022" +
+      "\030\n\005stats\030\003 \001(\0132\t.Document\022\031\n\006finger\030\004 \001(" +
+      "\0132\t.Document\022!\n\010imgreply\030\005 \001(\0132\017.UserIma" +
+      "geReply\":\n\007Request\022\027\n\006header\030\001 \002(\0132\007.Hea" +
+      "der\022\026\n\004body\030\002 \002(\0132\010.Payload\"@\n\010Response\022" +
+      "\027\n\006header\030\001 \002(\0132\007.Header\022\033\n\004body\030\002 \002(\0132\r",
+      ".PayloadReply\",\n\tHeartbeat\022\016\n\006nodeId\030\001 \002" +
+      "(\t\022\017\n\007timeRef\030\002 \002(\003\"\225\001\n\007Network\022\016\n\006nodeI" +
+      "d\030\001 \002(\t\022\037\n\006action\030\002 \002(\0162\017.Network.Action" +
+      "\"Y\n\006Action\022\014\n\010NODEJOIN\020\001\022\r\n\tNODELEAVE\020\002\022" +
+      "\014\n\010NODEDEAD\020\003\022\007\n\003MAP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010" +
+      "SHUTDOWN\020\347\007\"?\n\nManagement\022\027\n\005graph\030\001 \001(\013" +
+      "2\010.Network\022\030\n\004beat\030\002 \001(\0132\n.HeartbeatB\007\n\003" +
+      "eyeH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -12712,7 +12610,7 @@ public final class Comm {
           internal_static_Register_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Register_descriptor,
-              new java.lang.String[] { "Emailid", "Fname", "Lname", "Password", },
+              new java.lang.String[] { "Fname", "Lname", "Password", },
               eye.Comm.Register.class,
               eye.Comm.Register.Builder.class);
           internal_static_Image_descriptor =
@@ -12720,7 +12618,7 @@ public final class Comm {
           internal_static_Image_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Image_descriptor,
-              new java.lang.String[] { "Emailid", "ActualImage", "Title", "Latitude", "Longitude", "Timestamp", "Imgid", },
+              new java.lang.String[] { "ActualImage", "Title", "Latitude", "Longitude", "Timestamp", "Imgid", },
               eye.Comm.Image.class,
               eye.Comm.Image.Builder.class);
           internal_static_UserImageRequest_descriptor =
@@ -12744,7 +12642,7 @@ public final class Comm {
           internal_static_Payload_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Payload_descriptor,
-              new java.lang.String[] { "Finger", "Doc", "Space", "Reg", "Imageup", "Imgreq", },
+              new java.lang.String[] { "Emailid", "Finger", "Doc", "Space", "Reg", "Imageup", "Imgreq", },
               eye.Comm.Payload.class,
               eye.Comm.Payload.Builder.class);
           internal_static_PayloadReply_descriptor =

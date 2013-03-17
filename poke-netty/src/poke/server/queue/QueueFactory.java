@@ -17,11 +17,12 @@ package poke.server.queue;
 
 import org.jboss.netty.channel.Channel;
 
+import poke.server.Server;
 import poke.server.routing.ServerHandler.ConnectionClosedListener;
 
 public class QueueFactory {
 
-	public static ChannelQueue getInstance(Channel channel) {
+	public static ChannelQueue getInstance(Channel channel, Server svr) {
 		// if a single queue is needed, this is where we would obtain a
 		// handle to it.
 		ChannelQueue queue = null;
@@ -29,7 +30,7 @@ public class QueueFactory {
 		if (channel == null)
 			queue = new NoOpQueue();
 		else
-			queue = new PerChannelQueue(channel);
+			queue = new PerChannelQueue(channel,svr);
 
 		// on close remove from queue
 		channel.getCloseFuture().addListener(

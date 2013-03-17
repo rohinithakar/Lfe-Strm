@@ -24,6 +24,8 @@ import org.jboss.netty.channel.ChannelFutureListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
+import poke.server.hash.HashingService;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceFactory;
 import poke.server.resources.ResourceUtil;
@@ -53,19 +55,19 @@ public class PerChannelQueue implements ChannelQueue {
 	private ThreadGroup tgroup = new ThreadGroup("ServerQueue-"
 			+ System.nanoTime());
 
-	protected PerChannelQueue(Channel channel) {
+	protected PerChannelQueue(Channel channel, Server svr) {
 		this.channel = channel;
-		init();
+		init(svr);
 	}
 
-	protected void init() {
+	protected void init(Server svr) {
 		inbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 
-		iworker = new InboundWorker(tgroup, 1, this);
+		iworker = new InboundWorker(svr, tgroup, 1, this);
 		iworker.start();
 
-		oworker = new OutboundWorker(tgroup, 1, this);
+		oworker = new OutboundWorker(svr, tgroup, 1, this);
 		oworker.start();
 
 		// let the handler manage the queue's shutdown
@@ -144,11 +146,13 @@ public class PerChannelQueue implements ChannelQueue {
 		int workerId;
 		PerChannelQueue sq;
 		boolean forever = true;
+		private Server svr = null;
 
-		public OutboundWorker(ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
+		public OutboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
 			super(tgrp, "outbound-" + workerId);
 			this.workerId = workerId;
 			this.sq = sq;
+			this.svr = svr;
 
 			if (outbound == null)
 				throw new RuntimeException(
@@ -205,11 +209,13 @@ public class PerChannelQueue implements ChannelQueue {
 		int workerId;
 		PerChannelQueue sq;
 		boolean forever = true;
+		private Server svr = null;
 
-		public InboundWorker(ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
+		public InboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
 			super(tgrp, "inbound-" + workerId);
 			this.workerId = workerId;
 			this.sq = sq;
+			this.svr = svr;
 
 			if (outbound == null)
 				throw new RuntimeException(
@@ -236,6 +242,11 @@ public class PerChannelQueue implements ChannelQueue {
 					// process request and enqueue response
 					if (msg instanceof Request) {
 						Request req = ((Request) msg);
+						String emailId = req.getBody().getEmailid();
+						String serverId = HashingService.getInstance().hash(emailId);
+						if( serverId.equalsIgnoreCase(svr.id)) {
+							// Now forward this request to another server
+						}
 						Resource rsc = ResourceFactory.getInstance()
 								.resourceInstance(
 										req.getHeader().getRoutingId());

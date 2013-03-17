@@ -80,20 +80,18 @@ message Header {
 }
 
 message Register {
-	required string emailid = 1;
-	required string fname = 2;
-	required string lname = 3;
-	required string password = 4;
+	required string fname = 1;
+	required string lname = 2;
+	required string password = 3;
 }
 
 message Image {
-	required string emailid = 1;
-	required bytes actualImage = 2;
-	optional string title = 3;
-	optional double latitude = 4;
-	optional double longitude = 5;
-	optional int64 timestamp = 6;
-	optional string imgid = 7;
+	required bytes actualImage = 1;
+	optional string title = 2;
+	optional double latitude = 3;
+	optional double longitude = 4;
+	optional int64 timestamp = 5;
+	optional string imgid = 6;
 }
 
 message UserImageRequest {
@@ -105,12 +103,13 @@ message UserImageReply {
 }
 
 message Payload {
-    optional Finger finger = 1;
-    optional Document doc = 2;
-    optional NameSpace space = 3;
-    optional Register reg = 4;
-    optional Image imageup = 5;
-    optional UserImageRequest imgreq = 6;
+	required string emailid = 1;
+    optional Finger finger = 2;
+    optional Document doc = 3;
+    optional NameSpace space = 4;
+    optional Register reg = 5;
+    optional Image imageup = 6;
+    optional UserImageRequest imgreq = 7;
 }
 
 message PayloadReply {
