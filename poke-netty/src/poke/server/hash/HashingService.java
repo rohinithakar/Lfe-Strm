@@ -56,6 +56,6 @@ public class HashingService {
 	 */
 	public String hash(String emailId) {
 		int hashValue = emailId.length() * 100;
-		return map.get(hashValue);
+		return map.get(map.ceilingKey(hashValue));
 	}
 }
