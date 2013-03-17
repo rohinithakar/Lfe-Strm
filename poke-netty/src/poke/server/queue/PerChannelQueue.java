@@ -146,6 +146,7 @@ public class PerChannelQueue implements ChannelQueue {
 		int workerId;
 		PerChannelQueue sq;
 		boolean forever = true;
+		@SuppressWarnings("unused")
 		private Server svr = null;
 
 		public OutboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
