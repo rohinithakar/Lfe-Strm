@@ -236,6 +236,7 @@ public class PerChannelQueue implements ChannelQueue {
 					// process request and enqueue response
 					if (msg instanceof Request) {
 						Request req = ((Request) msg);
+						
 						Resource rsc = ResourceFactory.getInstance()
 								.resourceInstance(
 										req.getHeader().getRoutingId());

@@ -30,10 +30,10 @@ import eye.Comm.PayloadReply;
 import eye.Comm.Request;
 import eye.Comm.Response;
 
-public class PokeResource implements Resource {
+public class ImageUploadResource implements Resource {
 	protected static Logger logger = LoggerFactory.getLogger("server");
 
-	public PokeResource() {
+	public ImageUploadResource() {
 	}
 
 	/*
