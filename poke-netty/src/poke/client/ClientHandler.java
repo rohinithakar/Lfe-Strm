@@ -17,6 +17,11 @@ package poke.client;
 
 //Its a hanlder class
 
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import org.jboss.netty.buffer.ChannelBuffers;
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelFuture;
@@ -37,6 +42,7 @@ import com.google.protobuf.GeneratedMessage;
 import eye.Comm.Document;
 import eye.Comm.Header;
 import eye.Comm.NameValueSet;
+import eye.Comm.Response;
 
 public class ClientHandler extends SimpleChannelUpstreamHandler {
 	protected static Logger logger = LoggerFactory.getLogger("client");
@@ -66,6 +72,9 @@ public class ClientHandler extends SimpleChannelUpstreamHandler {
 			System.out.println(" - Status : " + msg.getHeader().getReplyCode());
 			System.out.println("\nInfo:");
 			printDocument(msg.getBody().getFinger());
+		}
+		if(msg.getHeader().getRoutingId() == Header.Routing.IMGRETREIVE ) {
+			writeImage(msg);
 		}
 	}
 
@@ -119,6 +128,19 @@ public class ClientHandler extends SimpleChannelUpstreamHandler {
 			NameValueSet nvs = doc.getDocument();
 			PrintNode.print(nvs);
 		}
+	}
+	
+	private void writeImage(Response res) {
+		File imgPath = new File("resources/image_client.png");
+        try {
+        	DataOutputStream dis = new DataOutputStream((new FileOutputStream(imgPath)));
+			dis.write(res.getBody().getImgreply().getImgs(0).getActualImage().toByteArray());
+			dis.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        channel.close();
 	}
 
 }

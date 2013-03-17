@@ -165,7 +165,7 @@ public class PerChannelQueue implements ChannelQueue {
 			Channel conn = sq.channel;
 			if (conn == null || !conn.isOpen()) {
 				PerChannelQueue.logger
-						.error("connection missing, no outbound communication");
+				.error("connection missing, no outbound communication");
 				return;
 			}
 
@@ -228,7 +228,7 @@ public class PerChannelQueue implements ChannelQueue {
 			Channel conn = sq.channel;
 			if (conn == null || !conn.isOpen()) {
 				PerChannelQueue.logger
-						.error("connection missing, no inbound communication");
+				.error("connection missing, no inbound communication");
 				return;
 			}
 
@@ -245,24 +245,25 @@ public class PerChannelQueue implements ChannelQueue {
 						Request req = ((Request) msg);
 						String emailId = req.getBody().getEmailid();
 						String serverId = HashingService.getInstance().hash(emailId);
-						if( serverId.equalsIgnoreCase(svr.id)) {
+						if( !serverId.equalsIgnoreCase(svr.id)) {
 							// Now forward this request to another server
-							
+							logger.info("Fowarding Request to Server:" + serverId );
+						} else {
+							Resource rsc = ResourceFactory.getInstance()
+									.resourceInstance(
+											req.getHeader().getRoutingId());
+
+							Response reply = null;
+							if (rsc == null) {
+								logger.error("failed to obtain resource for " + req);
+								reply = ResourceUtil.buildError(req.getHeader(),
+										ReplyStatus.FAILURE,
+										"Request not processed");
+							} else
+								reply = rsc.process(req);
+
+							sq.enqueueResponse(reply);
 						}
-						Resource rsc = ResourceFactory.getInstance()
-								.resourceInstance(
-										req.getHeader().getRoutingId());
-
-						Response reply = null;
-						if (rsc == null) {
-							logger.error("failed to obtain resource for " + req);
-							reply = ResourceUtil.buildError(req.getHeader(),
-									ReplyStatus.FAILURE,
-									"Request not processed");
-						} else
-							reply = rsc.process(req);
-
-						sq.enqueueResponse(reply);
 					}
 
 				} catch (InterruptedException ie) {

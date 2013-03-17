@@ -43,16 +43,18 @@ public class Jab {
 				.initConnection("localhost", 5570);
 		
 		
-		for (int i = 0; i < 3; i++) {
-			count++;
-			cc.poke(tag, count, getImageByteString());
-		}
+//		for (int i = 0; i < 3; i++) {
+//			count++;
+			//cc.poke(tag, count, getImageByteString());
+			cc.getImages("abc@abc.com");
+//		}
 	}
 	
 	public ByteString getImageByteString () throws IOException {
 		 // open image
-		 File imgPath = new File("/Users/swetapatel/Pictures/me.jpg");
-		 //File imgPath = new File("/home/user/test.txt");
+//		 File imgPath = new File("/Users/swetapatel/Pictures/me.jpg");
+//		 File imgPath = new File("/home/user/test.txt");
+		 File imgPath = new File("resources/warty-final-ubuntu.png");
 		 byte [] fileData = new byte[(int)imgPath.length()];
 		 DataInputStream dis = new DataInputStream((new FileInputStream(imgPath)));
 		 dis.readFully(fileData);

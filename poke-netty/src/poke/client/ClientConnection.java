@@ -69,22 +69,45 @@ public class ClientConnection {
 		ClientConnection rtn = new ClientConnection(host, port);
 		return rtn;
 	}
+	
+	public void getImages(String emailId) {
+		Request.Builder r = Request.newBuilder();
+		eye.Comm.Payload.Builder p = Payload.newBuilder();
+		p.setEmailid("abc@abc.com");
+		r.setBody(p.build());
+		
+		// header with routing info
+		eye.Comm.Header.Builder h = Header.newBuilder();
+		h.setOriginator("client");
+		h.setTime(System.currentTimeMillis());
+		h.setRoutingId(eye.Comm.Header.Routing.IMGRETREIVE);
+		r.setHeader(h.build());
+
+		eye.Comm.Request req = r.build();
+
+		try {
+			// enqueue message
+			outbound.put(req);
+		} catch (InterruptedException e) {
+			logger.warn("Unable to deliver message, queuing");
+		}
+	}
 
 	public void poke(String tag, int num, ByteString imageBytes) {
 		// data to send
-		Finger.Builder f = eye.Comm.Finger.newBuilder();
-		f.setTag(tag);
-		f.setNumber(num);
+//		Finger.Builder f = eye.Comm.Finger.newBuilder();
+//		f.setTag(tag);
+//		f.setNumber(num);
 
 		// payload containing data
 		Request.Builder r = Request.newBuilder();
 		eye.Comm.Payload.Builder p = Payload.newBuilder();
-		p.setFinger(f.build());
+		p.setEmailid("abc@abc.com");
+//		p.setFinger(f.build());
 		
 		eye.Comm.Image.Builder img = eye.Comm.Image.newBuilder();
-//		img.setActualImage(imageBytes);
-//		p.setImg(img);
-		
+		img.setActualImage(imageBytes);
+		p.setImageup(img);
 		r.setBody(p.build());
 
 		// header with routing info
@@ -92,7 +115,8 @@ public class ClientConnection {
 		h.setOriginator("client");
 		h.setTag("test finger");
 		h.setTime(System.currentTimeMillis());
-		h.setRoutingId(eye.Comm.Header.Routing.FINGER);
+//		h.setRoutingId(eye.Comm.Header.Routing.FINGER);
+		h.setRoutingId(eye.Comm.Header.Routing.IMGUPLOAD);
 		r.setHeader(h.build());
 
 		eye.Comm.Request req = r.build();
