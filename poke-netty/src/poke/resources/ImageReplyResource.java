@@ -46,7 +46,7 @@ public class ImageReplyResource implements Resource {
                 ReplyStatus.SUCCESS, null));
         
         eye.Comm.Image.Builder image = Image.newBuilder();
-        image.setEmailid("badal@ebay.com");
+        //image.setEmailid("badal@ebay.com");
         image.setImgid("1");
         image.setLatitude(32.333333);
         image.setLongitude(121.333333);
