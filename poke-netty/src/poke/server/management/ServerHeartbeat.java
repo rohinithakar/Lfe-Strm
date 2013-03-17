@@ -125,7 +125,7 @@ public class ServerHeartbeat extends Thread {
 	}
 
 	public static class HeartData {
-		public HeartData(String nodeId, Channel channel, SocketAddress sa) {
+		public HeartData(String nodeId, Channel channel, SocketAddress a) {
 			this.nodeId = nodeId;
 			this.channel = channel;
 			this.sa = sa;
