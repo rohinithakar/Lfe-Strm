@@ -44,8 +44,6 @@ public class PokeResource implements Resource {
 	public Response process(Request request) {
 		 // TODO add code to process the message/event received
         logger.info("poke: " + request.getBody().getFinger().getTag());
-        
-        
 //        File imgPath = new File("/Users/swetapatel/Pictures/image_server"+request.getHeader().getOriginator()+ ".png");
 //        try {
 //        	DataOutputStream dis = new DataOutputStream((new FileOutputStream(imgPath)));

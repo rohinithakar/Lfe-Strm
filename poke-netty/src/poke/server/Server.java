@@ -36,6 +36,7 @@ import org.slf4j.LoggerFactory;
 
 import poke.monitor.HeartMonitor;
 import poke.server.conf.ServerConf;
+import poke.server.hash.HashingService;
 import poke.server.management.ManagementDecoderPipeline;
 import poke.server.management.ManagementQueue;
 import poke.server.management.ServerHeartbeat;
@@ -93,6 +94,10 @@ public class Server {
 	}
 
 	private void init() {
+		
+		// Initialize the hashing service
+		HashingService.initialize(conf);
+		
 		// communication - external (TCP) using asynchronous communication
 		cf = new NioServerSocketChannelFactory(Executors.newCachedThreadPool(),
 				Executors.newCachedThreadPool());
@@ -120,7 +125,7 @@ public class Server {
 		ServerBootstrap bs = new ServerBootstrap(cf);
 
 		// Set up the pipeline factory.
-		bs.setPipelineFactory(new ServerDecoderPipeline());
+		bs.setPipelineFactory(new ServerDecoderPipeline(this));
 
 		// tweak for performance
 		bs.setOption("child.tcpNoDelay", true);

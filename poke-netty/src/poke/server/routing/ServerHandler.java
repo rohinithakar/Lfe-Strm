@@ -25,6 +25,7 @@ import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
 import poke.server.queue.ChannelQueue;
 import poke.server.queue.QueueFactory;
 
@@ -49,9 +50,11 @@ public class ServerHandler extends SimpleChannelUpstreamHandler {
 	protected static Logger logger = LoggerFactory.getLogger("server");
 
 	private ChannelQueue queue;
+	private Server svr;
 
-	public ServerHandler() {
-		// logger.info("** ServerHandler created **");
+	public ServerHandler(Server svr) {
+		logger.info("** ServerHandler created **");
+		this.svr = svr;
 	}
 
 	/**
@@ -82,7 +85,7 @@ public class ServerHandler extends SimpleChannelUpstreamHandler {
 		if (queue != null)
 			return queue;
 		else {
-			queue = QueueFactory.getInstance(channel);
+			queue = QueueFactory.getInstance(channel, svr);
 
 			// on close remove from queue
 			channel.getCloseFuture().addListener(
