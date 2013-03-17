@@ -68,6 +68,9 @@ message Header {
         DOCFIND = 21;
         DOCUPDATE = 22;
         DOCREMOVE = 23;
+	IMGUPLOAD = 50;
+	IMGRETREIVE = 51;
+	REGISTER = 52;
         }
         
      enum ReplyStatus {
