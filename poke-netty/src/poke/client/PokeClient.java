@@ -75,12 +75,12 @@ public class PokeClient {
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 		
 		bootstrap = new ClientBootstrap(new NioClientSocketChannelFactory(
-				Executors.newCachedThreadPool(),
-				Executors.newCachedThreadPool()));
+				Executors.newFixedThreadPool(1),
+				Executors.newFixedThreadPool(1)));
 
 		bootstrap.setOption("connectTimeoutMillis", 10000);
 		bootstrap.setOption("tcpNoDelay", true);
-		bootstrap.setOption("keepAlive", true);
+		bootstrap.setOption("keepAlive", false);
 
 		// Set up the pipeline factory.
 		bootstrap.setPipelineFactory(new PokeClientDecoderPipeline(this));
@@ -256,6 +256,7 @@ public class PokeClient {
 
 		public OutboundWorker(PokeClient conn) {
 			this.conn = conn;
+			this.setName(conn.clientName + "-outboundWorker");
 
 			if (conn.outbound == null)
 				throw new RuntimeException(
@@ -376,6 +377,7 @@ public class PokeClient {
 		@Override
 		public void channelClosed(ChannelHandlerContext ctx, ChannelStateEvent e)
 				throws Exception {
+			logger.info("Channel Closed Invoked");
 			if (channel.isConnected())
 				channel.write(ChannelBuffers.EMPTY_BUFFER).addListener(
 						ChannelFutureListener.CLOSE);

@@ -107,7 +107,7 @@ public class ServerHeartbeat extends Thread {
 						if (ch.isOpen()) {
 							HeartData hd = group.get(ch);
 							ch.write(msg, hd.sa);
-							logger.info("beat: " + hd.nodeId);
+//							logger.info("beat: " + hd.nodeId);
 						}
 					}
 				}

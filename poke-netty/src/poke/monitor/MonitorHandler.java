@@ -44,7 +44,7 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 	}
 
 	public void handleMessage(eye.Comm.Management msg) {
-		logger.info("got message");
+//		logger.info("got message");
 	}
 
 	@Override
