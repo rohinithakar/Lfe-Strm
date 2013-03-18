@@ -27,6 +27,9 @@ import org.jboss.netty.channel.socket.nio.NioDatagramChannelFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
+import poke.server.conf.ServerConf;
+
 import eye.Comm.Management;
 import eye.Comm.Network;
 import eye.Comm.Network.Action;
@@ -36,6 +39,8 @@ public class HeartMonitor {
 
 	private String host;
 	private int port;
+	private String node_id;
+	private ServerConf.GeneralConf conf;
 	protected ChannelFuture channel; // do not use directly call connect()!
 	protected ClientBootstrap bootstrap;
 
@@ -44,10 +49,14 @@ public class HeartMonitor {
 	public HeartMonitor(String host, int port) {
 		this.host = host;
 		this.port = port;
-
 		initTCP();
 	}
 
+	public HeartMonitor(ServerConf.GeneralConf conf) {
+		this.conf = conf;
+		initTCP();
+	}
+	
 	protected void release() {
 		// if (cf != null)
 		// cf.releaseExternalResources();
@@ -74,7 +83,8 @@ public class HeartMonitor {
 		bootstrap.setOption("tcpNoDelay", true);
 		bootstrap.setOption("keepAlive", true);
 
-		bootstrap.setPipelineFactory(new MonitorPipeline());
+		//bootstrap.setPipelineFactory(new MonitorPipeline());
+		bootstrap.setPipelineFactory(new MonitorPipeline(this.conf));
 
 	}
 
@@ -96,9 +106,10 @@ public class HeartMonitor {
 
 		if (channel.isDone() && channel.isSuccess())
 			return channel.getChannel();
-		else
-			throw new RuntimeException(
-					"Not able to establish connection to server");
+		else{
+			Server.serverStatus.put(this.node_id, false);
+			throw new RuntimeException("Not able to establish connection to server");
+		}
 	}
 
 	protected void waitForever() {

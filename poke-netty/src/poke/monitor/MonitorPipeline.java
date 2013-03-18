@@ -23,9 +23,16 @@ import org.jboss.netty.handler.codec.frame.LengthFieldPrepender;
 import org.jboss.netty.handler.codec.protobuf.ProtobufDecoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufEncoder;
 
+import poke.server.conf.ServerConf;
+
 public class MonitorPipeline implements ChannelPipelineFactory {
 
+	private ServerConf.GeneralConf conf;
 	public MonitorPipeline() {
+	}
+	
+	public MonitorPipeline(ServerConf.GeneralConf conf) {
+		this.conf = conf;
 	}
 
 	public ChannelPipeline getPipeline() throws Exception {
@@ -43,7 +50,8 @@ public class MonitorPipeline implements ChannelPipelineFactory {
 		pipeline.addLast("protobufEncoder", new ProtobufEncoder());
 
 		// our message processor
-		pipeline.addLast("handler", new MonitorHandler());
+		//pipeline.addLast("handler", new MonitorHandler());
+		pipeline.addLast("handler", new MonitorHandler(this.conf));
 
 		return pipeline;
 	}

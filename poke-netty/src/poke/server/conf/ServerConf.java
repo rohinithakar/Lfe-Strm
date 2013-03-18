@@ -40,7 +40,8 @@ public class ServerConf {
 	private List<GeneralConf> general;
 
 	private volatile HashMap<Integer, ResourceConf> idToRsc;
-
+	private volatile HashMap<String, GeneralConf> idToConf;
+	
 	private HashMap<Integer, ResourceConf> asMap() {
 		if (idToRsc != null)
 			return idToRsc;
@@ -57,6 +58,23 @@ public class ServerConf {
 		}
 		return idToRsc;
 	}
+	
+	private HashMap<String, GeneralConf> confMap() {
+		if (idToConf != null)
+			return idToConf;
+
+		synchronized (this) {
+			if (idToConf == null) {
+				idToConf = new HashMap<String, GeneralConf>();
+				if (general != null) {
+					for (GeneralConf entry : general) {
+						idToConf.put(entry.getProperty("node.id"), entry);
+					}
+				}
+			}
+		}
+		return idToConf;
+	} 
 
 	public void addGeneral(GeneralConf generalEntry) {
 		if (generalEntry == null)
@@ -71,6 +89,11 @@ public class ServerConf {
 	public List<GeneralConf> getServer() {
 		return general;
 	}
+	
+	public GeneralConf findConfById(String id) {
+		return confMap().get(id);
+	}
+
 
 	public void setServer(List<GeneralConf> general) {
 		this.general = general;
