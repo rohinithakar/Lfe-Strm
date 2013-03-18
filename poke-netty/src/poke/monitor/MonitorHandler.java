@@ -89,5 +89,6 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 
 		// TODO do we really want to do this? try to re-connect?
 		e.getChannel().close();
+		svr.serverStatus.put(this.conf.getProperty("node_id"), false);
 	}
 }

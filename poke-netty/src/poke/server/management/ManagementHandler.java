@@ -29,7 +29,7 @@ public class ManagementHandler extends SimpleChannelUpstreamHandler {
 	protected static Logger logger = LoggerFactory.getLogger("management");
 
 	public ManagementHandler() {
-		// logger.info("** HeartbeatHandler created **");
+		 logger.info("** HeartbeatHandler created **");
 	}
 
 	/**
@@ -77,17 +77,17 @@ public class ManagementHandler extends SimpleChannelUpstreamHandler {
 	 */
 	public static class ManagementClosedListener implements
 			ChannelFutureListener {
-		// private ManagementQueue sq;
+		 private ManagementQueue sq;
 
 		public ManagementClosedListener(ManagementQueue sq) {
-			// this.sq = sq;
+			 this.sq = sq;
 		}
 
 		@Override
 		public void operationComplete(ChannelFuture future) throws Exception {
-			// if (sq != null)
-			// sq.shutdown(true);
-			// sq = null;
+//			 if (sq != null)
+//			 sq.shutdown(true);
+//			 sq = null;
 		}
 
 	}

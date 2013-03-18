@@ -1,6 +1,7 @@
 package poke.client;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -17,6 +18,7 @@ import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
+import org.jboss.netty.channel.socket.nio.NioChannelConfig;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 import org.jboss.netty.handler.codec.frame.LengthFieldBasedFrameDecoder;
 import org.jboss.netty.handler.codec.frame.LengthFieldPrepender;
@@ -65,6 +67,9 @@ public class PokeClient {
 	private OutboundWorker worker = null;
 	private String clientName = null;
 	private PerChannelQueue sq = null;
+	private ExecutorService bossExecService = null;
+	private ExecutorService workerExecService = null;
+	private NioClientSocketChannelFactory nioCF = null;
 	
 	public PokeClient(String hostname, int port) {
 		this(hostname, port, PokeClient.class.getCanonicalName());
@@ -76,10 +81,13 @@ public class PokeClient {
 		this.clientName = clientName;
 		
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
+		bossExecService = Executors.newFixedThreadPool(1);
+		workerExecService = Executors.newFixedThreadPool(1);
 		
-		bootstrap = new ClientBootstrap(new NioClientSocketChannelFactory(
-				Executors.newFixedThreadPool(1),
-				Executors.newFixedThreadPool(1)));
+		nioCF = new NioClientSocketChannelFactory(
+				bossExecService, workerExecService);
+		
+		bootstrap = new ClientBootstrap(nioCF);
 
 		bootstrap.setOption("connectTimeoutMillis", 10000);
 		bootstrap.setOption("tcpNoDelay", true);
@@ -111,9 +119,11 @@ public class PokeClient {
 	public boolean stop() throws InterruptedException {
 		worker.stopWorker();
 		worker.join();
-		ChannelFuture cf = channelFuture.getChannel().close();
-		cf.awaitUninterruptibly();
-		return cf.isDone();
+		channelFuture.getChannel().close().awaitUninterruptibly();
+		bossExecService.shutdown();
+		workerExecService.shutdown();
+		nioCF.releaseExternalResources();
+		return true;
 	}
 	
 	public void register(String firstName, String lastName, String email, String password) {
