@@ -27,12 +27,20 @@ import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.Server;
+import poke.server.conf.ServerConf;
+
 public class MonitorHandler extends SimpleChannelUpstreamHandler {
 	protected static Logger logger = LoggerFactory.getLogger("monitor");
 
 	private volatile Channel channel;
+	private ServerConf.GeneralConf conf;
 
 	public MonitorHandler() {
+	}
+	
+	public MonitorHandler(ServerConf.GeneralConf conf) {
+		this.conf = conf;
 	}
 
 	public void handleMessage(eye.Comm.Management msg) {
@@ -52,6 +60,10 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 		if (channel.isConnected())
 			channel.write(ChannelBuffers.EMPTY_BUFFER).addListener(
 					ChannelFutureListener.CLOSE);
+		//if channel state is closed then set server status to false
+		if(!(e.getState().compareTo(ChannelState.CONNECTED) == 0)){
+			Server.serverStatus.put(this.conf.getProperty("node_id"), false);
+		}
 	}
 
 	@Override

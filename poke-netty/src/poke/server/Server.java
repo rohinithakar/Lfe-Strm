@@ -18,7 +18,7 @@ package poke.server;
 
 import java.net.InetSocketAddress;
 import java.util.HashMap;
-import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 
@@ -63,6 +63,7 @@ public class Server {
 	protected ChannelFactory cf, mgmtCF;
 	protected ServerConf conf;
 	protected ServerHeartbeat heartbeat;
+	public static ConcurrentHashMap<String, Boolean> serverStatus = new ConcurrentHashMap<String, Boolean>();
 	
 	public String id = null;	
 
@@ -174,8 +175,8 @@ public class Server {
 
 	public void run(ServerConf.GeneralConf generalConf) {
 		this.id = generalConf.getProperty("node.id");
-		List<ServerConf.GeneralConf> servers = conf.getServer();
-		int edgeToNodePort;
+//		List<ServerConf.GeneralConf> servers = conf.getServer();
+//		int edgeToNodePort;
 	
 		String str = generalConf.getProperty("port");
 		if (str == null)
@@ -201,20 +202,28 @@ public class Server {
 		heartbeat = ServerHeartbeat.getInstance(str);
 		heartbeat.start();
 		
+		serverStatus.put(str, true);
 
 		logger.info("Server " + str+ " ready on port: "+ port);
 		
-		for(ServerConf.GeneralConf server : servers){
-			String e2n = generalConf.getProperty("edgeToNode");
-			if( e2n != null && !e2n.isEmpty() ) {
-				if(server.getProperty("node.id").trim().equalsIgnoreCase(e2n)){
-					edgeToNodePort = Integer.parseInt(server.getProperty("port.mgmt"));
-					HeartMonitor hm = new HeartMonitor("localhost", edgeToNodePort);
-					logger.info("Starting to Node:" + edgeToNodePort);
-					hm.init();
-				}
-			}
-		}
+		String e2n = generalConf.getProperty("edgeToNode");
+		if( e2n != null && !e2n.isEmpty() ) {
+			ServerConf.GeneralConf serverToConnect = this.conf.findConfById(generalConf.getProperty("edgeToNode"));
+			HeartMonitor hm = new HeartMonitor(serverToConnect);
+			logger.info("Starting to Monitor Node:" + serverToConnect.getProperty("node.id"));
+			hm.init();
+	    }
+//		for(ServerConf.GeneralConf server : servers){
+//			String e2n = generalConf.getProperty("edgeToNode");
+//			if( e2n != null && !e2n.isEmpty() ) {
+//				if(server.getProperty("node.id").trim().equalsIgnoreCase(e2n)){
+//					edgeToNodePort = Integer.parseInt(server.getProperty("port.mgmt"));
+//					HeartMonitor hm = new HeartMonitor("localhost", edgeToNodePort);
+//					logger.info("Starting to Node:" + edgeToNodePort);
+//					hm.init();
+//				}
+//			}
+//		}
 		
 		logger.info("Server HB Monitor Started" + this.id); 
 	}
