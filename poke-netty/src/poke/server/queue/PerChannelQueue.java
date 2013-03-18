@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.client.PokeClient;
+import poke.resources.ServerUnvailableResource;
 import poke.server.Server;
 import poke.server.conf.ServerConf.GeneralConf;
 import poke.server.hash.HashingService;
@@ -252,11 +253,13 @@ public class PerChannelQueue implements ChannelQueue {
 							if(svr.serverStatus.get(serverId)) {
 								logger.info("Fowarding Request to Server:" + serverId );
 								GeneralConf gconf = svr.conf.findConfById(serverId);
-								PokeClient client = new PokeClient("localhost", Integer.parseInt(gconf.getProperty("port")), svr.id);
+								PokeClient client = new PokeClient(gconf.getProperty("hostname"), Integer.parseInt(gconf.getProperty("port")), svr.id);
 								client.start();
 								client.forwardRequest(req, sq);
 							} else {
-								logger.info("Server 2 down:" + serverId );
+								logger.info("Server down:" + serverId );
+								ServerUnvailableResource rsc = new ServerUnvailableResource(); 
+								sq.enqueueResponse(rsc.process(null));
 							}
 						} else {
 							Resource rsc = ResourceFactory.getInstance()

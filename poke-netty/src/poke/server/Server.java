@@ -206,24 +206,16 @@ public class Server {
 
 		logger.info("Server " + str+ " ready on port: "+ port);
 		
-		String e2n = generalConf.getProperty("edgeToNode");
-		if( e2n != null && !e2n.isEmpty() ) {
-			ServerConf.GeneralConf serverToConnect = this.conf.findConfById(generalConf.getProperty("edgeToNode"));
-			HeartMonitor hm = new HeartMonitor(serverToConnect,this);
-			logger.info("Starting to Monitor Node:" + serverToConnect.getProperty("node.id"));
-			hm.init();
-	    }
-//		for(ServerConf.GeneralConf server : servers){
-//			String e2n = generalConf.getProperty("edgeToNode");
-//			if( e2n != null && !e2n.isEmpty() ) {
-//				if(server.getProperty("node.id").trim().equalsIgnoreCase(e2n)){
-//					edgeToNodePort = Integer.parseInt(server.getProperty("port.mgmt"));
-//					HeartMonitor hm = new HeartMonitor("localhost", edgeToNodePort);
-//					logger.info("Starting to Node:" + edgeToNodePort);
-//					hm.init();
-//				}
-//			}
-//		}
+		String e2nList = generalConf.getProperty("edgeToNode");
+		String[] e2ns = e2nList.split(",");
+		for(String e2n : e2ns ) {
+			if( e2n != null && !e2n.isEmpty() ) {
+				ServerConf.GeneralConf serverToConnect = this.conf.findConfById(generalConf.getProperty("edgeToNode"));
+				HeartMonitor hm = new HeartMonitor(serverToConnect,this);
+				logger.info("Starting to Monitor Node:" + serverToConnect.getProperty("node.id"));
+				hm.init();
+			}
+		}
 		
 		logger.info("Server HB Monitor Started" + this.id); 
 	}

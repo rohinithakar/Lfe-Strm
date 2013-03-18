@@ -5385,6 +5385,10 @@ public final class Comm {
        * <code>NOCONNECTION = 5;</code>
        */
       NOCONNECTION(4, 5),
+      /**
+       * <code>SERVER_UNAVAILABLE = 6;</code>
+       */
+      SERVER_UNAVAILABLE(5, 6),
       ;
 
       /**
@@ -5407,6 +5411,10 @@ public final class Comm {
        * <code>NOCONNECTION = 5;</code>
        */
       public static final int NOCONNECTION_VALUE = 5;
+      /**
+       * <code>SERVER_UNAVAILABLE = 6;</code>
+       */
+      public static final int SERVER_UNAVAILABLE_VALUE = 6;
 
 
       public final int getNumber() { return value; }
@@ -5418,6 +5426,7 @@ public final class Comm {
           case 3: return NOAUTH;
           case 4: return MISSINGARG;
           case 5: return NOCONNECTION;
+          case 6: return SERVER_UNAVAILABLE;
           default: return null;
         }
       }
@@ -16387,7 +16396,7 @@ public final class Comm {
       "nt\022\022\n\nname_space\030\001 \001(\t\022\n\n\002id\030\002 \001(\003\022\037\n\010do" +
       "cument\030\003 \002(\0132\r.NameValueSet\"+\n\013DocumentS",
       "et\022\034\n\tdocuments\030\001 \003(\0132\t.Document\"*\n\014Name" +
-      "SpaceSet\022\032\n\006spaces\030\001 \003(\0132\n.NameSpace\"\306\003\n" +
+      "SpaceSet\022\032\n\006spaces\030\001 \003(\0132\n.NameSpace\"\336\003\n" +
       "\006Header\022#\n\nrouting_id\030\001 \002(\0162\017.Header.Rou" +
       "ting\022\022\n\noriginator\030\002 \002(\t\022\013\n\003tag\030\003 \001(\t\022\014\n" +
       "\004time\030\004 \001(\003\022\'\n\nreply_code\030\005 \001(\0162\023.Header" +
@@ -16397,34 +16406,35 @@ public final class Comm {
       "TE\020\014\022\023\n\017NAMESPACEREMOVE\020\r\022\n\n\006DOCADD\020\024\022\013\n" +
       "\007DOCFIND\020\025\022\r\n\tDOCUPDATE\020\026\022\r\n\tDOCREMOVE\020\027",
       "\022\r\n\tIMGUPLOAD\0202\022\017\n\013IMGRETREIVE\0203\022\014\n\010REGI" +
-      "STER\0204\"U\n\013ReplyStatus\022\013\n\007SUCCESS\020\001\022\013\n\007FA" +
+      "STER\0204\"m\n\013ReplyStatus\022\013\n\007SUCCESS\020\001\022\013\n\007FA" +
       "ILURE\020\002\022\n\n\006NOAUTH\020\003\022\016\n\nMISSINGARG\020\004\022\020\n\014N" +
-      "OCONNECTION\020\005\":\n\010Register\022\r\n\005fname\030\001 \002(\t" +
-      "\022\r\n\005lname\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\"\206\001\n\005Im" +
-      "age\022\023\n\013actualImage\030\001 \002(\014\022\r\n\005title\030\002 \001(\t\022" +
-      "\020\n\010latitude\030\003 \001(\001\022\021\n\tlongitude\030\004 \001(\001\022\021\n\t" +
-      "timestamp\030\005 \001(\003\022\r\n\005imgid\030\006 \001(\t\022\022\n\nownere" +
-      "mail\030\007 \001(\t\"#\n\020UserImageRequest\022\017\n\007emaili" +
-      "d\030\001 \002(\t\"&\n\016UserImageReply\022\024\n\004imgs\030\001 \003(\0132",
-      "\006.Image\"\272\001\n\007Payload\022\017\n\007emailid\030\001 \002(\t\022\027\n\006" +
-      "finger\030\002 \001(\0132\007.Finger\022\026\n\003doc\030\003 \001(\0132\t.Doc" +
-      "ument\022\031\n\005space\030\004 \001(\0132\n.NameSpace\022\026\n\003reg\030" +
-      "\005 \001(\0132\t.Register\022\027\n\007imageup\030\006 \001(\0132\006.Imag" +
-      "e\022!\n\006imgreq\030\007 \001(\0132\021.UserImageRequest\"\233\001\n" +
-      "\014PayloadReply\022\027\n\004docs\030\001 \003(\0132\t.Document\022\032" +
-      "\n\006spaces\030\002 \003(\0132\n.NameSpace\022\030\n\005stats\030\003 \001(" +
-      "\0132\t.Document\022\031\n\006finger\030\004 \001(\0132\t.Document\022" +
-      "!\n\010imgreply\030\005 \001(\0132\017.UserImageReply\":\n\007Re" +
-      "quest\022\027\n\006header\030\001 \002(\0132\007.Header\022\026\n\004body\030\002",
-      " \002(\0132\010.Payload\"@\n\010Response\022\027\n\006header\030\001 \002" +
-      "(\0132\007.Header\022\033\n\004body\030\002 \002(\0132\r.PayloadReply" +
-      "\",\n\tHeartbeat\022\016\n\006nodeId\030\001 \002(\t\022\017\n\007timeRef" +
-      "\030\002 \002(\003\"\225\001\n\007Network\022\016\n\006nodeId\030\001 \002(\t\022\037\n\006ac" +
-      "tion\030\002 \002(\0162\017.Network.Action\"Y\n\006Action\022\014\n" +
-      "\010NODEJOIN\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODEDEAD\020\003" +
-      "\022\007\n\003MAP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"?" +
-      "\n\nManagement\022\027\n\005graph\030\001 \001(\0132\010.Network\022\030\n" +
-      "\004beat\030\002 \001(\0132\n.HeartbeatB\007\n\003eyeH\001"
+      "OCONNECTION\020\005\022\026\n\022SERVER_UNAVAILABLE\020\006\":\n" +
+      "\010Register\022\r\n\005fname\030\001 \002(\t\022\r\n\005lname\030\002 \002(\t\022" +
+      "\020\n\010password\030\003 \002(\t\"\206\001\n\005Image\022\023\n\013actualIma" +
+      "ge\030\001 \002(\014\022\r\n\005title\030\002 \001(\t\022\020\n\010latitude\030\003 \001(" +
+      "\001\022\021\n\tlongitude\030\004 \001(\001\022\021\n\ttimestamp\030\005 \001(\003\022" +
+      "\r\n\005imgid\030\006 \001(\t\022\022\n\nowneremail\030\007 \001(\t\"#\n\020Us" +
+      "erImageRequest\022\017\n\007emailid\030\001 \002(\t\"&\n\016UserI",
+      "mageReply\022\024\n\004imgs\030\001 \003(\0132\006.Image\"\272\001\n\007Payl" +
+      "oad\022\017\n\007emailid\030\001 \002(\t\022\027\n\006finger\030\002 \001(\0132\007.F" +
+      "inger\022\026\n\003doc\030\003 \001(\0132\t.Document\022\031\n\005space\030\004" +
+      " \001(\0132\n.NameSpace\022\026\n\003reg\030\005 \001(\0132\t.Register" +
+      "\022\027\n\007imageup\030\006 \001(\0132\006.Image\022!\n\006imgreq\030\007 \001(" +
+      "\0132\021.UserImageRequest\"\233\001\n\014PayloadReply\022\027\n" +
+      "\004docs\030\001 \003(\0132\t.Document\022\032\n\006spaces\030\002 \003(\0132\n" +
+      ".NameSpace\022\030\n\005stats\030\003 \001(\0132\t.Document\022\031\n\006" +
+      "finger\030\004 \001(\0132\t.Document\022!\n\010imgreply\030\005 \001(" +
+      "\0132\017.UserImageReply\":\n\007Request\022\027\n\006header\030",
+      "\001 \002(\0132\007.Header\022\026\n\004body\030\002 \002(\0132\010.Payload\"@" +
+      "\n\010Response\022\027\n\006header\030\001 \002(\0132\007.Header\022\033\n\004b" +
+      "ody\030\002 \002(\0132\r.PayloadReply\",\n\tHeartbeat\022\016\n" +
+      "\006nodeId\030\001 \002(\t\022\017\n\007timeRef\030\002 \002(\003\"\225\001\n\007Netwo" +
+      "rk\022\016\n\006nodeId\030\001 \002(\t\022\037\n\006action\030\002 \002(\0162\017.Net" +
+      "work.Action\"Y\n\006Action\022\014\n\010NODEJOIN\020\001\022\r\n\tN" +
+      "ODELEAVE\020\002\022\014\n\010NODEDEAD\020\003\022\007\n\003MAP\0207\022\014\n\010ANN" +
+      "OUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"?\n\nManagement\022\027\n\005" +
+      "graph\030\001 \001(\0132\010.Network\022\030\n\004beat\030\002 \001(\0132\n.He" +
+      "artbeatB\007\n\003eyeH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
