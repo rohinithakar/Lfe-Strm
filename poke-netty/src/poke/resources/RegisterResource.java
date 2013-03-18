@@ -25,11 +25,11 @@ public class RegisterResource implements Resource {
         
         eye.Comm.Register register = request.getBody().getReg();
         
-        //fetch registration fields from request
-//        logger.info("email_id: " + register.getEmailid() + 
-//        		    "firstname: "+ register.getFname()   +
-//        		    "lastname: " + register.getLname()   +
-//        		    "password: " + register.getPassword());
+//        fetch registration fields from request
+        logger.info("email_id: " + request.getBody().getEmailid() + 
+        		    "firstname: "+ register.getFname()   +
+        		    "lastname: " + register.getLname()   +
+        		    "password: " + register.getPassword());
         
         Response.Builder r = Response.newBuilder();
         r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
