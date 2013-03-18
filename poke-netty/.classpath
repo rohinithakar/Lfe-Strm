@@ -16,5 +16,9 @@
 	<classpathentry kind="lib" path="lib/slf4j-api-1.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/slf4j-simple-1.7.2.jar"/>
 	<classpathentry kind="lib" path="lib/protobuf-java-2.5.0rc1.jar"/>
+	<classpathentry kind="lib" path="lib/eclipselink.jar"/>
+	<classpathentry kind="lib" path="lib/javax.persistence_2.0.4.v201112200901.jar"/>
+	<classpathentry kind="lib" path="lib/postgis-2.0.0SVN.jar"/>
+	<classpathentry kind="lib" path="lib/postgresql-9.2-1002.jdbc3.jar"/>
 	<classpathentry kind="output" path="classes"/>
 </classpath>
