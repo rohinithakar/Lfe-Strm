@@ -79,6 +79,7 @@ message Header {
      	NOAUTH = 3;
      	MISSINGARG = 4;
      	NOCONNECTION = 5;
+     	SERVER_UNAVAILABLE = 6;
      	}
 }
 

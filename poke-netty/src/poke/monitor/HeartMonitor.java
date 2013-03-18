@@ -56,7 +56,7 @@ public class HeartMonitor {
 	public HeartMonitor(ServerConf.GeneralConf conf,Server svr) {
 		this.conf = conf;
 		this.port = Integer.valueOf(conf.getProperty("port.mgmt"));
-		this.host = "localhost";
+		this.host = conf.getProperty("hostname");
 		this.svr = svr;
 		initTCP();
 	}

@@ -3,6 +3,7 @@ package poke.server.Launcher;
 import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.UnknownHostException;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -20,8 +21,9 @@ public class ServerLauncher {
 
 	/**
 	 * @param args
+	 * @throws UnknownHostException 
 	 */
-	public static void main(String[] args) {
+	public static void main(String[] args) throws UnknownHostException {
 		//			if (args.length != 1) {
 		//				System.err.println("Usage: java "
 		//						+ Server.class.getClass().getName() + " conf-file");
@@ -38,10 +40,14 @@ public class ServerLauncher {
 		
 		List<ServerConf.GeneralConf> servers = conf.getServer();
 		List<Server> svrs = new LinkedList<Server>();
+		String localHostname = java.net.InetAddress.getLocalHost().getHostName();
 		for( ServerConf.GeneralConf generalConf : servers ) {
-			Server svr = new Server(conf);
-			svrs.add(svr);
-			svr.run(generalConf);
+			String hostname = generalConf.getProperty("hostname");
+			if( hostname.equalsIgnoreCase("localhost") || hostname.equalsIgnoreCase(localHostname) ) {
+				Server svr = new Server(conf);
+				svrs.add(svr);
+				svr.run(generalConf);
+			}
 		}
 	}
 
