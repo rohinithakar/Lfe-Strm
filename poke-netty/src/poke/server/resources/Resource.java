@@ -35,5 +35,7 @@ public interface Resource {
 	 * @return
 	 */
 	Response process(Request request);
+	
+	void init(String param);
 
 }

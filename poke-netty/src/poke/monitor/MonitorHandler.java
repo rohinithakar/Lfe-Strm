@@ -35,12 +35,15 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 
 	private volatile Channel channel;
 	private ServerConf.GeneralConf conf;
+	private Server svr;
 
-	public MonitorHandler() {
-	}
+//	public MonitorHandler(Server svr) {
+//		this.svr = svr;
+//	}
 	
-	public MonitorHandler(ServerConf.GeneralConf conf) {
+	public MonitorHandler(ServerConf.GeneralConf conf, Server svr) {
 		this.conf = conf;
+		this.svr = svr;
 	}
 
 	public void handleMessage(eye.Comm.Management msg) {
@@ -62,7 +65,7 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 					ChannelFutureListener.CLOSE);
 		//if channel state is closed then set server status to false
 		if(!(e.getState().compareTo(ChannelState.CONNECTED) == 0)){
-			Server.serverStatus.put(this.conf.getProperty("node_id"), false);
+			svr.serverStatus.put(this.conf.getProperty("node_id"), false);
 		}
 	}
 

@@ -24,7 +24,9 @@ import org.jboss.netty.channel.ChannelFutureListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.client.PokeClient;
 import poke.server.Server;
+import poke.server.conf.ServerConf.GeneralConf;
 import poke.server.hash.HashingService;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceFactory;
@@ -247,7 +249,15 @@ public class PerChannelQueue implements ChannelQueue {
 						String serverId = HashingService.getInstance().hash(emailId);
 						if( !serverId.equalsIgnoreCase(svr.id)) {
 							// Now forward this request to another server
-							logger.info("Fowarding Request to Server:" + serverId );
+							if(svr.serverStatus.get(serverId)) {
+								logger.info("Fowarding Request to Server:" + serverId );
+								GeneralConf gconf = svr.conf.findConfById(serverId);
+								PokeClient client = new PokeClient("localhost", Integer.parseInt(gconf.getProperty("port")), svr.id);
+								client.start();
+								client.forwardRequest(req, sq);
+							} else {
+								logger.info("Server 2 down:" + serverId );
+							}
 						} else {
 							Resource rsc = ResourceFactory.getInstance()
 									.resourceInstance(
@@ -259,8 +269,10 @@ public class PerChannelQueue implements ChannelQueue {
 								reply = ResourceUtil.buildError(req.getHeader(),
 										ReplyStatus.FAILURE,
 										"Request not processed");
-							} else
+							} else {
+								rsc.init(svr.id);
 								reply = rsc.process(req);
+							}
 
 							sq.enqueueResponse(reply);
 						}

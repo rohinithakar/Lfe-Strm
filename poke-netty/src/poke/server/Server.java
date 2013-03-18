@@ -61,9 +61,9 @@ public class Server {
 			"server");
 	protected static HashMap<Integer, Bootstrap> bootstrap = new HashMap<Integer, Bootstrap>();
 	protected ChannelFactory cf, mgmtCF;
-	protected ServerConf conf;
+	public ServerConf conf;
 	protected ServerHeartbeat heartbeat;
-	public static ConcurrentHashMap<String, Boolean> serverStatus = new ConcurrentHashMap<String, Boolean>();
+	public ConcurrentHashMap<String, Boolean> serverStatus = new ConcurrentHashMap<String, Boolean>();
 	
 	public String id = null;	
 
@@ -209,7 +209,7 @@ public class Server {
 		String e2n = generalConf.getProperty("edgeToNode");
 		if( e2n != null && !e2n.isEmpty() ) {
 			ServerConf.GeneralConf serverToConnect = this.conf.findConfById(generalConf.getProperty("edgeToNode"));
-			HeartMonitor hm = new HeartMonitor(serverToConnect);
+			HeartMonitor hm = new HeartMonitor(serverToConnect,this);
 			logger.info("Starting to Monitor Node:" + serverToConnect.getProperty("node.id"));
 			hm.init();
 	    }

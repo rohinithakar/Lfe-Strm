@@ -70,4 +70,10 @@ public class PokeResource implements Resource {
 
         return reply;
 	}
+
+	@Override
+	public void init(String param) {
+		// TODO Auto-generated method stub
+		
+	}
 }

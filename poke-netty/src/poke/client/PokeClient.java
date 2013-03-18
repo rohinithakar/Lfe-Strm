@@ -25,6 +25,8 @@ import org.jboss.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.queue.PerChannelQueue;
+
 import com.google.protobuf.GeneratedMessage;
 
 import eye.Comm.Header.*;
@@ -62,6 +64,7 @@ public class PokeClient {
 	private LinkedBlockingDeque<com.google.protobuf.GeneratedMessage> outbound;
 	private OutboundWorker worker = null;
 	private String clientName = null;
+	private PerChannelQueue sq = null;
 	
 	public PokeClient(String hostname, int port) {
 		this(hostname, port, PokeClient.class.getCanonicalName());
@@ -135,6 +138,16 @@ public class PokeClient {
 
 		eye.Comm.Request req = r.build();
 
+		try {
+			// enqueue message
+			outbound.put(req);
+		} catch (InterruptedException e) {
+			logger.warn("Unable to deliver message, queuing");
+		}
+	}
+	
+	public void forwardRequest(eye.Comm.Request req, PerChannelQueue sq) {
+		this.sq = sq;
 		try {
 			// enqueue message
 			outbound.put(req);
@@ -331,6 +344,17 @@ public class PokeClient {
 		}
 
 		private void handleMessage(eye.Comm.Response msg) {
+			if( sq != null ) {
+				sq.enqueueResponse(msg);
+				sq = null;
+				try {
+					client.stop();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				return;
+			}
 			Routing routingId = msg.getHeader().getRoutingId();
 			switch(routingId) {
 			case IMGRETREIVE:

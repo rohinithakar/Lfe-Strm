@@ -18,7 +18,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback {
 	PokeClient client = null;
 	
 	SimpleClient() {
-		client = new PokeClient("localhost", 5570, "SimpleClient");
+		client = new PokeClient("localhost", 5571, "SimpleClient");
 		client.start();
 	}
 	
@@ -33,6 +33,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback {
 	
 	public void register() {
 		client.setRegistrationCallback(this);
+		//client.register("a", "b", "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc@abc.com", "1234");
 		client.register("a", "b", "abc@abc.com", "1234");
 	}
 
@@ -63,6 +64,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback {
 	@Override
 	public void registered(boolean registrationSuccess) {
 		try {
+			System.out.println("Registration Response Received: " + registrationSuccess);
 			client.stop();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block

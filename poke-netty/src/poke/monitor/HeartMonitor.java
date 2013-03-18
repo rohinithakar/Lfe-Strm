@@ -43,6 +43,7 @@ public class HeartMonitor {
 	private ServerConf.GeneralConf conf;
 	protected ChannelFuture channel; // do not use directly call connect()!
 	protected ClientBootstrap bootstrap;
+	private Server svr;
 
 	// protected ChannelFactory cf;
 
@@ -52,10 +53,11 @@ public class HeartMonitor {
 		initTCP();
 	}
 
-	public HeartMonitor(ServerConf.GeneralConf conf) {
+	public HeartMonitor(ServerConf.GeneralConf conf,Server svr) {
 		this.conf = conf;
 		this.port = Integer.valueOf(conf.getProperty("port.mgmt"));
 		this.host = "localhost";
+		this.svr = svr;
 		initTCP();
 	}
 	
@@ -73,7 +75,7 @@ public class HeartMonitor {
 		bootstrap.setOption("keepAlive", true);
 
 		// Set up the pipeline factory.
-		bootstrap.setPipelineFactory(new MonitorPipeline());
+		bootstrap.setPipelineFactory(new MonitorPipeline(svr));
 	}
 
 	protected void initTCP() {
@@ -109,7 +111,7 @@ public class HeartMonitor {
 		if (channel.isDone() && channel.isSuccess())
 			return channel.getChannel();
 		else{
-			Server.serverStatus.put(this.node_id, false);
+			svr.serverStatus.put(this.node_id, false);
 			throw new RuntimeException("Not able to establish connection to server");
 		}
 	}

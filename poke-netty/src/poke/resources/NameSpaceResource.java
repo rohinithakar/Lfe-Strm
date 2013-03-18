@@ -31,4 +31,10 @@ public class NameSpaceResource implements Resource {
 		return null;
 	}
 
+	@Override
+	public void init(String param) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

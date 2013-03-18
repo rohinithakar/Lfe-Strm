@@ -30,7 +30,7 @@ import poke.server.resources.ResourceUtil;
  */
 public class ImageReplyResource implements Resource {
 
-	protected static Logger logger = LoggerFactory.getLogger("server");
+	protected static Logger logger = LoggerFactory.getLogger("ReplyResource");
 
 	@Override
 	public Response process(Request request) {
@@ -80,6 +80,12 @@ public class ImageReplyResource implements Resource {
 		logger.info("Registered Successfully...");
 
 		return reply;
+	}
+
+	@Override
+	public void init(String param) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }

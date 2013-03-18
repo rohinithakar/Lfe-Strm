@@ -17,7 +17,8 @@ import poke.server.resources.ResourceUtil;
  */
 public class RegisterResource implements Resource {
 
-	protected static Logger logger = LoggerFactory.getLogger("server");
+	protected static Logger logger = LoggerFactory.getLogger("RegisterResource");
+	String param = null;
 	@Override
 	public Response process(Request request) {
 		
@@ -29,7 +30,9 @@ public class RegisterResource implements Resource {
         logger.info("email_id: " + request.getBody().getEmailid() + 
         		    "firstname: "+ register.getFname()   +
         		    "lastname: " + register.getLname()   +
-        		    "password: " + register.getPassword());
+        		    "password: " + register.getPassword() + 
+        		    " Server: " + param
+        		    );
         
         Response.Builder r = Response.newBuilder();
         r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
@@ -42,6 +45,10 @@ public class RegisterResource implements Resource {
                 logger.info("Registered Successfully...");
 
         return reply;
+	}
+	@Override
+	public void init(String param) {
+		this.param = param;
 	}
 
 }

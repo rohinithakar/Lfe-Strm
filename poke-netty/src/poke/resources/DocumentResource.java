@@ -27,4 +27,10 @@ public class DocumentResource implements Resource {
 		return null;
 	}
 
+	@Override
+	public void init(String param) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
