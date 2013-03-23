@@ -46,7 +46,7 @@ import eye.Comm.Response;
  * 
  */
 public class PerChannelQueue implements ChannelQueue {
-	protected static Logger logger = LoggerFactory.getLogger("server");
+	protected Logger logger ;
 
 	private Channel channel;
 	private LinkedBlockingDeque<com.google.protobuf.GeneratedMessage> inbound;
@@ -60,6 +60,7 @@ public class PerChannelQueue implements ChannelQueue {
 
 	protected PerChannelQueue(Channel channel, Server svr) {
 		this.channel = channel;
+		logger = LoggerFactory.getLogger("server[" + svr.id + "]");
 		init(svr);
 	}
 
@@ -67,10 +68,10 @@ public class PerChannelQueue implements ChannelQueue {
 		inbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 
-		iworker = new InboundWorker(svr, tgroup, 1, this);
+		iworker = new InboundWorker(svr, tgroup, 1, this, logger);
 		iworker.start();
 
-		oworker = new OutboundWorker(svr, tgroup, 1, this);
+		oworker = new OutboundWorker(svr, tgroup, 1, this, logger);
 		oworker.start();
 
 		// let the handler manage the queue's shutdown
@@ -151,12 +152,14 @@ public class PerChannelQueue implements ChannelQueue {
 		boolean forever = true;
 		@SuppressWarnings("unused")
 		private Server svr = null;
+		private Logger logger;
 
-		public OutboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
+		public OutboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue perChannelQ,Logger logger) {
 			super(tgrp, "outbound-" + workerId);
 			this.workerId = workerId;
-			this.sq = sq;
+			this.sq = perChannelQ;
 			this.svr = svr;
+			this.logger = logger;
 
 			if (outbound == null)
 				throw new RuntimeException(
@@ -167,7 +170,7 @@ public class PerChannelQueue implements ChannelQueue {
 		public void run() {
 			Channel conn = sq.channel;
 			if (conn == null || !conn.isOpen()) {
-				PerChannelQueue.logger
+				logger
 				.error("connection missing, no outbound communication");
 				return;
 			}
@@ -197,14 +200,14 @@ public class PerChannelQueue implements ChannelQueue {
 				} catch (InterruptedException ie) {
 					break;
 				} catch (Exception e) {
-					PerChannelQueue.logger.error(
+					logger.error(
 							"Unexpected communcation failure", e);
 					break;
 				}
 			}
 
 			if (!forever) {
-				PerChannelQueue.logger.info("connection queue closing");
+				logger.info("connection queue closing");
 			}
 		}
 	}
@@ -214,12 +217,14 @@ public class PerChannelQueue implements ChannelQueue {
 		PerChannelQueue sq;
 		boolean forever = true;
 		private Server svr = null;
+		private Logger logger;
 
-		public InboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue sq) {
+		public InboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue perChannelQueue,Logger logger) {
 			super(tgrp, "inbound-" + workerId);
 			this.workerId = workerId;
-			this.sq = sq;
+			this.sq = perChannelQueue;
 			this.svr = svr;
+			this.logger = logger;
 
 			if (outbound == null)
 				throw new RuntimeException(
@@ -230,7 +235,7 @@ public class PerChannelQueue implements ChannelQueue {
 		public void run() {
 			Channel conn = sq.channel;
 			if (conn == null || !conn.isOpen()) {
-				PerChannelQueue.logger
+				logger
 				.error("connection missing, no inbound communication");
 				return;
 			}
@@ -284,14 +289,14 @@ public class PerChannelQueue implements ChannelQueue {
 				} catch (InterruptedException ie) {
 					break;
 				} catch (Exception e) {
-					PerChannelQueue.logger.error(
+					logger.error(
 							"Unexpected processing failure", e);
 					break;
 				}
 			}
 
 			if (!forever) {
-				PerChannelQueue.logger.info("connection queue closing");
+				logger.info("connection queue closing");
 			}
 		}
 	}
