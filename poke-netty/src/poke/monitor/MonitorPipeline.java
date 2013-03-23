@@ -28,14 +28,14 @@ import poke.server.conf.ServerConf;
 
 public class MonitorPipeline implements ChannelPipelineFactory {
 
-	private ServerConf.GeneralConf conf;
+	private ServerConf.GeneralConf monitoredSvrConf;
 	private Server svr;
 	public MonitorPipeline(Server svr) {
 		this.svr = svr;
 	}
 	
 	public MonitorPipeline(ServerConf.GeneralConf conf) {
-		this.conf = conf;
+		this.monitoredSvrConf = conf;
 	}
 
 	public ChannelPipeline getPipeline() throws Exception {
@@ -54,7 +54,7 @@ public class MonitorPipeline implements ChannelPipelineFactory {
 
 		// our message processor
 		//pipeline.addLast("handler", new MonitorHandler());
-		pipeline.addLast("handler", new MonitorHandler(this.conf,svr));
+		pipeline.addLast("handler", new MonitorHandler(this.monitoredSvrConf,svr));
 
 		return pipeline;
 	}

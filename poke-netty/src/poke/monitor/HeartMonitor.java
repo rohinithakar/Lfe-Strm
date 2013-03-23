@@ -35,29 +35,31 @@ import eye.Comm.Network;
 import eye.Comm.Network.Action;
 
 public class HeartMonitor {
-	protected static Logger logger = LoggerFactory.getLogger("monitor");
+	protected Logger logger;
 
 	private String host;
 	private int port;
-	private String node_id;
-	private ServerConf.GeneralConf conf;
+	private ServerConf.GeneralConf monitoredSvrConf;
+	private String monitoredNodeId;
 	protected ChannelFuture channel; // do not use directly call connect()!
 	protected ClientBootstrap bootstrap;
 	private Server svr;
 
 	// protected ChannelFactory cf;
-
-	public HeartMonitor(String host, int port) {
-		this.host = host;
-		this.port = port;
-		initTCP();
-	}
+//
+//	public HeartMonitor(String host, int port) {
+//		this.host = host;
+//		this.port = port;
+//		initTCP();
+//	}
 
 	public HeartMonitor(ServerConf.GeneralConf conf,Server svr) {
-		this.conf = conf;
+		this.monitoredSvrConf = conf;
 		this.port = Integer.valueOf(conf.getProperty("port.mgmt"));
 		this.host = conf.getProperty("hostname");
 		this.svr = svr;
+		this.logger = LoggerFactory.getLogger("monitor[" + svr.id + "]");
+		this.monitoredNodeId = monitoredSvrConf.getProperty("node.id");
 		initTCP();
 	}
 	
@@ -88,7 +90,7 @@ public class HeartMonitor {
 		bootstrap.setOption("keepAlive", true);
 
 		//bootstrap.setPipelineFactory(new MonitorPipeline());
-		bootstrap.setPipelineFactory(new MonitorPipeline(this.conf));
+		bootstrap.setPipelineFactory(new MonitorPipeline(this.monitoredSvrConf));
 
 	}
 
@@ -108,10 +110,11 @@ public class HeartMonitor {
 		// wait for the connection to establish
 		channel.awaitUninterruptibly();
 
-		if (channel.isDone() && channel.isSuccess())
+		if (channel.isDone() && channel.isSuccess()) {
+			svr.updateRemoteNodeStatus(this.monitoredNodeId, true);
 			return channel.getChannel();
-		else{
-			svr.serverStatus.put(this.node_id, false);
+		} else{
+			svr.updateRemoteNodeStatus(this.monitoredNodeId, false);
 			throw new RuntimeException("Not able to establish connection to server");
 		}
 	}
@@ -133,7 +136,7 @@ public class HeartMonitor {
 		logger.info("In waitForever*******");
 		Channel ch = connect();
 		Network.Builder n = Network.newBuilder();
-		n.setNodeId("monitor");
+		n.setNodeId("monitor[" + svr.id + "]");
 		n.setAction(Action.NODEJOIN);
 		logger.info("nodejoin done");
 		
@@ -150,9 +153,9 @@ public class HeartMonitor {
 	/**
 	 * @param args
 	 */
-	public static void main(String[] args) {
-		HeartMonitor hm = new HeartMonitor("localhost", 5670);
-		hm.waitForever();
-	}
+//	public static void main(String[] args) {
+//		HeartMonitor hm = new HeartMonitor("localhost", 5670);
+//		hm.waitForever();
+//	}
 
 }

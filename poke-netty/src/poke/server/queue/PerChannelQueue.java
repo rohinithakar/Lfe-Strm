@@ -250,7 +250,7 @@ public class PerChannelQueue implements ChannelQueue {
 						String serverId = HashingService.getInstance().hash(emailId);
 						if( !serverId.equalsIgnoreCase(svr.id)) {
 							// Now forward this request to another server
-							if(svr.serverStatus.get(serverId)) {
+							if(svr.getRemoteNodeStatus(serverId)) {
 								logger.info("Fowarding Request to Server:" + serverId );
 								GeneralConf gconf = svr.conf.findConfById(serverId);
 								PokeClient client = new PokeClient(gconf.getProperty("hostname"), Integer.parseInt(gconf.getProperty("port")), svr.id);

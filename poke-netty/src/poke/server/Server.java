@@ -56,6 +56,8 @@ import poke.server.routing.ServerDecoderPipeline;
  */
 public class Server {
 	protected static Logger logger = LoggerFactory.getLogger("server");
+	
+	private Logger svrLogger = null;
 
 	protected static final ChannelGroup allChannels = new DefaultChannelGroup(
 			"server");
@@ -63,7 +65,7 @@ public class Server {
 	protected ChannelFactory cf, mgmtCF;
 	public ServerConf conf;
 	protected ServerHeartbeat heartbeat;
-	public ConcurrentHashMap<String, Boolean> serverStatus = new ConcurrentHashMap<String, Boolean>();
+	private ConcurrentHashMap<String, Boolean> serverStatus = new ConcurrentHashMap<String, Boolean>();
 	
 	public String id = null;	
 
@@ -144,7 +146,7 @@ public class Server {
 		// We can also accept connections from a other ports (e.g., isolate read
 		// and writes)
 
-		logger.info("Starting server, listening on port = " + port);
+		svrLogger.info("Starting server, listening on port = " + port);
 	}
 
 	private void createManagementBoot(int port) {
@@ -157,7 +159,7 @@ public class Server {
 		ServerBootstrap bs = new ServerBootstrap(mgmtCF);
 
 		// Set up the pipeline factory.
-		bs.setPipelineFactory(new ManagementDecoderPipeline());
+		bs.setPipelineFactory(new ManagementDecoderPipeline(this));
 
 		// tweak for performance
 		// bs.setOption("tcpNoDelay", true);
@@ -170,14 +172,13 @@ public class Server {
 		Channel ch = bs.bind(new InetSocketAddress(port));
 		allChannels.add(ch);
 
-		logger.info("Starting server, listening on port = " + port);
+		svrLogger.info("Starting server, listening on port = " + port);
 	}
 
 	public void run(ServerConf.GeneralConf generalConf) {
 		this.id = generalConf.getProperty("node.id");
-//		List<ServerConf.GeneralConf> servers = conf.getServer();
-//		int edgeToNodePort;
-	
+		svrLogger = LoggerFactory.getLogger("Server[" + this.id + "]");
+		
 		String str = generalConf.getProperty("port");
 		if (str == null)
 			str = "5570";
@@ -187,9 +188,6 @@ public class Server {
 		str = generalConf.getProperty("port.mgmt");
 		int mport = Integer.parseInt(str);
 			
-		// storage initialization
-		// TODO storage init
-			
 		// start communication
 		createPublicBoot(port);
 		createManagementBoot(mport);
@@ -198,13 +196,13 @@ public class Server {
 		ManagementQueue.startup(this);
 
 		// start heartbeat
-		str = generalConf.getProperty("node.id");
-		heartbeat = ServerHeartbeat.getInstance(str);
+		heartbeat = ServerHeartbeat.getInstance(this);
 		heartbeat.start();
 		
-		serverStatus.put(str, true);
+		// In the map, we know that we are always up
+		serverStatus.put(this.id, true);
 
-		logger.info("Server " + str+ " ready on port: "+ port);
+		svrLogger.info("Server " + str+ " ready on port: "+ port);
 		
 		String e2nList = generalConf.getProperty("edgeToNode");
 		String[] e2ns = e2nList.split(",");
@@ -212,11 +210,23 @@ public class Server {
 			if( e2n != null && !e2n.isEmpty() ) {
 				ServerConf.GeneralConf serverToConnect = this.conf.findConfById(generalConf.getProperty("edgeToNode"));
 				HeartMonitor hm = new HeartMonitor(serverToConnect,this);
-				logger.info("Starting to Monitor Node:" + serverToConnect.getProperty("node.id"));
+				svrLogger.info("Starting to Monitor Node: " + serverToConnect.getProperty("node.id"));
 				hm.init();
 			}
 		}
 		
-		logger.info("Server HB Monitor Started" + this.id); 
+		svrLogger.info("Server HB Monitor Started " + this.id); 
+	}
+	
+	public void updateRemoteNodeStatus(String remoteNodeId, boolean status) {
+		serverStatus.put(remoteNodeId, status);
+	}
+	
+	public boolean getRemoteNodeStatus(String remoteNodeId) {
+		Boolean status = serverStatus.get(remoteNodeId);
+		if( status == null || status.booleanValue() == false ) {
+			return false;
+		}
+		return true;
 	}
 }

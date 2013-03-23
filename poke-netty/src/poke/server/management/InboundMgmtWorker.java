@@ -25,14 +25,15 @@ import eye.Comm.Network;
 import eye.Comm.Network.Action;
 
 public class InboundMgmtWorker extends Thread {
-	protected static Logger logger = LoggerFactory.getLogger("management");
+	protected Logger logger;
 
 	int workerId;
 	boolean forever = true;
 	Server svr = null;
 
 	public InboundMgmtWorker(Server svr, ThreadGroup tgrp, int workerId) {
-		super(tgrp, "inbound-mgmt-" + workerId);
+		super(tgrp, "inbound-mgmt-" + workerId + "-" + svr.id);
+		logger = LoggerFactory.getLogger("inbound-mgmt-" + workerId + "-" + svr.id);
 		this.workerId = workerId;
 		this.svr = svr;
 
@@ -74,7 +75,7 @@ public class InboundMgmtWorker extends Thread {
 							//		n.getNodeId(), msg.channel, msg.sa);
 							logger.info("Going to create instance....");
 							//logger.info(msg.channel.);
-							ServerHeartbeat s = ServerHeartbeat.getInstance(svr.id);
+							ServerHeartbeat s = ServerHeartbeat.getInstance(svr);
 							if(s != null)
 								logger.info("instance created");
 							logger.info(n.getNodeId() + "...."+msg.channel+"...."+msg.sa);
