@@ -20,6 +20,8 @@ import eye.Comm.Request;
 import eye.Comm.Response;
 import eye.Comm.Header.ReplyStatus;
 import eye.Comm.UserImageReply;
+import poke.db.DBException;
+import poke.db.StorageFactory;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 
@@ -35,57 +37,51 @@ public class ImageReplyResource implements Resource {
 	@Override
 	public Response process(Request request) {
 
-		logger.info("poke: " + request.getBody().getFinger().getTag());
+		Response reply = null;
 
-		eye.Comm.UserImageRequest userImageRequest = request.getBody().getImgreq();
-
-		//fetch registration fields from request
-		logger.info("email_id: " + userImageRequest.getEmailid());
-
-		Response.Builder r = Response.newBuilder();
-		r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-				ReplyStatus.SUCCESS, null));
-
-		eye.Comm.Image.Builder image = Image.newBuilder();
-		image.setOwneremail("abc@abc.com");
-		image.setImgid("1");
-		image.setLatitude(32.333333);
-		image.setLongitude(121.333333);
-		File imgPath = new File("resources/warty-final-ubuntu.png");
 		try {
-			byte [] fileData = new byte[(int)imgPath.length()];
-			DataInputStream dis = new DataInputStream((new FileInputStream(imgPath)));
-			dis.readFully(fileData);
-			dis.close();
 
-			image.setActualImage(ByteString.copyFrom(fileData));
-		}catch(IOException e){
-			logger.error(e.toString());
-			image.setActualImage(null);
+			logger.info("poke: " + request.getBody().getFinger().getTag());
+
+			eye.Comm.UserImageRequest userImageRequest = request.getBody().getImgreq();
+
+			//fetch registration fields from request
+			logger.info("email_id: " + userImageRequest.getEmailid());
+
+			Response.Builder r = Response.newBuilder();
+			r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+					ReplyStatus.SUCCESS, null));
+
+			String email = request.getBody().getEmailid();
+
+
+			UserImageReply imageReply;
+			imageReply = StorageFactory.getStorage().retrieveImage(email);
+
+
+
+			eye.Comm.PayloadReply.Builder br=PayloadReply.newBuilder();
+			br.setImgreply(imageReply);
+			r.setBody(br.build());
+
+			eye.Comm.Header.Builder header = Header.newBuilder();
+			header.setOriginator("server");
+			header.setRoutingId(Header.Routing.IMGRETREIVE);
+			r.setHeader(header.build());
+
+			reply = r.build();
+			logger.info("Registered Successfully...");
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-		eye.Comm.UserImageReply.Builder userImageReply = UserImageReply.newBuilder();
-		userImageReply.addImgs(0, image);
-
-		eye.Comm.PayloadReply.Builder br=PayloadReply.newBuilder();
-		br.setImgreply(userImageReply.build());
-		r.setBody(br.build());
-
-		eye.Comm.Header.Builder header = Header.newBuilder();
-		header.setOriginator("server");
-		header.setRoutingId(Header.Routing.IMGRETREIVE);
-		r.setHeader(header.build());
-
-		Response reply = r.build();
-		logger.info("Registered Successfully...");
-
 		return reply;
 	}
 
 	@Override
 	public void init(String param) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }

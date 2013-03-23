@@ -15,17 +15,15 @@
  */
 package poke.resources;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.db.DBException;
+import poke.db.StorageFactory;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 import eye.Comm.Header.ReplyStatus;
+import eye.Comm.Image;
 import eye.Comm.PayloadReply;
 import eye.Comm.Request;
 import eye.Comm.Response;
@@ -42,40 +40,34 @@ public class ImageUploadResource implements Resource {
 	 * @see poke.server.resources.Resource#process(eye.Comm.Finger)
 	 */
 	public Response process(Request request) {
-		 // TODO add code to process the message/event received
-        // logger.info("poke: " + request.getBody().getFinger().getTag());
-        
-        
-        File imgPath = new File("resources/image_server"+request.getHeader().getOriginator()+ ".png");
-        try {
-        	DataOutputStream dis = new DataOutputStream((new FileOutputStream(imgPath)));
-            byte [] byteArray = new byte[request.getBody().getImageup().getActualImage().size()];
-            request.getBody().getImageup().getActualImage().copyTo(byteArray, 0);
-			dis.write(byteArray);
-			dis.close();
-		} catch (IOException e) {
+
+		String email = request.getBody().getEmailid();
+		Image img = request.getBody().getImageup();
+
+		try {
+			StorageFactory.getStorage().storeImage(email, img);
+		} catch (DBException e1) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+			e1.printStackTrace();
 		}
-        
 
-        Response.Builder r = Response.newBuilder();
-        r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-                ReplyStatus.SUCCESS, null));
-        
-        eye.Comm.PayloadReply.Builder br=PayloadReply.newBuilder();
-      
-                r.setBody(br.build());
-         
-        Response reply = r.build();
-                logger.info("Hellooo sweta");
+		Response.Builder r = Response.newBuilder();
+		r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+				ReplyStatus.SUCCESS, null));
 
-        return reply;
+		eye.Comm.PayloadReply.Builder br=PayloadReply.newBuilder();
+
+		r.setBody(br.build());
+
+		Response reply = r.build();
+		logger.info("Hellooo sweta");
+
+		return reply;
 	}
 
 	@Override
 	public void init(String param) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }
