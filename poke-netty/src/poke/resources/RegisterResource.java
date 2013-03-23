@@ -9,6 +9,8 @@ import eye.Comm.Response;
 import eye.Comm.Header.ReplyStatus;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
+import poke.server.storage.jpa.UserInfo;
+import poke.server.storage.jpa.UserOperation;
 
 /**
  * Resource class to process user registration request
@@ -33,6 +35,9 @@ public class RegisterResource implements Resource {
         		    "password: " + register.getPassword() + 
         		    " Server: " + param
         		    );
+        
+        UserOperation op = new UserOperation();
+        op.registerUser(request.getBody().getEmailid(), register.getLname(), register.getLname(), register.getPassword());
         
         Response.Builder r = Response.newBuilder();
         r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),

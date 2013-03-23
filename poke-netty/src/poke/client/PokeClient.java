@@ -275,10 +275,10 @@ public class PokeClient {
 	 */
 	protected class OutboundWorker extends Thread {
 		boolean forever = true;
-		PokeClient conn;
+		PokeClient client;
 
 		public OutboundWorker(PokeClient conn) {
-			this.conn = conn;
+			this.client = conn;
 			this.setName(conn.clientName + "-outboundWorker");
 
 			if (conn.outbound == null)
@@ -293,7 +293,7 @@ public class PokeClient {
 
 		@Override
 		public void run() {
-			Channel ch = conn.connect();
+			Channel ch = client.connect();
 			if (ch == null || !ch.isOpen()) {
 				ClientConnection.logger
 						.error("connection missing, no outbound communication");
@@ -301,21 +301,21 @@ public class PokeClient {
 			}
 
 			while (true) {
-				if (!forever && conn.outbound.size() == 0)
+				if (!forever && client.outbound.size() == 0)
 					break;
 
 				try {
 					// block until a message is enqueued
-					GeneratedMessage msg = conn.outbound.take();
+					GeneratedMessage msg = client.outbound.take();
 					if (ch.isWritable()) {
-						PokeClientHandler handler = conn.connect().getPipeline()
+						PokeClientHandler handler = client.connect().getPipeline()
 								.get(PokeClientHandler.class);
 
 						if (!handler.send(msg))
-							conn.outbound.putFirst(msg);
+							client.outbound.putFirst(msg);
 
 					} else
-						conn.outbound.putFirst(msg);
+						client.outbound.putFirst(msg);
 				} catch (InterruptedException ie) {
 					break;
 				} catch (Exception e) {
@@ -332,7 +332,6 @@ public class PokeClient {
 	}
 	
 	public class PokeClientHandler extends SimpleChannelHandler {
-		@SuppressWarnings("unused")
 		private PokeClient client;
 		
 		private volatile Channel channel;
