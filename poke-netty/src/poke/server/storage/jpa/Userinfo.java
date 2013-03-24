@@ -11,15 +11,16 @@ import javax.persistence.*;
  */
 @Entity
 @Table(name="userinfo")
-@NamedQueries({@NamedQuery(name = "getPassword", query = "SELECT password from Userinfo2 password where password.email =:id"),
-@NamedQuery(name = "getUserid", query = "SELECT userid from Userinfo2 userid where userid.email =:id"),
-@NamedQuery(name = "getFirstname", query = "SELECT firstname from Userinfo2 firstname where firstname.email =:id"),
-@NamedQuery(name = "getLastname", query = "SELECT lastname from Userinfo2 lastname where lastname.email =:id")})
+@NamedQueries({@NamedQuery(name = "getPassword", query = "SELECT password from Userinfo password where password.email =:id"),
+@NamedQuery(name = "getUserid", query = "SELECT userid from Userinfo userid where userid.email =:id"),
+@NamedQuery(name = "getFirstname", query = "SELECT firstname from Userinfo firstname where firstname.email =:id"),
+@NamedQuery(name = "getLastname", query = "SELECT lastname from Userinfo lastname where lastname.email =:id")})
+
 public class Userinfo implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	private Integer userid;
 	
 	@Column

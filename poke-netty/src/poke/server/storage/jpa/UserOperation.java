@@ -22,7 +22,7 @@ public class UserOperation {
 		pros.setProperty(PersistenceUnitProperties.ECLIPSELINK_PERSISTENCE_XML, 
 		                 "META-INF/persistence.xml");
 		emf = Persistence.createEntityManagerFactory(puName, pros);
-		em=emf.createEntityManager();
+		em = emf.createEntityManager();
 	}
 	
 	public boolean registerUser(String emailId, String fname, String lname, String password){
