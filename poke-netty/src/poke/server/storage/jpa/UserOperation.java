@@ -28,7 +28,7 @@ public class UserOperation {
 	public boolean registerUser(String emailId, String fname, String lname, String password){
 		boolean success = true;
 		try{
-			UserInfo userInfo = new UserInfo(emailId, fname, lname, password);
+			Userinfo userInfo = new Userinfo(emailId, fname, lname, password);
 			EntityTransaction tx=em.getTransaction();
 			tx.begin();
 			em.persist(userInfo);
@@ -39,14 +39,14 @@ public class UserOperation {
 		return success;
 	}
 	
-	public UserInfo getUser(String email){
-		UserInfo userinfo = null;
+	public Userinfo getUser(String email){
+		Userinfo userinfo = null;
 		Query pquery = em.createNamedQuery("getPassword");
 		pquery.setParameter("id",email);
 		List<?> presult = pquery.getResultList();
 		for(Object obj : presult)
 		{
-			userinfo = (UserInfo)obj;
+			userinfo = (Userinfo)obj;
 			//String password=userinfo.getPassword();
 		}
 		em.close();

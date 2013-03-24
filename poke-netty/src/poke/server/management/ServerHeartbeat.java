@@ -18,13 +18,13 @@ package poke.server.management;
 import java.net.SocketAddress;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicReference;
-
 import org.jboss.netty.channel.Channel;
 import org.jboss.netty.channel.ChannelFuture;
 import org.jboss.netty.channel.ChannelFutureListener;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import poke.server.Server;
 
 import com.google.protobuf.GeneratedMessage;
 
@@ -32,41 +32,36 @@ import eye.Comm.Heartbeat;
 import eye.Comm.Management;
 
 public class ServerHeartbeat extends Thread {
-	protected static Logger logger = LoggerFactory.getLogger("management");
-	protected static AtomicReference<ServerHeartbeat> instance = new AtomicReference<ServerHeartbeat>();
+	protected Logger logger;
 	protected static Map<String, ServerHeartbeat> allHeartbeats = new HashMap<String, ServerHeartbeat>();
-	static final int sHeartRate = 5000; // msec
+	static final int sHeartRate = 1000 * 60 * 5; // msec
 
 	String nodeId;
+	Server svr;
 	ManagementQueue mqueue;
 	boolean forever = true;
 	HashMap<Channel, HeartData> group = new HashMap<Channel, HeartData>();
 
-	public static ServerHeartbeat getInstance(String id) {
-		//instance.compareAndSet(null, new ServerHeartbeat(id));
-		//return instance.get();
-		//return new ServerHeartbeat(id);
-		if(!allHeartbeats.containsKey(id)){
-			allHeartbeats.put(id, new ServerHeartbeat(id) );
+	public static ServerHeartbeat getInstance(Server svr) {
+		if(!allHeartbeats.containsKey(svr.id)){
+			allHeartbeats.put(svr.id, new ServerHeartbeat(svr) );
 		}
 		
-		return allHeartbeats.get(id);
+		return allHeartbeats.get(svr.id);
 	}
 
-	public static ServerHeartbeat getInstance() {
-		return instance.get();
-		
+	protected ServerHeartbeat(Server svr) {
+		super("ServerHB-" + svr.id);
+		this.nodeId = svr.id;
+		this.svr = svr;
+		logger = LoggerFactory.getLogger("ServerHB-" + svr.id);
 	}
 
-	protected ServerHeartbeat(String nodeId) {
-		this.nodeId = nodeId;
-		// group = new DefaultChannelGroup();
-	}
-
-	public void addChannel(String nodeId, Channel ch, SocketAddress sa) {
+	public void addChannel(String remotenodeId, Channel ch, SocketAddress sa) {
 		logger.info("**********add channel called");
 		if (!group.containsKey(ch)) {
-			HeartData heart = new HeartData(nodeId, ch, sa);
+			HeartData heart = new HeartData(remotenodeId, ch, sa);
+			svr.updateRemoteNodeStatus(remotenodeId, true);
 			group.put(ch, heart);
 
 			// when the channel closes, remove it from the group

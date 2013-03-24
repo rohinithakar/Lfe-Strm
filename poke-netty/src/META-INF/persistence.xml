@@ -2,7 +2,7 @@
 <persistence xmlns="http://java.sun.com/xml/ns/persistence"
              xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
              xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence" version="1.0">
-	<persistence-unit name="jpa_spatial" transaction-type="JTA">
+	<persistence-unit name="jpa_spatial" transaction-type="RESOURCE_LOCAL">
 		<class>entities.Userinfo</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/lifestream"/>
@@ -12,7 +12,7 @@
 		</properties>
 	</persistence-unit>
 	
-	<persistence-unit name="jpa_spatial2" transaction-type="JTA">
+	<persistence-unit name="jpa_spatial2" transaction-type="RESOURCE_LOCAL">
 		<class>entities.Userinfo2</class>
 		<properties>
 			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/lifestream2"/>

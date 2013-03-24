@@ -18,7 +18,6 @@ import org.jboss.netty.channel.ChannelStateEvent;
 import org.jboss.netty.channel.Channels;
 import org.jboss.netty.channel.MessageEvent;
 import org.jboss.netty.channel.SimpleChannelHandler;
-import org.jboss.netty.channel.socket.nio.NioChannelConfig;
 import org.jboss.netty.channel.socket.nio.NioClientSocketChannelFactory;
 import org.jboss.netty.handler.codec.frame.LengthFieldBasedFrameDecoder;
 import org.jboss.netty.handler.codec.frame.LengthFieldPrepender;
@@ -41,7 +40,7 @@ import eye.Comm.*;
  */
 public class PokeClient {
 
-	protected static Logger logger = LoggerFactory.getLogger("client");
+	protected Logger logger;
 
 	private String host;
 	private int port;
@@ -66,7 +65,7 @@ public class PokeClient {
 	private LinkedBlockingDeque<com.google.protobuf.GeneratedMessage> outbound;
 	private OutboundWorker worker = null;
 	private String clientName = null;
-	private PerChannelQueue sq = null;
+	private PerChannelQueue perChannelQueue = null;
 	private ExecutorService bossExecService = null;
 	private ExecutorService workerExecService = null;
 	private NioClientSocketChannelFactory nioCF = null;
@@ -78,7 +77,8 @@ public class PokeClient {
 	public PokeClient(String hostname, int port, String clientName ) {
 		this.port = port;
 		this.host = hostname;
-		this.clientName = clientName;
+		this.clientName = clientName; 
+		logger = LoggerFactory.getLogger(clientName);
 		
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
 		bossExecService = Executors.newFixedThreadPool(1);
@@ -122,7 +122,7 @@ public class PokeClient {
 		channelFuture.getChannel().close().awaitUninterruptibly();
 		bossExecService.shutdown();
 		workerExecService.shutdown();
-		nioCF.releaseExternalResources();
+//		nioCF.releaseExternalResources();
 		return true;
 	}
 	
@@ -157,7 +157,7 @@ public class PokeClient {
 	}
 	
 	public void forwardRequest(eye.Comm.Request req, PerChannelQueue sq) {
-		this.sq = sq;
+		this.perChannelQueue = sq;
 		try {
 			// enqueue message
 			outbound.put(req);
@@ -278,6 +278,7 @@ public class PokeClient {
 		PokeClient client;
 
 		public OutboundWorker(PokeClient conn) {
+			super("client-outboundWorker");
 			this.client = conn;
 			this.setName(conn.clientName + "-outboundWorker");
 
@@ -353,9 +354,9 @@ public class PokeClient {
 		}
 
 		private void handleMessage(eye.Comm.Response msg) {
-			if( sq != null ) {
-				sq.enqueueResponse(msg);
-				sq = null;
+			if( perChannelQueue != null ) {
+				perChannelQueue.enqueueResponse(msg);
+				perChannelQueue = null;
 				try {
 					client.stop();
 				} catch (InterruptedException e) {

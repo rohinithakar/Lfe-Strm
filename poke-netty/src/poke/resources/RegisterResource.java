@@ -13,8 +13,6 @@ import poke.db.StorageFactory;
 import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
-import poke.server.storage.jpa.UserInfo;
-import poke.server.storage.jpa.UserOperation;
 
 /**
  * Resource class to process user registration request
@@ -39,8 +37,9 @@ public class RegisterResource implements Resource {
         		    "password: " + register.getPassword() + 
         		    " Server: " + param
         		    );
-        
+
         IUserStorage userStorage = StorageFactory.getUserStorage(this.param);
+
         
         Response.Builder r = Response.newBuilder();
         
