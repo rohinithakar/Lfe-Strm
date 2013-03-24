@@ -354,6 +354,10 @@ public class PokeClient {
 		}
 
 		private void handleMessage(eye.Comm.Response msg) {
+			
+			// Short Circuit
+			// If the client is called via server
+			// We pass the message and close the client
 			if( perChannelQueue != null ) {
 				perChannelQueue.enqueueResponse(msg);
 				perChannelQueue = null;

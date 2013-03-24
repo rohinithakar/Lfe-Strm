@@ -9,5 +9,12 @@
 # CHANGE ME: this needs to be your specific path to the project
 project_base="."
 
+echo -n "Deleting files...";
 rm -r ${project_base}/generated/*
+echo "done";
+echo -n "Generating Java Code...";
 protoc --proto_path=${project_base}/resources --java_out=${project_base}/generated ${project_base}/resources/comm.proto
+echo "done";
+echo -n "Generating Java Code...";
+protoc --proto_path=${project_base}/resources --python_out=${project_base}/pygen ${project_base}/resources/comm.proto
+echo "done";
