@@ -15,6 +15,7 @@
  */
 package poke.resources;
 
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import eye.Comm.Request;
 import eye.Comm.Response;
@@ -28,7 +29,7 @@ public class DocumentResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
+	public void init(ServerConf.GeneralConf param) {
 		// TODO Auto-generated method stub
 		
 	}

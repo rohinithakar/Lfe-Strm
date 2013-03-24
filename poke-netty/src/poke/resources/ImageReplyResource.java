@@ -21,7 +21,9 @@ import eye.Comm.Response;
 import eye.Comm.Header.ReplyStatus;
 import eye.Comm.UserImageReply;
 import poke.db.DBException;
+import poke.db.IImageStorage;
 import poke.db.StorageFactory;
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 
@@ -33,7 +35,7 @@ import poke.server.resources.ResourceUtil;
 public class ImageReplyResource implements Resource {
 
 	protected static Logger logger = LoggerFactory.getLogger("ReplyResource");
-
+	private ServerConf.GeneralConf param;
 	@Override
 	public Response process(Request request) {
 
@@ -54,9 +56,10 @@ public class ImageReplyResource implements Resource {
 
 			String email = request.getBody().getEmailid();
 
-
+			IImageStorage imageStorage = StorageFactory.getImageStorage(this.param);
+			
 			UserImageReply imageReply;
-			imageReply = StorageFactory.getStorage().retrieveImage(email);
+			imageReply = imageStorage.retrieveImage(email);
 
 
 
@@ -79,7 +82,8 @@ public class ImageReplyResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
+	public void init(ServerConf.GeneralConf param) {
+		this.param = param;
 		// TODO Auto-generated method stub
 
 	}

@@ -23,6 +23,7 @@ import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 import eye.Comm.Header.ReplyStatus;
@@ -32,6 +33,8 @@ import eye.Comm.Response;
 
 public class PokeResource implements Resource {
 	protected static Logger logger = LoggerFactory.getLogger("server");
+	
+	private ServerConf.GeneralConf param;
 
 	public PokeResource() {
 	}
@@ -72,7 +75,8 @@ public class PokeResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
+	public void init(ServerConf.GeneralConf param) {
+		this.param = param;
 		// TODO Auto-generated method stub
 		
 	}

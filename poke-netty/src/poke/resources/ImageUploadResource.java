@@ -19,7 +19,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import poke.db.DBException;
+import poke.db.IImageStorage;
 import poke.db.StorageFactory;
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 import eye.Comm.Header.ReplyStatus;
@@ -30,10 +32,7 @@ import eye.Comm.Response;
 
 public class ImageUploadResource implements Resource {
 	protected static Logger logger = LoggerFactory.getLogger("server");
-
-	public ImageUploadResource() {
-	}
-
+	private ServerConf.GeneralConf param;
 	/*
 	 * (non-Javadoc)
 	 * 
@@ -44,16 +43,22 @@ public class ImageUploadResource implements Resource {
 		String email = request.getBody().getEmailid();
 		Image img = request.getBody().getImageup();
 
-		try {
-			StorageFactory.getStorage().storeImage(email, img);
-		} catch (DBException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
+		IImageStorage imageStorage = StorageFactory.getImageStorage(this.param);
 		Response.Builder r = Response.newBuilder();
-		r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-				ReplyStatus.SUCCESS, null));
+		try {
+			if(imageStorage.storeImage(email, img)){
+				r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+						ReplyStatus.SUCCESS, null));
+			}else{
+				r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+						ReplyStatus.FAILURE, null));
+			}
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+					ReplyStatus.FAILURE, null));
+		}
 
 		eye.Comm.PayloadReply.Builder br=PayloadReply.newBuilder();
 
@@ -66,8 +71,7 @@ public class ImageUploadResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
-		// TODO Auto-generated method stub
-
+	public void init(ServerConf.GeneralConf param) {
+		this.param = param;
 	}
 }

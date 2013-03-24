@@ -15,6 +15,7 @@
  */
 package poke.server.resources;
 
+import poke.server.conf.ServerConf;
 import eye.Comm.Request;
 import eye.Comm.Response;
 
@@ -36,6 +37,6 @@ public interface Resource {
 	 */
 	Response process(Request request);
 	
-	void init(String param);
+	void init(ServerConf.GeneralConf server);
 
 }

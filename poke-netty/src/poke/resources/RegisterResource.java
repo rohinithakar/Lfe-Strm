@@ -7,6 +7,10 @@ import eye.Comm.PayloadReply;
 import eye.Comm.Request;
 import eye.Comm.Response;
 import eye.Comm.Header.ReplyStatus;
+import poke.db.DBException;
+import poke.db.IUserStorage;
+import poke.db.StorageFactory;
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 import poke.server.storage.jpa.UserInfo;
@@ -20,7 +24,7 @@ import poke.server.storage.jpa.UserOperation;
 public class RegisterResource implements Resource {
 
 	protected static Logger logger = LoggerFactory.getLogger("RegisterResource");
-	String param = null;
+	private ServerConf.GeneralConf param;
 	@Override
 	public Response process(Request request) {
 		
@@ -36,12 +40,26 @@ public class RegisterResource implements Resource {
         		    " Server: " + param
         		    );
         
-        UserOperation op = new UserOperation();
-        op.registerUser(request.getBody().getEmailid(), register.getLname(), register.getLname(), register.getPassword());
+        IUserStorage userStorage = StorageFactory.getUserStorage(this.param);
         
         Response.Builder r = Response.newBuilder();
-        r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
-                ReplyStatus.SUCCESS, null));
+        
+        try {
+			if(userStorage.register(request.getBody().getEmailid(), register)){
+				r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+		                ReplyStatus.SUCCESS, null));
+			}else{
+				r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+		                ReplyStatus.FAILURE, null));
+			}
+		} catch (DBException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
+	                ReplyStatus.FAILURE, null));
+		}
+        
+        
         
         eye.Comm.PayloadReply.Builder br=PayloadReply.newBuilder();
                 r.setBody(br.build());
@@ -52,7 +70,7 @@ public class RegisterResource implements Resource {
         return reply;
 	}
 	@Override
-	public void init(String param) {
+	public void init(ServerConf.GeneralConf param) {
 		this.param = param;
 	}
 

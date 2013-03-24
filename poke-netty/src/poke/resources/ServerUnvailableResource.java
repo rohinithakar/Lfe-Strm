@@ -4,11 +4,13 @@ import eye.Comm.PayloadReply;
 import eye.Comm.Request;
 import eye.Comm.Response;
 import eye.Comm.Header.ReplyStatus;
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 
 public class ServerUnvailableResource implements Resource {
 
+	private ServerConf.GeneralConf param;
 	@Override
 	public Response process(Request request) {
 		Response.Builder r = Response.newBuilder();
@@ -25,8 +27,8 @@ public class ServerUnvailableResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
-		// TODO Auto-generated method stub
+	public void init(ServerConf.GeneralConf param) {
+		this.param = param;
 
 	}
 

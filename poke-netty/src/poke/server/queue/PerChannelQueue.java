@@ -273,7 +273,7 @@ public class PerChannelQueue implements ChannelQueue {
 										ReplyStatus.FAILURE,
 										"Request not processed");
 							} else {
-								rsc.init(svr.id);
+								rsc.init(svr.);
 								reply = rsc.process(req);
 							}
 
