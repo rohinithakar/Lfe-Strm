@@ -214,7 +214,7 @@ public class PerChannelQueue implements ChannelQueue {
 
 	protected class InboundWorker extends Thread {
 		int workerId;
-		PerChannelQueue sq;
+		PerChannelQueue perChannelQueue;
 		boolean forever = true;
 		private Server svr = null;
 		private Logger logger;
@@ -222,7 +222,7 @@ public class PerChannelQueue implements ChannelQueue {
 		public InboundWorker(Server svr, ThreadGroup tgrp, int workerId, PerChannelQueue perChannelQueue,Logger logger) {
 			super(tgrp, "inbound-" + workerId);
 			this.workerId = workerId;
-			this.sq = perChannelQueue;
+			this.perChannelQueue = perChannelQueue;
 			this.svr = svr;
 			this.logger = logger;
 
@@ -233,7 +233,7 @@ public class PerChannelQueue implements ChannelQueue {
 
 		@Override
 		public void run() {
-			Channel conn = sq.channel;
+			Channel conn = perChannelQueue.channel;
 			if (conn == null || !conn.isOpen()) {
 				logger
 				.error("connection missing, no inbound communication");
@@ -241,12 +241,12 @@ public class PerChannelQueue implements ChannelQueue {
 			}
 
 			while (true) {
-				if (!forever && sq.inbound.size() == 0)
+				if (!forever && perChannelQueue.inbound.size() == 0)
 					break;
 
 				try {
 					// block until a message is enqueued
-					GeneratedMessage msg = sq.inbound.take();
+					GeneratedMessage msg = perChannelQueue.inbound.take();
 
 					// process request and enqueue response
 					if (msg instanceof Request) {
@@ -258,13 +258,16 @@ public class PerChannelQueue implements ChannelQueue {
 							if(svr.getRemoteNodeStatus(serverId)) {
 								logger.info("Fowarding Request to Server:" + serverId );
 								GeneralConf gconf = svr.conf.findConfById(serverId);
-								PokeClient client = new PokeClient(gconf.getProperty("hostname"), Integer.parseInt(gconf.getProperty("port")), svr.id);
+								PokeClient client = new PokeClient(
+										gconf.getProperty("hostname"), 
+										Integer.parseInt(gconf.getProperty("port")), 
+										svr.id);
 								client.start();
-								client.forwardRequest(req, sq);
+								client.forwardRequest(req, perChannelQueue);
 							} else {
 								logger.info("Server down:" + serverId );
 								ServerUnvailableResource rsc = new ServerUnvailableResource(); 
-								sq.enqueueResponse(rsc.process(null));
+								perChannelQueue.enqueueResponse(rsc.process(null));
 							}
 						} else {
 							Resource rsc = ResourceFactory.getInstance()
@@ -282,7 +285,7 @@ public class PerChannelQueue implements ChannelQueue {
 								reply = rsc.process(req);
 							}
 
-							sq.enqueueResponse(reply);
+							perChannelQueue.enqueueResponse(reply);
 						}
 					}
 

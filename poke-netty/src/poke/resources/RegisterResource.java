@@ -36,8 +36,11 @@ public class RegisterResource implements Resource {
         		    " Server: " + param
         		    );
         
+        
+        /*
         UserOperation op = new UserOperation();
         op.registerUser(request.getBody().getEmailid(), register.getLname(), register.getLname(), register.getPassword());
+        */
         
         Response.Builder r = Response.newBuilder();
         r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),

@@ -31,7 +31,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback {
 		client.uploadImage("abc@abc.com", image);
 	}
 	
-	public void register() {
+	public void register() throws InterruptedException {
 		client.setRegistrationCallback(this);
 		//client.register("a", "b", "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc@abc.com", "1234");
 		client.register("a", "b", "abc@abc.com", "1234");
@@ -57,8 +57,8 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback {
 	}
 	
 	public static void main(String args[]) throws Exception {
-		//new SimpleClient().uploadImage();
-		new SimpleClient().register();
+		SimpleClient client = new SimpleClient();
+		client.register();
 	}
 
 	@Override
