@@ -20,3 +20,11 @@ Storage:
 
 A storage framework is provided to show you a way (others exists) 
 to decouple domain logic from backend persistence.
+
+
+For PostGis
+sudo apt-get install libxml2-dev libjson0-dev libproj0 postgresql-server-dev-9.2 libgeos-dev proj
+///Compile post-gis-2.0.3
+./configure --without-raster
+
+http://trac.osgeo.org/postgis/wiki/UsersWikiPostGIS20Ubuntu1204
