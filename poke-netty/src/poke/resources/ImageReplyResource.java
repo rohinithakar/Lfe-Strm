@@ -73,7 +73,7 @@ public class ImageReplyResource implements Resource {
 			r.setHeader(header.build());
 
 			reply = r.build();
-			logger.info("Registered Successfully...");
+			logger.info("Images Retrieved Successfully...");
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

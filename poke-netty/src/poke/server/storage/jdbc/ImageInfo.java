@@ -1,15 +1,15 @@
 package poke.server.storage.jdbc;
 
 import java.util.Date;
-import org.postgresql.geometric.PGpoint;
 
-public class Image {
+public class ImageInfo {
 	private int imageId;
 	private String imageTitle;
 	private byte[] imageBytes;
 	private Date imageTime;
 	private int imageUserId;
-	private PGpoint imageLatLng;
+	private double imageLat;
+	private double imageLng;
 	
 	public int getImageId() {
 		return imageId;
@@ -41,10 +41,17 @@ public class Image {
 	public void setImageUserId(int imageUserId) {
 		this.imageUserId = imageUserId;
 	}
-	public PGpoint getImageLatLng() {
-		return imageLatLng;
+	public double getImageLat() {
+		return imageLat;
 	}
-	public void setImageLatLng(PGpoint imageLatLng) {
-		this.imageLatLng = imageLatLng;
+	public void setImageLat(double imageLat) {
+		this.imageLat = imageLat;
 	}
+	public double getImageLng() {
+		return imageLng;
+	}
+	public void setImageLng(double imageLng) {
+		this.imageLng = imageLng;
+	}
+	
 }

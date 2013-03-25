@@ -1,12 +1,21 @@
 package poke.server.storage.jdbc;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.Desktop;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+
+import org.postgis.Geometry;
+import org.postgis.PGgeometry;
+
+import com.vividsolutions.jts.geom.Point;
+
+import poke.server.storage.jpa.UserOperation;
 
 public class ViewImages  {
 	private Connection conn;
@@ -15,70 +24,49 @@ public class ViewImages  {
 		String url = "jdbc:postgresql://localhost:5432/"+db;
 		this.conn = DriverManager.getConnection(url, dbUname, dbPassword);
 	}
-	public void view(int userid) throws SQLException {
-		((org.postgresql.PGConnection) conn).addDataType("geometry",org.postgis.PGgeometry.class);
-		((org.postgresql.PGConnection) conn).addDataType("box3d",org.postgis.PGbox3d.class);
+	public List<ImageInfo> view(String emailId, String puName){
+		List<ImageInfo> images = new ArrayList<ImageInfo>();
+		try {
+			((org.postgresql.PGConnection) conn).addDataType("geometry",org.postgis.PGgeometry.class);
 			
-		/*
-		 * Create a Pre.statement and execute a select imgtime for all images.
-		 */
-						
-		String query="SELECT imgtime from images where userid = ?";
-		PreparedStatement pstmt=conn.prepareStatement(query);
-		pstmt.setInt(1,userid);
-		
-		ResultSet rs=pstmt.executeQuery();
-		while(rs.next())
-		{
-			int i=1;
-			System.out.println("Image "+i+" Time: "+rs.getTimestamp(1));
-			i++;
-		}
-			
-		/*
-		 * Create a Pre.statement and execute a select all images and open all.
-		 */
-		String query1="SELECT imgstored,imgname from images where userid = ?";
-		PreparedStatement pstmt1=conn.prepareStatement(query1);
-		pstmt1.setInt(1,userid);
-						
-		ResultSet rs1=pstmt1.executeQuery();
-		while(rs1.next())
-		{
-			byte[] imagebyte=rs1.getBytes(1);
-			String imgname=rs1.getString(2);
+			((org.postgresql.PGConnection) conn).addDataType("box3d",org.postgis.PGbox3d.class);
 				
-			File xfile= new File("/home/abhi/workspace/jpa_spatial/src/"+imgname);
-			try {
-				if(!xfile.exists())
-				{
-					xfile.createNewFile();
-				}
-				DataOutputStream dis = new DataOutputStream((new FileOutputStream(xfile)));
-	            
-	          	dis.write(imagebyte);
-				dis.close();
-				open(xfile);
-			} catch (FileNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-			} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+			/*
+			 * Create a Pre.statement and execute a select imgtime for all images.
+			 */
+							
+			UserOperation userOperation = new UserOperation(puName);
+			int userId = userOperation.getUser(emailId).getUserid();
+			
+			String query="SELECT * from images where userid = ?";
+			PreparedStatement pstmt=conn.prepareStatement(query);
+			pstmt.setInt(1,userId);
+			
+			ResultSet rs=pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				ImageInfo image = new ImageInfo();
+				image.setImageBytes(rs.getBytes("imgstored"));
+				image.setImageTime(rs.getDate("imgtime"));
+				image.setImageTitle(rs.getString("imgname"));
+				PGgeometry geom = (PGgeometry)rs.getObject("geolocation");
+				Geometry p = geom.getGeometry();
+				p.getPoint(0);
+				images.add(image);
 			}
 				
+			if(images.size() > 0){
+				System.out.println("\nAll Images are retrived..");
+			}
+				
+			conn.close();
+			return images;
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return images;
 		}
-			
-
-		System.out.println("\nAll Images are open..");
-		System.out.println("\nEnd of view Images.java..");
-			
-			
-		conn.close();
-	}
-	
-	public static void open(File document) throws IOException {
-	    Desktop dt = Desktop.getDesktop();
-	    dt.open(document);
+		
 	}
 }

@@ -1,6 +1,9 @@
 package poke.server.storage.jdbc;
 
 import java.sql.*;
+
+import com.vividsolutions.jts.geom.Point;
+
 import poke.server.storage.jpa.UserOperation;
 
 
@@ -14,7 +17,7 @@ public class InsertImage  {
 		String url = "jdbc:postgresql://localhost:5432/"+db;
 	    conn = DriverManager.getConnection(url, dbUname, dbPassword);
 	}
-	public boolean run(byte[] imgstored,String imgname, String emailId, double lat, double lng, String puName) {
+	public boolean insert(byte[] imgstored,String imgname, String emailId, double lat, double lng, String puName) {
 		boolean success = true;
 		try {
 			/*

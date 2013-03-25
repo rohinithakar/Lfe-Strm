@@ -7,8 +7,11 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.List;
 
 import poke.server.conf.ServerConf;
+import poke.server.storage.jdbc.ImageInfo;
 import poke.server.storage.jdbc.ImageOperation;
 
 import com.google.protobuf.ByteString;
@@ -41,25 +44,22 @@ public class ImageStorageImpl implements IImageStorage {
 
 	@Override
 	public UserImageReply retrieveImage(String emailId) throws DBException {
-		eye.Comm.Image.Builder image = Image.newBuilder();
-		image.setOwneremail("abc@abc.com");
-		image.setImgid("1");
-		image.setLatitude(32.333333);
-		image.setLongitude(121.333333);
-		File imgPath = new File("resources/warty-final-ubuntu.png");
-		try {
-			byte [] fileData = new byte[(int)imgPath.length()];
-			DataInputStream dis = new DataInputStream((new FileInputStream(imgPath)));
-			dis.readFully(fileData);
-			dis.close();
-
-			image.setActualImage(ByteString.copyFrom(fileData));
-		}catch(IOException e){
-			image.setActualImage(null);
-		}
-
+		List<ImageInfo> images = imageOperation.retrieveImages(emailId, this.server.getProperty("pu.name"));
+		int index = 0;
 		eye.Comm.UserImageReply.Builder userImageReply = UserImageReply.newBuilder();
-		userImageReply.addImgs(0, image);
+		for(ImageInfo img : images){
+			eye.Comm.Image.Builder image = Image.newBuilder();
+			image.setOwneremail(emailId);
+			//image.setImgid("1");
+			//image.setLatitude(32.333333);
+			//image.setLongitude(121.333333);
+			
+			image.setActualImage(ByteString.copyFrom(img.getImageBytes()));
+			image.setTimestamp(Long.parseLong((new SimpleDateFormat("MMddyyhhmmss")).format(img.getImageTime())));
+		
+			userImageReply.addImgs(index, image.build());
+			index++;
+		}
 		return userImageReply.build();
 	}
 
