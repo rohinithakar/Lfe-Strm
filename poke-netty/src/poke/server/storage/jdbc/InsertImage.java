@@ -1,35 +1,18 @@
-package poke.server.storage.jpa;
+package poke.server.storage.jdbc;
 
 import java.sql.*;
-import java.util.List;
+import poke.server.storage.jpa.UserOperation;
 
-import poke.server.conf.ServerConf;
-/*import java.util.*;
-import java.lang.*;
-import org.postgis.*;
-import org.postgresql.*;
-import entities.Userinfo;*/
 
 public class InsertImage  {
 	private java.sql.Connection conn;;
-	public  InsertImage(String db, String dbUname, String dbPassword){
+	public  InsertImage(String db, String dbUname, String dbPassword) throws ClassNotFoundException, SQLException{
 		/*
 		 * Load the JDBC driver and establish a connection.
 		 */
-		
-		try {
-			Class.forName("org.postgresql.Driver");
-		    String url = "jdbc:postgresql://localhost:5432/"+db;
-		    conn = DriverManager.getConnection(url, dbUname, dbPassword);
-		
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		Class.forName("org.postgresql.Driver");
+		String url = "jdbc:postgresql://localhost:5432/"+db;
+	    conn = DriverManager.getConnection(url, dbUname, dbPassword);
 	}
 	public boolean run(byte[] imgstored,String imgname, String emailId, double lat, double lng, String puName) {
 		boolean success = true;
@@ -48,8 +31,8 @@ public class InsertImage  {
 			
 			
 			Statement s = conn.createStatement();
-			System.out.println("INSERT INTO images(imgid,geolocation,imgname,imgstored,imgtime,userid) VALUES (1,"+userId +",'image1',"+imgstored+",now(),st_GeomFromText('LINESTRING(0 10,0 0)',-1))");
-			String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geolocation) VALUES (?,?,?,now(),?,st_GeomFromText('LINESTRING(0 10,0 0)',-1))";
+			//System.out.println("INSERT INTO images(imgid,geolocation,imgname,imgstored,imgtime,userid) VALUES (1,"+userId +",'image1',"+imgstored+",now(),st_GeomFromText('LINESTRING(0 10,0 0)',-1))");
+			String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geoLocation) VALUES (?,?,?,now(),?,'POINT("+lat +" " + lng+")')";
 			PreparedStatement pstmt=conn.prepareStatement(query);
 			
 			PreparedStatement ps=conn.prepareStatement("SELECT max(imgid)from images");

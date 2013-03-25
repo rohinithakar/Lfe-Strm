@@ -2,7 +2,7 @@ package poke.db;
 
 import eye.Comm.Register;
 import poke.server.conf.ServerConf;
-import poke.server.storage.jpa.ImageOperation;
+import poke.server.storage.jdbc.ImageOperation;
 import poke.server.storage.jpa.UserOperation;
 
 

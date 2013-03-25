@@ -1,4 +1,4 @@
-package poke.server.storage.jpa;
+package poke.server.storage.jdbc;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

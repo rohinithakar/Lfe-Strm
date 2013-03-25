@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 import poke.server.conf.ServerConf;
-import poke.server.storage.jpa.ImageOperation;
+import poke.server.storage.jdbc.ImageOperation;
 
 import com.google.protobuf.ByteString;
 
@@ -23,7 +23,7 @@ public class ImageStorageImpl implements IImageStorage {
 	
 	public ImageStorageImpl(ServerConf.GeneralConf server){
 		try {
-			imageOperation = new ImageOperation(server.getProperty("db.name"), 
+			imageOperation = new ImageOperation(server.getProperty("db"), 
 					server.getProperty("db.uname"), server.getProperty("db.password"));
 			this.server = server;
 		} catch (SQLException e) {
