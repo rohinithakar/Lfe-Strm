@@ -44,7 +44,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	
 	public void retrieveImage() throws IOException {
 		
-		client.setImageUploadCallback(this);
+		client.setImageRetrieveCallback(this);
 		
 		client.getImages("abc@abc.com");
 	}
@@ -90,8 +90,9 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		List<Image> imgList = images.getImgsList();
 		for(Image img : imgList){
 	      	try {
-	      		DataOutputStream dis = new DataOutputStream((new FileOutputStream(new File("resources/retrieved"+img.getTitle()+"_"+img.getTimestamp()))));
+	      		DataOutputStream dis = new DataOutputStream((new FileOutputStream(new File("resources/retrieved/"+img.getOwneremail()+"_"+img.getTitle()+".png"))));
 				dis.write(img.getActualImage().toByteArray());
+				dis.flush();
 				dis.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
