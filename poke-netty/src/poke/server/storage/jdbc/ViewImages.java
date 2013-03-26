@@ -12,8 +12,7 @@ import java.io.IOException;
 
 import org.postgis.Geometry;
 import org.postgis.PGgeometry;
-
-import com.vividsolutions.jts.geom.Point;
+import org.postgis.Point;
 
 import poke.server.storage.jpa.UserOperation;
 
@@ -51,8 +50,9 @@ public class ViewImages  {
 				image.setImageTime(rs.getDate("imgtime"));
 				image.setImageTitle(rs.getString("imgname"));
 				PGgeometry geom = (PGgeometry)rs.getObject("geolocation");
-				Geometry p = geom.getGeometry();
-				p.getPoint(0);
+				Point p = (Point)geom.getGeometry();
+				image.setImageLat(p.x);
+				image.setImageLng(p.y);
 				images.add(image);
 			}
 				

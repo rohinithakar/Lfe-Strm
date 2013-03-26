@@ -2,7 +2,8 @@ package poke.server.storage.jdbc;
 
 import java.sql.*;
 
-import com.vividsolutions.jts.geom.Point;
+import org.postgis.PGgeometry;
+import org.postgis.Point;
 
 import poke.server.storage.jpa.UserOperation;
 
@@ -36,6 +37,7 @@ public class InsertImage  {
 			Statement s = conn.createStatement();
 			//System.out.println("INSERT INTO images(imgid,geolocation,imgname,imgstored,imgtime,userid) VALUES (1,"+userId +",'image1',"+imgstored+",now(),st_GeomFromText('LINESTRING(0 10,0 0)',-1))");
 			String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geoLocation) VALUES (?,?,?,now(),?,'POINT("+lat +" " + lng+")')";
+			//String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geoLocation) VALUES (?,?,?,now(),?,?)";
 			PreparedStatement pstmt=conn.prepareStatement(query);
 			
 			PreparedStatement ps=conn.prepareStatement("SELECT max(imgid)from images");
@@ -50,6 +52,9 @@ public class InsertImage  {
 			pstmt.setString(2,imgname);
 			pstmt.setBytes(3, imgstored);
 			pstmt.setInt(4,userId);
+			//Point p = new Point(lat, lng);
+			//pstmt.setObject(5, p);
+			
 			pstmt.execute();
 			
 			System.out.println("\nInserted...............\n");

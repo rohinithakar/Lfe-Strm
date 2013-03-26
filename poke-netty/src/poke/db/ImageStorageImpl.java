@@ -50,9 +50,10 @@ public class ImageStorageImpl implements IImageStorage {
 		for(ImageInfo img : images){
 			eye.Comm.Image.Builder image = Image.newBuilder();
 			image.setOwneremail(emailId);
-			//image.setImgid("1");
-			//image.setLatitude(32.333333);
-			//image.setLongitude(121.333333);
+			image.setTitle(img.getImageTitle());
+			
+			image.setLatitude(img.getImageLat());
+			image.setLongitude(img.getImageLng());
 			
 			image.setActualImage(ByteString.copyFrom(img.getImageBytes()));
 			image.setTimestamp(Long.parseLong((new SimpleDateFormat("MMddyyhhmmss")).format(img.getImageTime())));

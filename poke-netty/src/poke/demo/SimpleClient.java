@@ -33,6 +33,9 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		eye.Comm.Image.Builder image = Image.newBuilder();
 		image.setActualImage(bs);
 		image.setOwneremail("abc@abc.com");
+		image.setLatitude(-121.333333);
+		image.setLongitude(33.323232);
+		image.setTitle("test.png");
 		client.uploadImage("abc@abc.com", image);
 	}
 	
@@ -90,7 +93,14 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		List<Image> imgList = images.getImgsList();
 		for(Image img : imgList){
 	      	try {
-	      		DataOutputStream dis = new DataOutputStream((new FileOutputStream(new File("resources/retrieved/"+img.getOwneremail()+"_"+img.getTitle()+".png"))));
+	      		System.out.println("Image timestamp: "+img.getTimestamp());
+	      		System.out.println("Image Latitude: "+img.getLatitude());
+	      		System.out.println("Image Longitude: "+img.getLongitude());
+	      		String name = img.getOwneremail()+"_"+img.getTitle();
+	      		if(!name.endsWith(".png")){
+	      			name += ".png";
+	      		}
+	      		DataOutputStream dis = new DataOutputStream((new FileOutputStream(new File("resources/retrieved/"+name))));
 				dis.write(img.getActualImage().toByteArray());
 				dis.flush();
 				dis.close();
