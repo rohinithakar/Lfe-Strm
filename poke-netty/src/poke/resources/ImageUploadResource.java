@@ -30,6 +30,10 @@ import eye.Comm.PayloadReply;
 import eye.Comm.Request;
 import eye.Comm.Response;
 
+/**
+ * Resource class to process image upload request
+ *
+ */
 public class ImageUploadResource implements Resource {
 	protected static Logger logger = LoggerFactory.getLogger("server");
 	private ServerConf.GeneralConf param;

@@ -2,7 +2,6 @@ package poke.db;
 
 import eye.Comm.Register;
 import poke.server.conf.ServerConf;
-import poke.server.storage.jdbc.ImageOperation;
 import poke.server.storage.jpa.UserOperation;
 
 
@@ -10,7 +9,6 @@ public class UserStorageImpl implements IUserStorage {
 
 	private String puName;
 	private UserOperation userOperation;
-	private ImageOperation imageOperation;
 	
 	public UserStorageImpl(ServerConf.GeneralConf server){
 		this.puName = server.getProperty("pu.name");

@@ -3,14 +3,6 @@ package poke.server.storage.jdbc;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
-import java.awt.Desktop;
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
-import org.postgis.Geometry;
 import org.postgis.PGgeometry;
 import org.postgis.Point;
 

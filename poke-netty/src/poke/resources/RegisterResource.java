@@ -16,7 +16,6 @@ import poke.server.resources.ResourceUtil;
 
 /**
  * Resource class to process user registration request
- * @author swetapatel
  *
  */
 public class RegisterResource implements Resource {

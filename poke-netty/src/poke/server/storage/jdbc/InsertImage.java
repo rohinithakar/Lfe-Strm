@@ -2,9 +2,6 @@ package poke.server.storage.jdbc;
 
 import java.sql.*;
 
-import org.postgis.PGgeometry;
-import org.postgis.Point;
-
 import poke.server.storage.jpa.UserOperation;
 
 
