@@ -1,6 +1,5 @@
 package poke.server.storage.jpa;
 
-import java.io.*;
 import java.util.List;
 import java.util.Properties;
 

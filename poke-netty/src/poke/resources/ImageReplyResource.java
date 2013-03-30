@@ -1,20 +1,9 @@
 package poke.resources;
 
-import java.io.DataInputStream;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.protobuf.ByteString;
-
 import eye.Comm.Header;
-import eye.Comm.Image;
 import eye.Comm.PayloadReply;
 import eye.Comm.Request;
 import eye.Comm.Response;
@@ -29,7 +18,6 @@ import poke.server.resources.ResourceUtil;
 
 /**
  * Resource class to process image retrieve request
- * @author swetapatel
  *
  */
 public class ImageReplyResource implements Resource {
@@ -73,7 +61,7 @@ public class ImageReplyResource implements Resource {
 			r.setHeader(header.build());
 
 			reply = r.build();
-			logger.info("Registered Successfully...");
+			logger.info("Images Retrieved Successfully...");
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -1,4 +1,4 @@
-/*Abhi Shah
+/*
  * copyright 2012, gash 
  * 
  * Gash licenses this file to you under the Apache License,
@@ -29,7 +29,6 @@ import org.slf4j.LoggerFactory;
 import com.google.protobuf.ByteString;
 import com.google.protobuf.GeneratedMessage;
 
-import eye.Comm.Finger;
 import eye.Comm.Header;
 import eye.Comm.Payload;
 import eye.Comm.Request;
