@@ -62,10 +62,4 @@ def uploadImage(email,img):
     
     return r.SerializeToString()
 
-def main():
-    register("Abhi","Shah","email","password")
-    uploadImage("email", )
-
-
-if __name__  == '__main__': main()
     

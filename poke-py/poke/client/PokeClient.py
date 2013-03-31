@@ -4,32 +4,31 @@ import socket, select
 from pygen import comm_pb2
 import time
 import pokeMessage
+import struct
 
-TCP_IP = 'localhost'
+TCP_IP = '127.0.0.1'
 TCP_PORT = 6570
-BUFFER_SIZE = 65535 # 1 MB buffer size
 MESSAGE = "Hello, World!"
 
 def sendRequest( message ):
     s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     s.connect((TCP_IP, TCP_PORT))
-    s.sendall(message)
-    res = ""
-    data = s.recv(1024)
-    while len(data):
-        res = res + data
-        data = s.recv(1024)
+    size = struct.pack(">l", len(message))
+    print "Bytes Sent: " + str(s.send(size + message ))
+    # print "Bytes Sent2: " + str(s.send(message))
+    dataSize = s.recv(4)
+    size = struct.unpack(">l",dataSize)
+    data = s.recv(size[0])
+    resp = comm_pb2.Response()
+    resp.ParseFromString(data)
+
     s.close()
-    return res
+    return resp
 
 def register( emailid, fname, lname, password ):
     message = pokeMessage.register(fname, lname, emailid, password)
-    response = sendRequest(message)
-    resp = comm_pb2.Response()
-    resp.ParseFromString(response)
+    resp = sendRequest(message)
     print "Reply received"
     return resp.header.reply_code
     
-print register("a@abc.com","a", "a", "a")
-
-#print "received data:", data
+print register("abcabcabcabcabcabc@abcabcabcabcabc.com","a", "b", "1234")
