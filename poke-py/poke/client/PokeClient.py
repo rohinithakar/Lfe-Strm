@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import socket
+import socket, select
 from pygen import comm_pb2
 import time
 import pokeMessage
@@ -21,9 +21,9 @@ def sendRequest( message ):
     data = s.recv(size[0])
     resp = comm_pb2.Response()
     resp.ParseFromString(data)
+
     s.close()
     return resp
-
 
 def register( emailid, fname, lname, password ):
     message = pokeMessage.register(fname, lname, emailid, password)

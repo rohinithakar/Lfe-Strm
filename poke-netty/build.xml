@@ -7,6 +7,7 @@
 
 	<target name="init">
 		<property name="lib.dir" location="${basedir}/lib" />
+		<property name="persistence_xml.dir" location="${basedir}/META-INF" />
 		<property name="src.dir" location="${basedir}/src" />
 		<property name="generated.dir" location="${basedir}/generated" />
 		<property name="test.dir" location="${basedir}/test" />
@@ -17,6 +18,9 @@
 			<pathelement location="${build.dir}" />
 			<fileset dir="${lib.dir}">
 				<include name="**/*.jar" />
+			</fileset>
+			<fileset dir="${persistence_xml.dir}">
+				<include name="**/*.xml" />
 			</fileset>
 		</path>
 	</target>
@@ -49,17 +53,17 @@
 
 	<!-- ================================================================= -->
 
-	<target name="poke" depends="init">
-		<java fork="yes" classname="poke.demo.Jab">
+	<target name="client" depends="init">
+		<java fork="yes" classname="poke.demo.SimpleClient">
 			<classpath refid="project.classpath" />
 		</java>
 	</target>
 
-	<target name="monitor" depends="init">
+	<!--<target name="monitor" depends="init">
 		<java fork="yes" classname="poke.monitor.HeartMonitor">
 			<classpath refid="project.classpath" />
 		</java>
-	</target>
+	</target>-->
 
 	<target name="server" depends="build">
 		<java fork="yes" maxmemory="1024m" classname="poke.server.Launcher.ServerLauncher">

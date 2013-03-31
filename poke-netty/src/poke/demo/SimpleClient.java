@@ -28,6 +28,28 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		client.start();
 	}
 	
+	public void register() throws InterruptedException {
+		client.setRegistrationCallback(this);
+		//below request will be processed by server: id = one and port = 5571
+		client.register("a", "b", "a@abc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+		client.register("a", "b", "abcabc@abc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+		client.register("a", "b", "abcabc@abc.com", "1234");
+		client.register("a", "b", "abcabcabcabcabcabc@abcabcabc.com", "1234");
+	}
+	
+	@Override
+	public void registered(boolean registrationSuccess) {
+		try {
+			System.out.println("Registration Response Received: " + registrationSuccess);
+			client.stop();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
 	public void uploadImage() throws IOException {
 		ByteString bs = getImageByteString();
 		client.setImageUploadCallback(this);
@@ -40,19 +62,6 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		client.uploadImage("abc@abc.com", image);
 	}
 	
-	public void register() throws InterruptedException {
-		client.setRegistrationCallback(this);
-		//client.register("a", "b", "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc@abc.com", "1234");
-		client.register("a", "b", "abcabcabcabcabcabc@abcabcabc.com", "1234");
-	}
-	
-	public void retrieveImage() throws IOException {
-		
-		client.setImageRetrieveCallback(this);
-		
-		client.getImages("a@abc.com");
-	}
-
 	@Override
 	public void imageUploadReply(boolean uploaded) {
 		try {
@@ -72,22 +81,13 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		 dis.close();
 		 return ByteString.copyFrom(fileData);
 	}
-	
-	public static void main(String args[]) throws Exception {
-		SimpleClient client = new SimpleClient();
-		client.register();
+
+
+	public void retrieveImage() throws IOException {
+		client.setImageRetrieveCallback(this);
+		client.getImages("a@abc.com");
 	}
 
-	@Override
-	public void registered(boolean registrationSuccess) {
-		try {
-			System.out.println("Registration Response Received: " + registrationSuccess);
-			client.stop();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-	}
 
 	@Override
 	public void imageReply(UserImageReply images) {
@@ -117,5 +117,11 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+	
+
+	public static void main(String args[]) throws Exception {
+		SimpleClient client = new SimpleClient();
+		client.register();
 	}
 }
