@@ -254,10 +254,10 @@ public class PokeClient {
 		public ChannelPipeline getPipeline() throws Exception {
 			ChannelPipeline pipeline = Channels.pipeline();
 
-//			pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
-//					67108864, 0, 4, 0, 4));
-			pipeline.addLast("frameDecoder", new DebugFrameDecoder(
+			pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
 					67108864, 0, 4, 0, 4));
+//			pipeline.addLast("frameDecoder", new DebugFrameDecoder(
+//					67108864, 0, 4, 0, 4));
 			pipeline.addLast("protobufDecoder", new ProtobufDecoder(
 					eye.Comm.Response.getDefaultInstance()));
 			pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));

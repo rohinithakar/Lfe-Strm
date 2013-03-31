@@ -1,10 +1,8 @@
 #!/usr/bin/env python
 
-import socket, select
-from pygen import comm_pb2
-import time
+import socket, select, time, struct
 import pokeMessage
-import struct
+from pygen import comm_pb2
 
 TCP_IP = '127.0.0.1'
 TCP_PORT = 6570
@@ -31,4 +29,4 @@ def register( emailid, fname, lname, password ):
     print "Reply received"
     return resp.header.reply_code
     
-print register("abcabcabcabcabcabc@abcabcabcabcabc.com","a", "b", "1234")
+print register("weupqewrqwerqwrqowr@owerweupru.com","a", "b", "1234")
