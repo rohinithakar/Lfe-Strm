@@ -74,7 +74,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	
 	public static void main(String args[]) throws Exception {
 		SimpleClient client = new SimpleClient();
-		client.retrieveImage();
+		client.register();
 	}
 
 	@Override
