@@ -7,23 +7,22 @@ import time
 
 def register(fname,lname,email,password):
     r = comm_pb2.Request()
-    p=comm_pb2.Payload()
+    p = comm_pb2.Payload()
     p.__setattr__("emailid",email)
     
-    reg=comm_pb2.Register()
+    reg = comm_pb2.Register()
     reg.__setattr__("fname",fname)
     reg.__setattr__("lname",lname)
     reg.__setattr__("password",password)
     
-    p.DESCRIPTOR.__setattr__("reg", reg)
-   
+    p.reg.MergeFrom(reg)
     
     r.body.MergeFrom(p)
     
     #Header with routing Info
     h=comm_pb2.Header()
     
-    h.__setattr__("originator","originator")
+    h.__setattr__("originator","SimpleClient")
     h.__setattr__("time",int(time.time()))
     h.__setattr__("routing_id",int(h.__getattribute__("REGISTER")))  #comm_pb2.Header.DESCRIPTOR.__getattribute__("REGISTER")
     r.header.MergeFrom(h)

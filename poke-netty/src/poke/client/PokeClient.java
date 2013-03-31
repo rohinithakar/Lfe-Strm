@@ -26,6 +26,8 @@ import org.jboss.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.debug.DebugFrameDecoder;
+import poke.debug.DebugFrameEncoder;
 import poke.server.queue.PerChannelQueue;
 
 import com.google.protobuf.GeneratedMessage;
@@ -252,11 +254,14 @@ public class PokeClient {
 		public ChannelPipeline getPipeline() throws Exception {
 			ChannelPipeline pipeline = Channels.pipeline();
 
-			pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
+//			pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
+//					67108864, 0, 4, 0, 4));
+			pipeline.addLast("frameDecoder", new DebugFrameDecoder(
 					67108864, 0, 4, 0, 4));
 			pipeline.addLast("protobufDecoder", new ProtobufDecoder(
 					eye.Comm.Response.getDefaultInstance()));
 			pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
+//			pipeline.addLast("frameEncoder", new DebugFrameEncoder(4));
 			pipeline.addLast("protobufEncoder", new ProtobufEncoder());
 
 			// our message processor

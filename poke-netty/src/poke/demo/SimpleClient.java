@@ -23,7 +23,8 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	PokeClient client = null;
 	
 	SimpleClient() {
-		client = new PokeClient("localhost", 5571, "SimpleClient");
+//		client = new PokeClient("localhost", 5005, "SimpleClient");
+		client = new PokeClient("localhost", 6570, "SimpleClient");
 		client.start();
 	}
 	

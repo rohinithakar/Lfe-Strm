@@ -23,6 +23,8 @@ import org.jboss.netty.handler.codec.frame.LengthFieldPrepender;
 import org.jboss.netty.handler.codec.protobuf.ProtobufDecoder;
 import org.jboss.netty.handler.codec.protobuf.ProtobufEncoder;
 
+import poke.debug.DebugFrameDecoder;
+import poke.debug.DebugProtobufDecoder;
 import poke.server.Server;
 
 public class ServerDecoderPipeline implements ChannelPipelineFactory {
@@ -42,10 +44,12 @@ public class ServerDecoderPipeline implements ChannelPipelineFactory {
 		// length, and strip 4 bytes
 		pipeline.addLast("frameDecoder", new LengthFieldBasedFrameDecoder(
 				67108864, 0, 4, 0, 4));
-		// pipeline.addLast("frameDecoder", new DebugFrameDecoder(67108864, 0,
-		// 4, 0, 4));
+//		 pipeline.addLast("frameDecoder", new DebugFrameDecoder(67108864, 0,
+//		 4, 0, 4));
 		pipeline.addLast("protobufDecoder", new ProtobufDecoder(
 				eye.Comm.Request.getDefaultInstance()));
+//		pipeline.addLast("protobufDecoder", new DebugProtobufDecoder(
+//				eye.Comm.Request.getDefaultInstance()));
 		pipeline.addLast("frameEncoder", new LengthFieldPrepender(4));
 		pipeline.addLast("protobufEncoder", new ProtobufEncoder());
 

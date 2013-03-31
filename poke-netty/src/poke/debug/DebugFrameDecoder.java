@@ -44,6 +44,7 @@ public class DebugFrameDecoder extends LengthFieldBasedFrameDecoder {
 					System.err.println(b);
 			} else
 				System.err.println("buffer is empty");
+			eye.Comm.Request req = eye.Comm.Request.parseFrom(arr);
 			System.err.println("----------------------------");
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
