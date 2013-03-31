@@ -16,9 +16,10 @@ import eye.Comm.UserImageReply;
 import poke.client.PokeClient;
 import poke.client.PokeClient.ImageRetrieveCallback;
 import poke.client.PokeClient.ImageUploadCallback;
+import poke.client.PokeClient.LoginCallback;
 import poke.client.PokeClient.RegisterCallback;
 
-public class SimpleClient implements ImageUploadCallback, RegisterCallback, ImageRetrieveCallback{
+public class SimpleClient implements ImageUploadCallback, RegisterCallback, ImageRetrieveCallback, LoginCallback{
 	
 	PokeClient client = null;
 	
@@ -34,8 +35,9 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		client.register("a", "b", "a@abc.com", "1234");
 		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
 		client.register("a", "b", "abcabc@abc.com", "1234");
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
-		client.register("a", "b", "abcabc@abc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
+		client.register("a", "b", "abcabcabcabc@abcabc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
 		client.register("a", "b", "abcabcabcabcabcabc@abcabcabc.com", "1234");
 	}
 	
@@ -50,16 +52,65 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		}
 	}
 	
+	public void login() throws InterruptedException {
+		client.setLoginCallback(this);
+		//below request will be processed by server: id = one and port = 5571
+		client.login("a@abc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+		client.login("abcabc@abc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
+		client.login("abcabcabcabc@abcabc.com", "1234");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
+		client.login("abcabcabcabcabcabc@abcabcabc.com", "1234");
+	}
+	
+	@Override
+	public void loggedIn(boolean loginSuccess) {
+		try {
+			System.out.println("Login Response Received: " + loginSuccess);
+			client.stop();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	
 	public void uploadImage() throws IOException {
 		ByteString bs = getImageByteString();
 		client.setImageUploadCallback(this);
+		//below request will be processed by server: id = one and port = 5571
 		eye.Comm.Image.Builder image = Image.newBuilder();
 		image.setActualImage(bs);
-		image.setOwneremail("abc@abc.com");
-		image.setLatitude(-121.333333);
-		image.setLongitude(33.323232);
-		image.setTitle("test.png");
-		client.uploadImage("abc@abc.com", image);
+		image.setOwneremail("a@abc.com");
+		image.setLatitude(37.335363);
+		image.setLongitude(-121.887068);
+		image.setTitle("testFrom3rdStreet.png");
+		client.uploadImage("a@abc.com", image);
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+		image = Image.newBuilder();
+		image.setActualImage(bs);
+		image.setOwneremail("abcabc@abc.com");
+		image.setLatitude(37.335169);
+		image.setLongitude(-121.88107);
+		image.setTitle("testFromSJSU.png");
+		client.uploadImage("abcabc@abc.com", image);
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
+		image = Image.newBuilder();
+		image.setActualImage(bs);
+		image.setOwneremail("abcabcabcabc@abcabc.com");
+		image.setLatitude(37.335686);
+		image.setLongitude(-121.885469);
+		image.setTitle("testFromMLKLibrary.png");
+		client.uploadImage("abcabcabcabc@abcabc.com", image);
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
+		image = Image.newBuilder();
+		image.setActualImage(bs);
+		image.setOwneremail("abcabcabcabcabcabc@abcabcabc.com");
+		image.setLatitude(37.337187);
+		image.setLongitude(-121.886871);
+		image.setTitle("testFromSJCityHall.png");
+		client.uploadImage("abcabcabcabcabcabc@abcabcabc.com", image);
 	}
 	
 	@Override
@@ -85,7 +136,14 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 
 	public void retrieveImage() throws IOException {
 		client.setImageRetrieveCallback(this);
+		//below request will be processed by server: id = one and port = 5571
 		client.getImages("a@abc.com");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+		client.getImages("abcabc@abc.com");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
+		client.getImages("abcabcabcabc@abcabc.com");
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
+		client.getImages("abcabcabcabcabcabc@abcabcabc.com");
 	}
 
 
@@ -109,7 +167,6 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-			
 		}
 		try {
 			client.stop();
@@ -124,4 +181,5 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		SimpleClient client = new SimpleClient();
 		client.register();
 	}
+
 }

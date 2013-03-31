@@ -59,9 +59,14 @@ public class PokeClient {
 		void registered(boolean registrationSuccess);
 	}
 	
+	public static interface LoginCallback {
+		void loggedIn(boolean loginSuccess);
+	}
+	
 	private ImageUploadCallback imgUpload = null;
 	private ImageRetrieveCallback imgRetrieve = null;
 	private RegisterCallback registerCb = null;
+	private LoginCallback loginCb = null;
 	private ClientBootstrap bootstrap;
 	private ChannelFuture channelFuture;
 	private LinkedBlockingDeque<com.google.protobuf.GeneratedMessage> outbound;
@@ -111,6 +116,11 @@ public class PokeClient {
 		this.registerCb = cb;
 	}
 	
+	public void setLoginCallback(LoginCallback cb) {
+		this.loginCb = cb;
+	}
+	
+	
 	public void start() {
 		if( worker == null ) {
 			worker = new OutboundWorker(this);
@@ -146,6 +156,33 @@ public class PokeClient {
 		h.setOriginator(clientName);
 		h.setTime(System.currentTimeMillis());
 		h.setRoutingId(eye.Comm.Header.Routing.REGISTER);
+		r.setHeader(h.build());
+
+		eye.Comm.Request req = r.build();
+
+		try {
+			// enqueue message
+			outbound.put(req);
+		} catch (InterruptedException e) {
+			logger.warn("Unable to deliver message, queuing");
+		}
+	}
+	
+	public void login(String email, String password) {
+		// payload containing data
+		Request.Builder r = Request.newBuilder();
+		eye.Comm.Payload.Builder p = Payload.newBuilder();
+		p.setEmailid(email);
+		eye.Comm.Login.Builder login = Login.newBuilder();
+		login.setPassword(password);
+		p.setLogin(login.build());
+		r.setBody(p.build());
+		
+		// header with routing info
+		eye.Comm.Header.Builder h = Header.newBuilder();
+		h.setOriginator(clientName);
+		h.setTime(System.currentTimeMillis());
+		h.setRoutingId(eye.Comm.Header.Routing.LOGIN);
 		r.setHeader(h.build());
 
 		eye.Comm.Request req = r.build();

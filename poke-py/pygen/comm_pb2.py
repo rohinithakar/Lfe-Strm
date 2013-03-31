@@ -13,7 +13,7 @@ from google.protobuf import descriptor_pb2
 DESCRIPTOR = _descriptor.FileDescriptor(
   name='comm.proto',
   package='',
-  serialized_pb='\n\ncomm.proto\"%\n\x06\x46inger\x12\x0e\n\x06number\x18\x01 \x02(\x05\x12\x0b\n\x03tag\x18\x02 \x02(\t\"j\n\tNameSpace\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0c\n\x04\x64\x65sc\x18\x03 \x01(\t\x12\x0f\n\x07\x63reated\x18\x04 \x01(\x03\x12\x15\n\rlast_modified\x18\x05 \x01(\x03\x12\r\n\x05owner\x18\x06 \x01(\t\"\x94\x01\n\x0cNameValueSet\x12)\n\tnode_type\x18\x01 \x02(\x0e\x32\x16.NameValueSet.NodeType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x1b\n\x04node\x18\x04 \x03(\x0b\x32\r.NameValueSet\"\x1f\n\x08NodeType\x12\x08\n\x04NODE\x10\x01\x12\t\n\x05VALUE\x10\x02\"K\n\x08\x44ocument\x12\x12\n\nname_space\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\x1f\n\x08\x64ocument\x18\x03 \x02(\x0b\x32\r.NameValueSet\"+\n\x0b\x44ocumentSet\x12\x1c\n\tdocuments\x18\x01 \x03(\x0b\x32\t.Document\"*\n\x0cNameSpaceSet\x12\x1a\n\x06spaces\x18\x01 \x03(\x0b\x32\n.NameSpace\"\xde\x03\n\x06Header\x12#\n\nrouting_id\x18\x01 \x02(\x0e\x32\x0f.Header.Routing\x12\x12\n\noriginator\x18\x02 \x02(\t\x12\x0b\n\x03tag\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\x03\x12\'\n\nreply_code\x18\x05 \x01(\x0e\x32\x13.Header.ReplyStatus\x12\x11\n\treply_msg\x18\x06 \x01(\t\"\xd4\x01\n\x07Routing\x12\n\n\x06\x46INGER\x10\x02\x12\t\n\x05STATS\x10\x03\x12\x10\n\x0cNAMESPACEADD\x10\n\x12\x11\n\rNAMESPACELIST\x10\x0b\x12\x13\n\x0fNAMESPACEUPDATE\x10\x0c\x12\x13\n\x0fNAMESPACEREMOVE\x10\r\x12\n\n\x06\x44OCADD\x10\x14\x12\x0b\n\x07\x44OCFIND\x10\x15\x12\r\n\tDOCUPDATE\x10\x16\x12\r\n\tDOCREMOVE\x10\x17\x12\r\n\tIMGUPLOAD\x10\x32\x12\x0f\n\x0bIMGRETREIVE\x10\x33\x12\x0c\n\x08REGISTER\x10\x34\"m\n\x0bReplyStatus\x12\x0b\n\x07SUCCESS\x10\x01\x12\x0b\n\x07\x46\x41ILURE\x10\x02\x12\n\n\x06NOAUTH\x10\x03\x12\x0e\n\nMISSINGARG\x10\x04\x12\x10\n\x0cNOCONNECTION\x10\x05\x12\x16\n\x12SERVER_UNAVAILABLE\x10\x06\":\n\x08Register\x12\r\n\x05\x66name\x18\x01 \x02(\t\x12\r\n\x05lname\x18\x02 \x02(\t\x12\x10\n\x08password\x18\x03 \x02(\t\"\x86\x01\n\x05Image\x12\x13\n\x0b\x61\x63tualImage\x18\x01 \x02(\x0c\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08latitude\x18\x03 \x01(\x01\x12\x11\n\tlongitude\x18\x04 \x01(\x01\x12\x11\n\ttimestamp\x18\x05 \x01(\x03\x12\r\n\x05imgid\x18\x06 \x01(\t\x12\x12\n\nowneremail\x18\x07 \x01(\t\"#\n\x10UserImageRequest\x12\x0f\n\x07\x65mailid\x18\x01 \x02(\t\"&\n\x0eUserImageReply\x12\x14\n\x04imgs\x18\x01 \x03(\x0b\x32\x06.Image\"\xba\x01\n\x07Payload\x12\x0f\n\x07\x65mailid\x18\x01 \x02(\t\x12\x17\n\x06\x66inger\x18\x02 \x01(\x0b\x32\x07.Finger\x12\x16\n\x03\x64oc\x18\x03 \x01(\x0b\x32\t.Document\x12\x19\n\x05space\x18\x04 \x01(\x0b\x32\n.NameSpace\x12\x16\n\x03reg\x18\x05 \x01(\x0b\x32\t.Register\x12\x17\n\x07imageup\x18\x06 \x01(\x0b\x32\x06.Image\x12!\n\x06imgreq\x18\x07 \x01(\x0b\x32\x11.UserImageRequest\"\x9b\x01\n\x0cPayloadReply\x12\x17\n\x04\x64ocs\x18\x01 \x03(\x0b\x32\t.Document\x12\x1a\n\x06spaces\x18\x02 \x03(\x0b\x32\n.NameSpace\x12\x18\n\x05stats\x18\x03 \x01(\x0b\x32\t.Document\x12\x19\n\x06\x66inger\x18\x04 \x01(\x0b\x32\t.Document\x12!\n\x08imgreply\x18\x05 \x01(\x0b\x32\x0f.UserImageReply\":\n\x07Request\x12\x17\n\x06header\x18\x01 \x02(\x0b\x32\x07.Header\x12\x16\n\x04\x62ody\x18\x02 \x02(\x0b\x32\x08.Payload\"@\n\x08Response\x12\x17\n\x06header\x18\x01 \x02(\x0b\x32\x07.Header\x12\x1b\n\x04\x62ody\x18\x02 \x02(\x0b\x32\r.PayloadReply\",\n\tHeartbeat\x12\x0e\n\x06nodeId\x18\x01 \x02(\t\x12\x0f\n\x07timeRef\x18\x02 \x02(\x03\"\x95\x01\n\x07Network\x12\x0e\n\x06nodeId\x18\x01 \x02(\t\x12\x1f\n\x06\x61\x63tion\x18\x02 \x02(\x0e\x32\x0f.Network.Action\"Y\n\x06\x41\x63tion\x12\x0c\n\x08NODEJOIN\x10\x01\x12\r\n\tNODELEAVE\x10\x02\x12\x0c\n\x08NODEDEAD\x10\x03\x12\x07\n\x03MAP\x10\x37\x12\x0c\n\x08\x41NNOUNCE\x10\x38\x12\r\n\x08SHUTDOWN\x10\xe7\x07\"?\n\nManagement\x12\x17\n\x05graph\x18\x01 \x01(\x0b\x32\x08.Network\x12\x18\n\x04\x62\x65\x61t\x18\x02 \x01(\x0b\x32\n.HeartbeatB\x07\n\x03\x65yeH\x01')
+  serialized_pb='\n\ncomm.proto\"%\n\x06\x46inger\x12\x0e\n\x06number\x18\x01 \x02(\x05\x12\x0b\n\x03tag\x18\x02 \x02(\t\"j\n\tNameSpace\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0c\n\x04name\x18\x02 \x02(\t\x12\x0c\n\x04\x64\x65sc\x18\x03 \x01(\t\x12\x0f\n\x07\x63reated\x18\x04 \x01(\x03\x12\x15\n\rlast_modified\x18\x05 \x01(\x03\x12\r\n\x05owner\x18\x06 \x01(\t\"\x94\x01\n\x0cNameValueSet\x12)\n\tnode_type\x18\x01 \x02(\x0e\x32\x16.NameValueSet.NodeType\x12\x0c\n\x04name\x18\x02 \x01(\t\x12\r\n\x05value\x18\x03 \x01(\t\x12\x1b\n\x04node\x18\x04 \x03(\x0b\x32\r.NameValueSet\"\x1f\n\x08NodeType\x12\x08\n\x04NODE\x10\x01\x12\t\n\x05VALUE\x10\x02\"K\n\x08\x44ocument\x12\x12\n\nname_space\x18\x01 \x01(\t\x12\n\n\x02id\x18\x02 \x01(\x03\x12\x1f\n\x08\x64ocument\x18\x03 \x02(\x0b\x32\r.NameValueSet\"+\n\x0b\x44ocumentSet\x12\x1c\n\tdocuments\x18\x01 \x03(\x0b\x32\t.Document\"*\n\x0cNameSpaceSet\x12\x1a\n\x06spaces\x18\x01 \x03(\x0b\x32\n.NameSpace\"\xe9\x03\n\x06Header\x12#\n\nrouting_id\x18\x01 \x02(\x0e\x32\x0f.Header.Routing\x12\x12\n\noriginator\x18\x02 \x02(\t\x12\x0b\n\x03tag\x18\x03 \x01(\t\x12\x0c\n\x04time\x18\x04 \x01(\x03\x12\'\n\nreply_code\x18\x05 \x01(\x0e\x32\x13.Header.ReplyStatus\x12\x11\n\treply_msg\x18\x06 \x01(\t\"\xdf\x01\n\x07Routing\x12\n\n\x06\x46INGER\x10\x02\x12\t\n\x05STATS\x10\x03\x12\x10\n\x0cNAMESPACEADD\x10\n\x12\x11\n\rNAMESPACELIST\x10\x0b\x12\x13\n\x0fNAMESPACEUPDATE\x10\x0c\x12\x13\n\x0fNAMESPACEREMOVE\x10\r\x12\n\n\x06\x44OCADD\x10\x14\x12\x0b\n\x07\x44OCFIND\x10\x15\x12\r\n\tDOCUPDATE\x10\x16\x12\r\n\tDOCREMOVE\x10\x17\x12\r\n\tIMGUPLOAD\x10\x32\x12\x0f\n\x0bIMGRETREIVE\x10\x33\x12\x0c\n\x08REGISTER\x10\x34\x12\t\n\x05LOGIN\x10\x35\"m\n\x0bReplyStatus\x12\x0b\n\x07SUCCESS\x10\x01\x12\x0b\n\x07\x46\x41ILURE\x10\x02\x12\n\n\x06NOAUTH\x10\x03\x12\x0e\n\nMISSINGARG\x10\x04\x12\x10\n\x0cNOCONNECTION\x10\x05\x12\x16\n\x12SERVER_UNAVAILABLE\x10\x06\":\n\x08Register\x12\r\n\x05\x66name\x18\x01 \x02(\t\x12\r\n\x05lname\x18\x02 \x02(\t\x12\x10\n\x08password\x18\x03 \x02(\t\"\x19\n\x05Login\x12\x10\n\x08password\x18\x01 \x02(\t\"\x86\x01\n\x05Image\x12\x13\n\x0b\x61\x63tualImage\x18\x01 \x02(\x0c\x12\r\n\x05title\x18\x02 \x01(\t\x12\x10\n\x08latitude\x18\x03 \x01(\x01\x12\x11\n\tlongitude\x18\x04 \x01(\x01\x12\x11\n\ttimestamp\x18\x05 \x01(\x03\x12\r\n\x05imgid\x18\x06 \x01(\t\x12\x12\n\nowneremail\x18\x07 \x01(\t\"#\n\x10UserImageRequest\x12\x0f\n\x07\x65mailid\x18\x01 \x02(\t\"&\n\x0eUserImageReply\x12\x14\n\x04imgs\x18\x01 \x03(\x0b\x32\x06.Image\"\xd1\x01\n\x07Payload\x12\x0f\n\x07\x65mailid\x18\x01 \x02(\t\x12\x17\n\x06\x66inger\x18\x02 \x01(\x0b\x32\x07.Finger\x12\x16\n\x03\x64oc\x18\x03 \x01(\x0b\x32\t.Document\x12\x19\n\x05space\x18\x04 \x01(\x0b\x32\n.NameSpace\x12\x16\n\x03reg\x18\x05 \x01(\x0b\x32\t.Register\x12\x17\n\x07imageup\x18\x06 \x01(\x0b\x32\x06.Image\x12!\n\x06imgreq\x18\x07 \x01(\x0b\x32\x11.UserImageRequest\x12\x15\n\x05login\x18\x08 \x01(\x0b\x32\x06.Login\"\x9b\x01\n\x0cPayloadReply\x12\x17\n\x04\x64ocs\x18\x01 \x03(\x0b\x32\t.Document\x12\x1a\n\x06spaces\x18\x02 \x03(\x0b\x32\n.NameSpace\x12\x18\n\x05stats\x18\x03 \x01(\x0b\x32\t.Document\x12\x19\n\x06\x66inger\x18\x04 \x01(\x0b\x32\t.Document\x12!\n\x08imgreply\x18\x05 \x01(\x0b\x32\x0f.UserImageReply\":\n\x07Request\x12\x17\n\x06header\x18\x01 \x02(\x0b\x32\x07.Header\x12\x16\n\x04\x62ody\x18\x02 \x02(\x0b\x32\x08.Payload\"@\n\x08Response\x12\x17\n\x06header\x18\x01 \x02(\x0b\x32\x07.Header\x12\x1b\n\x04\x62ody\x18\x02 \x02(\x0b\x32\r.PayloadReply\",\n\tHeartbeat\x12\x0e\n\x06nodeId\x18\x01 \x02(\t\x12\x0f\n\x07timeRef\x18\x02 \x02(\x03\"\x95\x01\n\x07Network\x12\x0e\n\x06nodeId\x18\x01 \x02(\t\x12\x1f\n\x06\x61\x63tion\x18\x02 \x02(\x0e\x32\x0f.Network.Action\"Y\n\x06\x41\x63tion\x12\x0c\n\x08NODEJOIN\x10\x01\x12\r\n\tNODELEAVE\x10\x02\x12\x0c\n\x08NODEDEAD\x10\x03\x12\x07\n\x03MAP\x10\x37\x12\x0c\n\x08\x41NNOUNCE\x10\x38\x12\r\n\x08SHUTDOWN\x10\xe7\x07\"?\n\nManagement\x12\x17\n\x05graph\x18\x01 \x01(\x0b\x32\x08.Network\x12\x18\n\x04\x62\x65\x61t\x18\x02 \x01(\x0b\x32\n.HeartbeatB\x07\n\x03\x65yeH\x01')
 
 
 
@@ -96,11 +96,15 @@ _HEADER_ROUTING = _descriptor.EnumDescriptor(
       name='REGISTER', index=12, number=52,
       options=None,
       type=None),
+    _descriptor.EnumValueDescriptor(
+      name='LOGIN', index=13, number=53,
+      options=None,
+      type=None),
   ],
   containing_type=None,
   options=None,
   serialized_start=634,
-  serialized_end=846,
+  serialized_end=857,
 )
 
 _HEADER_REPLYSTATUS = _descriptor.EnumDescriptor(
@@ -136,8 +140,8 @@ _HEADER_REPLYSTATUS = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=848,
-  serialized_end=957,
+  serialized_start=859,
+  serialized_end=968,
 )
 
 _NETWORK_ACTION = _descriptor.EnumDescriptor(
@@ -173,8 +177,8 @@ _NETWORK_ACTION = _descriptor.EnumDescriptor(
   ],
   containing_type=None,
   options=None,
-  serialized_start=1813,
-  serialized_end=1902,
+  serialized_start=1874,
+  serialized_end=1963,
 )
 
 
@@ -485,7 +489,7 @@ _HEADER = _descriptor.Descriptor(
   is_extendable=False,
   extension_ranges=[],
   serialized_start=479,
-  serialized_end=957,
+  serialized_end=968,
 )
 
 
@@ -526,8 +530,36 @@ _REGISTER = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=959,
-  serialized_end=1017,
+  serialized_start=970,
+  serialized_end=1028,
+)
+
+
+_LOGIN = _descriptor.Descriptor(
+  name='Login',
+  full_name='Login',
+  filename=None,
+  file=DESCRIPTOR,
+  containing_type=None,
+  fields=[
+    _descriptor.FieldDescriptor(
+      name='password', full_name='Login.password', index=0,
+      number=1, type=9, cpp_type=9, label=2,
+      has_default_value=False, default_value=unicode("", "utf-8"),
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
+  ],
+  extensions=[
+  ],
+  nested_types=[],
+  enum_types=[
+  ],
+  options=None,
+  is_extendable=False,
+  extension_ranges=[],
+  serialized_start=1030,
+  serialized_end=1055,
 )
 
 
@@ -596,8 +628,8 @@ _IMAGE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1020,
-  serialized_end=1154,
+  serialized_start=1058,
+  serialized_end=1192,
 )
 
 
@@ -624,8 +656,8 @@ _USERIMAGEREQUEST = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1156,
-  serialized_end=1191,
+  serialized_start=1194,
+  serialized_end=1229,
 )
 
 
@@ -652,8 +684,8 @@ _USERIMAGEREPLY = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1193,
-  serialized_end=1231,
+  serialized_start=1231,
+  serialized_end=1269,
 )
 
 
@@ -713,6 +745,13 @@ _PAYLOAD = _descriptor.Descriptor(
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       options=None),
+    _descriptor.FieldDescriptor(
+      name='login', full_name='Payload.login', index=7,
+      number=8, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
+      message_type=None, enum_type=None, containing_type=None,
+      is_extension=False, extension_scope=None,
+      options=None),
   ],
   extensions=[
   ],
@@ -722,8 +761,8 @@ _PAYLOAD = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1234,
-  serialized_end=1420,
+  serialized_start=1272,
+  serialized_end=1481,
 )
 
 
@@ -778,8 +817,8 @@ _PAYLOADREPLY = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1423,
-  serialized_end=1578,
+  serialized_start=1484,
+  serialized_end=1639,
 )
 
 
@@ -813,8 +852,8 @@ _REQUEST = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1580,
-  serialized_end=1638,
+  serialized_start=1641,
+  serialized_end=1699,
 )
 
 
@@ -848,8 +887,8 @@ _RESPONSE = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1640,
-  serialized_end=1704,
+  serialized_start=1701,
+  serialized_end=1765,
 )
 
 
@@ -883,8 +922,8 @@ _HEARTBEAT = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1706,
-  serialized_end=1750,
+  serialized_start=1767,
+  serialized_end=1811,
 )
 
 
@@ -919,8 +958,8 @@ _NETWORK = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1753,
-  serialized_end=1902,
+  serialized_start=1814,
+  serialized_end=1963,
 )
 
 
@@ -954,8 +993,8 @@ _MANAGEMENT = _descriptor.Descriptor(
   options=None,
   is_extendable=False,
   extension_ranges=[],
-  serialized_start=1904,
-  serialized_end=1967,
+  serialized_start=1965,
+  serialized_end=2028,
 )
 
 _NAMEVALUESET.fields_by_name['node_type'].enum_type = _NAMEVALUESET_NODETYPE
@@ -975,6 +1014,7 @@ _PAYLOAD.fields_by_name['space'].message_type = _NAMESPACE
 _PAYLOAD.fields_by_name['reg'].message_type = _REGISTER
 _PAYLOAD.fields_by_name['imageup'].message_type = _IMAGE
 _PAYLOAD.fields_by_name['imgreq'].message_type = _USERIMAGEREQUEST
+_PAYLOAD.fields_by_name['login'].message_type = _LOGIN
 _PAYLOADREPLY.fields_by_name['docs'].message_type = _DOCUMENT
 _PAYLOADREPLY.fields_by_name['spaces'].message_type = _NAMESPACE
 _PAYLOADREPLY.fields_by_name['stats'].message_type = _DOCUMENT
@@ -996,6 +1036,7 @@ DESCRIPTOR.message_types_by_name['DocumentSet'] = _DOCUMENTSET
 DESCRIPTOR.message_types_by_name['NameSpaceSet'] = _NAMESPACESET
 DESCRIPTOR.message_types_by_name['Header'] = _HEADER
 DESCRIPTOR.message_types_by_name['Register'] = _REGISTER
+DESCRIPTOR.message_types_by_name['Login'] = _LOGIN
 DESCRIPTOR.message_types_by_name['Image'] = _IMAGE
 DESCRIPTOR.message_types_by_name['UserImageRequest'] = _USERIMAGEREQUEST
 DESCRIPTOR.message_types_by_name['UserImageReply'] = _USERIMAGEREPLY
@@ -1054,6 +1095,12 @@ class Register(_message.Message):
   DESCRIPTOR = _REGISTER
 
   # @@protoc_insertion_point(class_scope:Register)
+
+class Login(_message.Message):
+  __metaclass__ = _reflection.GeneratedProtocolMessageType
+  DESCRIPTOR = _LOGIN
+
+  # @@protoc_insertion_point(class_scope:Login)
 
 class Image(_message.Message):
   __metaclass__ = _reflection.GeneratedProtocolMessageType
