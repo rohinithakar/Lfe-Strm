@@ -45,14 +45,6 @@ public class HeartMonitor {
 	protected ClientBootstrap bootstrap;
 	private Server svr;
 
-	// protected ChannelFactory cf;
-//
-//	public HeartMonitor(String host, int port) {
-//		this.host = host;
-//		this.port = port;
-//		initTCP();
-//	}
-
 	public HeartMonitor(ServerConf.GeneralConf conf,Server svr) {
 		this.monitoredSvrConf = conf;
 		this.port = Integer.valueOf(conf.getProperty("port.mgmt"));
@@ -77,7 +69,7 @@ public class HeartMonitor {
 		bootstrap.setOption("keepAlive", true);
 
 		// Set up the pipeline factory.
-		bootstrap.setPipelineFactory(new MonitorPipeline(svr));
+		bootstrap.setPipelineFactory(new MonitorPipeline(svr,monitoredSvrConf));
 	}
 
 	protected void initTCP() {
@@ -89,8 +81,7 @@ public class HeartMonitor {
 		bootstrap.setOption("tcpNoDelay", true);
 		bootstrap.setOption("keepAlive", true);
 
-		//bootstrap.setPipelineFactory(new MonitorPipeline());
-		bootstrap.setPipelineFactory(new MonitorPipeline(this.monitoredSvrConf));
+		bootstrap.setPipelineFactory(new MonitorPipeline(this.svr, this.monitoredSvrConf));
 
 	}
 

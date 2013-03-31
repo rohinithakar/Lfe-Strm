@@ -30,14 +30,11 @@ public class MonitorPipeline implements ChannelPipelineFactory {
 
 	private ServerConf.GeneralConf monitoredSvrConf;
 	private Server svr;
-	public MonitorPipeline(Server svr) {
+	public MonitorPipeline(Server svr, ServerConf.GeneralConf conf) {
 		this.svr = svr;
-	}
-	
-	public MonitorPipeline(ServerConf.GeneralConf conf) {
 		this.monitoredSvrConf = conf;
 	}
-
+	
 	public ChannelPipeline getPipeline() throws Exception {
 		ChannelPipeline pipeline = Channels.pipeline();
 

@@ -38,10 +38,6 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 	private Server svr;
 	private String monitoredServerId;
 
-//	public MonitorHandler(Server svr) {
-//		this.svr = svr;
-//	}
-	
 	public MonitorHandler(ServerConf.GeneralConf conf, Server svr) {
 		this.monitoredSvrConf = conf;
 		this.svr = svr;
