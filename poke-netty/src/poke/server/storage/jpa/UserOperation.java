@@ -19,13 +19,21 @@ public class UserOperation {
 		em=emf.createEntityManager();
 	}
 	
-	public void registerUser(String emailId, String fname, String lname, String password){
+	public boolean registerUser(String emailId, String fname, String lname, String password){
 		UserInfo userInfo = new UserInfo(emailId, fname, lname, password);
 		EntityTransaction tx=em.getTransaction();
-		tx.begin();
-		em.persist(userInfo);
-		tx.commit();
-
+		boolean ret=false;
+		try{
+			tx.begin();
+			em.persist(userInfo);
+			tx.commit();
+			ret=true;
+		}catch(Exception e)
+		{
+			e.printStackTrace();
+			
+		}
+		return ret;
 	}
 	
 }
