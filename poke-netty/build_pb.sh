@@ -15,6 +15,6 @@ echo "done";
 echo -n "Generating Java Code...";
 protoc --proto_path=${project_base}/resources --java_out=${project_base}/generated ${project_base}/resources/comm.proto
 echo "done";
-echo -n "Generating Java Code...";
-protoc --proto_path=${project_base}/resources --python_out=${project_base}/pygen ${project_base}/resources/comm.proto
+echo -n "Generating Python Code...";
+protoc --proto_path=${project_base}/resources --python_out=${project_base}/../poke-py/pygen ${project_base}/resources/comm.proto
 echo "done";
