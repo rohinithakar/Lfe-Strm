@@ -50,7 +50,6 @@ public class UserOperation {
 		}
 		em.close();
 		return userinfo;
-		
 	}
 	
 }

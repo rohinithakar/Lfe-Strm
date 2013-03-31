@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>poke-netty</name>
+	<name>poke-py</name>
 	<comment></comment>
 	<projects>
+		<project>poke-netty</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -10,14 +11,8 @@
 			<arguments>
 			</arguments>
 		</buildCommand>
-		<buildCommand>
-			<name>org.eclipse.jdt.core.javabuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
 	</buildSpec>
 	<natures>
-		<nature>org.eclipse.jdt.core.javanature</nature>
 		<nature>org.python.pydev.pythonNature</nature>
 	</natures>
 </projectDescription>
