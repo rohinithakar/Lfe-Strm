@@ -49,6 +49,10 @@ public class ServerLauncher {
 				svr.run(generalConf);
 			}
 		}
+		
+		for(Server server : svrs){
+			server.startMonitoring();
+		}
 	}
 
 	private static ServerConf readConfig(File cfg) {

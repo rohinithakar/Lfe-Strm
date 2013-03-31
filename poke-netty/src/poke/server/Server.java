@@ -205,19 +205,19 @@ public class Server {
 		serverStatus.put(this.id, true);
 
 		svrLogger.info("Server " + str+ " ready on port: "+ port);
-		
-		String e2nList = generalConf.getProperty("edgeToNode");
-		String[] e2ns = e2nList.split(",");
-		for(String e2n : e2ns ) {
+	}
+	
+	public void startMonitoring(){
+		String[] edgeToNodes = this.generalConf.getProperty("edgeToNode").split("\\|");
+		for(String e2n : edgeToNodes) {
 			if( e2n != null && !e2n.isEmpty() ) {
-				ServerConf.GeneralConf serverToConnect = this.conf.findConfById(generalConf.getProperty("edgeToNode"));
+				ServerConf.GeneralConf serverToConnect = this.conf.findConfById(e2n);
 				HeartMonitor hm = new HeartMonitor(serverToConnect,this);
 				svrLogger.info("Starting to Monitor Node: " + serverToConnect.getProperty("node.id"));
 				hm.init();
+				svrLogger.info("Server HB Monitor Started " + this.id); 
 			}
 		}
-		
-		svrLogger.info("Server HB Monitor Started " + this.id); 
 	}
 	
 	public void updateRemoteNodeStatus(String remoteNodeId, boolean status) {
