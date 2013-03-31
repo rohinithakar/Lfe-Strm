@@ -25,11 +25,16 @@ import org.jboss.netty.channel.SimpleChannelUpstreamHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class ManagementHandler extends SimpleChannelUpstreamHandler {
-	protected static Logger logger = LoggerFactory.getLogger("management");
+import poke.server.Server;
 
-	public ManagementHandler() {
-		// logger.info("** HeartbeatHandler created **");
+public class ManagementHandler extends SimpleChannelUpstreamHandler {
+	protected Logger logger;
+	private Server svr;
+
+	public ManagementHandler(Server svr) {
+		logger = LoggerFactory.getLogger("management[" + svr.id + "]");
+		logger.info("** HeartbeatHandler created **");
+		this.svr = svr;
 	}
 
 	/**
@@ -44,7 +49,6 @@ public class ManagementHandler extends SimpleChannelUpstreamHandler {
 		}
 
 		logger.info("ManagementHandler got messsage");
-		// ManagementQueue.enqueueRequest(req, channel);
 	}
 
 	@Override
@@ -52,8 +56,6 @@ public class ManagementHandler extends SimpleChannelUpstreamHandler {
 		logger.info("message rcv: " + e.getRemoteAddress());
 		ManagementQueue.enqueueRequest((eye.Comm.Management) e.getMessage(),
 				e.getChannel(), e.getRemoteAddress());
-
-		// handleMessage((eye.Comm.Management) e.getMessage(), e.getChannel());
 	}
 
 	@Override
@@ -77,17 +79,17 @@ public class ManagementHandler extends SimpleChannelUpstreamHandler {
 	 */
 	public static class ManagementClosedListener implements
 			ChannelFutureListener {
-		// private ManagementQueue sq;
+		 private ManagementQueue sq;
 
 		public ManagementClosedListener(ManagementQueue sq) {
-			// this.sq = sq;
+			 this.sq = sq;
 		}
 
 		@Override
 		public void operationComplete(ChannelFuture future) throws Exception {
-			// if (sq != null)
-			// sq.shutdown(true);
-			// sq = null;
+//			 if (sq != null)
+//			 sq.shutdown(true);
+//			 sq = null;
 		}
 
 	}

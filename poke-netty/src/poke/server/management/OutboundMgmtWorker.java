@@ -23,7 +23,7 @@ import poke.server.Server;
 import poke.server.management.ManagementQueue.ManagementQueueEntry;
 
 public class OutboundMgmtWorker extends Thread {
-	protected static Logger logger = LoggerFactory.getLogger("management");
+	protected Logger logger;
 
 	int workerId;
 	boolean forever = true;
@@ -38,7 +38,8 @@ public class OutboundMgmtWorker extends Thread {
 //	}
 	
 	public OutboundMgmtWorker(Server svr, ThreadGroup tgrp, int workerId) {
-		super(tgrp, "outbound-mgmt-" + workerId);
+		super(tgrp, "outbound-mgmt-" + workerId + "-" + svr.id);
+		logger = LoggerFactory.getLogger("outbound-mgmt-" + workerId + "-" + svr.id);
 		this.workerId = workerId;
 		this.svr = svr;
 

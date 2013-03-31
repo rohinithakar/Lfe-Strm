@@ -34,16 +34,18 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 	protected static Logger logger = LoggerFactory.getLogger("monitor");
 
 	private volatile Channel channel;
-	private ServerConf.GeneralConf conf;
+	private ServerConf.GeneralConf monitoredSvrConf;
 	private Server svr;
+	private String monitoredServerId;
 
 //	public MonitorHandler(Server svr) {
 //		this.svr = svr;
 //	}
 	
 	public MonitorHandler(ServerConf.GeneralConf conf, Server svr) {
-		this.conf = conf;
+		this.monitoredSvrConf = conf;
 		this.svr = svr;
+		monitoredServerId = this.monitoredSvrConf.getProperty("node_id");
 	}
 
 	public void handleMessage(eye.Comm.Management msg) {
@@ -65,7 +67,7 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 					ChannelFutureListener.CLOSE);
 		//if channel state is closed then set server status to false
 		if(!(e.getState().compareTo(ChannelState.CONNECTED) == 0)){
-			svr.serverStatus.put(this.conf.getProperty("node_id"), false);
+			svr.updateRemoteNodeStatus(monitoredServerId, false);
 		}
 	}
 
@@ -89,5 +91,6 @@ public class MonitorHandler extends SimpleChannelUpstreamHandler {
 
 		// TODO do we really want to do this? try to re-connect?
 		e.getChannel().close();
+		svr.updateRemoteNodeStatus(this.monitoredServerId, false);
 	}
 }

@@ -15,14 +15,10 @@
  */
 package poke.resources;
 
-import java.io.DataOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import poke.server.resources.ResourceUtil;
 import eye.Comm.Header.ReplyStatus;
@@ -32,6 +28,8 @@ import eye.Comm.Response;
 
 public class PokeResource implements Resource {
 	protected static Logger logger = LoggerFactory.getLogger("server");
+	
+	private ServerConf.GeneralConf param;
 
 	public PokeResource() {
 	}
@@ -44,19 +42,6 @@ public class PokeResource implements Resource {
 	public Response process(Request request) {
 		 // TODO add code to process the message/event received
         logger.info("poke: " + request.getBody().getFinger().getTag());
-//        File imgPath = new File("/Users/swetapatel/Pictures/image_server"+request.getHeader().getOriginator()+ ".png");
-//        try {
-//        	DataOutputStream dis = new DataOutputStream((new FileOutputStream(imgPath)));
-//            byte [] byteArray = new byte[request.getBody().getImg().getActualImage().size()];
-//            request.getBody().getImg().getActualImage().copyTo(byteArray, 0);
-//			dis.write(byteArray);
-//			dis.close();
-//		} catch (IOException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
-        
-
         Response.Builder r = Response.newBuilder();
         r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
                 ReplyStatus.SUCCESS, null));
@@ -72,7 +57,8 @@ public class PokeResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
+	public void init(ServerConf.GeneralConf param) {
+		this.param = param;
 		// TODO Auto-generated method stub
 		
 	}

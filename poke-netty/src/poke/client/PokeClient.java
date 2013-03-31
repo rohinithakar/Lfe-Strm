@@ -1,6 +1,7 @@
 package poke.client;
 
 import java.net.InetSocketAddress;
+import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingDeque;
 
@@ -39,7 +40,7 @@ import eye.Comm.*;
  */
 public class PokeClient {
 
-	protected static Logger logger = LoggerFactory.getLogger("client");
+	protected Logger logger;
 
 	private String host;
 	private int port;
@@ -64,7 +65,10 @@ public class PokeClient {
 	private LinkedBlockingDeque<com.google.protobuf.GeneratedMessage> outbound;
 	private OutboundWorker worker = null;
 	private String clientName = null;
-	private PerChannelQueue sq = null;
+	private PerChannelQueue perChannelQueue = null;
+	private ExecutorService bossExecService = null;
+	private ExecutorService workerExecService = null;
+	private NioClientSocketChannelFactory nioCF = null;
 	
 	public PokeClient(String hostname, int port) {
 		this(hostname, port, PokeClient.class.getCanonicalName());
@@ -73,13 +77,17 @@ public class PokeClient {
 	public PokeClient(String hostname, int port, String clientName ) {
 		this.port = port;
 		this.host = hostname;
-		this.clientName = clientName;
+		this.clientName = clientName; 
+		logger = LoggerFactory.getLogger(clientName);
 		
 		outbound = new LinkedBlockingDeque<com.google.protobuf.GeneratedMessage>();
+		bossExecService = Executors.newFixedThreadPool(1);
+		workerExecService = Executors.newFixedThreadPool(1);
 		
-		bootstrap = new ClientBootstrap(new NioClientSocketChannelFactory(
-				Executors.newFixedThreadPool(1),
-				Executors.newFixedThreadPool(1)));
+		nioCF = new NioClientSocketChannelFactory(
+				bossExecService, workerExecService);
+		
+		bootstrap = new ClientBootstrap(nioCF);
 
 		bootstrap.setOption("connectTimeoutMillis", 10000);
 		bootstrap.setOption("tcpNoDelay", true);
@@ -111,9 +119,11 @@ public class PokeClient {
 	public boolean stop() throws InterruptedException {
 		worker.stopWorker();
 		worker.join();
-		ChannelFuture cf = channelFuture.getChannel().close();
-		cf.awaitUninterruptibly();
-		return cf.isDone();
+		channelFuture.getChannel().close().awaitUninterruptibly();
+		bossExecService.shutdown();
+		workerExecService.shutdown();
+//		nioCF.releaseExternalResources();
+		return true;
 	}
 	
 	public void register(String firstName, String lastName, String email, String password) {
@@ -147,7 +157,7 @@ public class PokeClient {
 	}
 	
 	public void forwardRequest(eye.Comm.Request req, PerChannelQueue sq) {
-		this.sq = sq;
+		this.perChannelQueue = sq;
 		try {
 			// enqueue message
 			outbound.put(req);
@@ -265,10 +275,11 @@ public class PokeClient {
 	 */
 	protected class OutboundWorker extends Thread {
 		boolean forever = true;
-		PokeClient conn;
+		PokeClient client;
 
 		public OutboundWorker(PokeClient conn) {
-			this.conn = conn;
+			super("client-outboundWorker");
+			this.client = conn;
 			this.setName(conn.clientName + "-outboundWorker");
 
 			if (conn.outbound == null)
@@ -283,7 +294,7 @@ public class PokeClient {
 
 		@Override
 		public void run() {
-			Channel ch = conn.connect();
+			Channel ch = client.connect();
 			if (ch == null || !ch.isOpen()) {
 				ClientConnection.logger
 						.error("connection missing, no outbound communication");
@@ -291,21 +302,21 @@ public class PokeClient {
 			}
 
 			while (true) {
-				if (!forever && conn.outbound.size() == 0)
+				if (!forever && client.outbound.size() == 0)
 					break;
 
 				try {
 					// block until a message is enqueued
-					GeneratedMessage msg = conn.outbound.take();
+					GeneratedMessage msg = client.outbound.take();
 					if (ch.isWritable()) {
-						PokeClientHandler handler = conn.connect().getPipeline()
+						PokeClientHandler handler = client.connect().getPipeline()
 								.get(PokeClientHandler.class);
 
 						if (!handler.send(msg))
-							conn.outbound.putFirst(msg);
+							client.outbound.putFirst(msg);
 
 					} else
-						conn.outbound.putFirst(msg);
+						client.outbound.putFirst(msg);
 				} catch (InterruptedException ie) {
 					break;
 				} catch (Exception e) {
@@ -322,7 +333,6 @@ public class PokeClient {
 	}
 	
 	public class PokeClientHandler extends SimpleChannelHandler {
-		@SuppressWarnings("unused")
 		private PokeClient client;
 		
 		private volatile Channel channel;
@@ -344,9 +354,13 @@ public class PokeClient {
 		}
 
 		private void handleMessage(eye.Comm.Response msg) {
-			if( sq != null ) {
-				sq.enqueueResponse(msg);
-				sq = null;
+			
+			// Short Circuit
+			// If the client is called via server
+			// We pass the message and close the client
+			if( perChannelQueue != null ) {
+				perChannelQueue.enqueueResponse(msg);
+				perChannelQueue = null;
 				try {
 					client.stop();
 				} catch (InterruptedException e) {

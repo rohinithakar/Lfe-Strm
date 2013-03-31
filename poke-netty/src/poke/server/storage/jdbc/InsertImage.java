@@ -1,38 +1,23 @@
-package poke.server.storage.jpa;
+package poke.server.storage.jdbc;
 
 import java.sql.*;
-/*import java.util.*;
-import java.lang.*;
-import org.postgis.*;
-import org.postgresql.*;
-import entities.Userinfo;*/
+
+import poke.server.storage.jpa.UserOperation;
+
 
 public class InsertImage  {
 	private java.sql.Connection conn;;
-	public  InsertImage(){
+	public  InsertImage(String db, String dbUname, String dbPassword) throws ClassNotFoundException, SQLException{
 		/*
 		 * Load the JDBC driver and establish a connection.
 		 */
-		
-		try {
-			Class.forName("org.postgresql.Driver");
-		
-		String url = "jdbc:postgresql://localhost:5432/lifestream";
-		conn = DriverManager.getConnection(url,"postgres", "password");
-		
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
+		Class.forName("org.postgresql.Driver");
+		String url = "jdbc:postgresql://localhost:5432/"+db;
+	    conn = DriverManager.getConnection(url, dbUname, dbPassword);
 	}
-	public void run(byte[] imgstored,String imgname,int  userid) {
-		
+	public boolean insert(byte[] imgstored,String imgname, String emailId, double lat, double lng, String puName) {
+		boolean success = true;
 		try {
-			
 			/*
 			 * Add the geometry types to the connection. Note that you must cast
 			 * the connection to the pgsql-specific connection implementation
@@ -42,16 +27,14 @@ public class InsertImage  {
 			((org.postgresql.PGConnection) conn).addDataType("geometry",org.postgis.PGgeometry.class);
 			((org.postgresql.PGConnection) conn).addDataType("box3d",org.postgis.PGbox3d.class);
 			
-			/*
-			 * Create a statement and execute a select query.
-			 */
-			//Userbean userbean=new Userbean();
-			
+			UserOperation userOperation = new UserOperation(puName);
+			int userId = userOperation.getUser(emailId).getUserid();
 			
 			
 			Statement s = conn.createStatement();
-			System.out.println("INSERT INTO images(imgid,geolocation,imgname,imgstored,imgtime,userid) VALUES (1,"+userid +",'image1',"+imgstored+",now(),st_GeomFromText('LINESTRING(0 10,0 0)',-1))");
-			String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geolocation) VALUES (?,?,?,now(),?,st_GeomFromText('LINESTRING(0 10,0 0)',-1))";
+			//System.out.println("INSERT INTO images(imgid,geolocation,imgname,imgstored,imgtime,userid) VALUES (1,"+userId +",'image1',"+imgstored+",now(),st_GeomFromText('LINESTRING(0 10,0 0)',-1))");
+			String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geoLocation) VALUES (?,?,?,now(),?,'POINT("+lat +" " + lng+")')";
+			//String query="INSERT INTO images (imgid,imgname,imgstored,imgtime,userid,geoLocation) VALUES (?,?,?,now(),?,?)";
 			PreparedStatement pstmt=conn.prepareStatement(query);
 			
 			PreparedStatement ps=conn.prepareStatement("SELECT max(imgid)from images");
@@ -65,7 +48,10 @@ public class InsertImage  {
 			pstmt.setInt(1,tempimgid);
 			pstmt.setString(2,imgname);
 			pstmt.setBytes(3, imgstored);
-			pstmt.setInt(4,userid);
+			pstmt.setInt(4,userId);
+			//Point p = new Point(lat, lng);
+			//pstmt.setObject(5, p);
+			
 			pstmt.execute();
 			
 			System.out.println("\nInserted...............\n");
@@ -83,6 +69,8 @@ public class InsertImage  {
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
+			success = false;
 		}
+		return success;
 	}
 }

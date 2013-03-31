@@ -18,6 +18,7 @@ package poke.resources;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import poke.server.conf.ServerConf;
 import poke.server.resources.Resource;
 import eye.Comm.Request;
 import eye.Comm.Response;
@@ -32,7 +33,7 @@ public class NameSpaceResource implements Resource {
 	}
 
 	@Override
-	public void init(String param) {
+	public void init(ServerConf.GeneralConf server) {
 		// TODO Auto-generated method stub
 		
 	}
