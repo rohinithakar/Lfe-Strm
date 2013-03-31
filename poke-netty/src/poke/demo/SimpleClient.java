@@ -42,14 +42,14 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	public void register() throws InterruptedException {
 		client.setRegistrationCallback(this);
 		//client.register("a", "b", "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabc@abc.com", "1234");
-		client.register("a", "b", "abc@abc.com", "1234");
+		client.register("a", "b", "abcabcabcabcabcabc@abcabcabc.com", "1234");
 	}
 	
 	public void retrieveImage() throws IOException {
 		
 		client.setImageRetrieveCallback(this);
 		
-		client.getImages("abc@abc.com");
+		client.getImages("a@abc.com");
 	}
 
 	@Override
