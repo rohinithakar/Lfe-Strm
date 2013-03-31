@@ -31,4 +31,4 @@ def register( emailid, fname, lname, password ):
     print "Reply received"
     return resp.header.reply_code
     
-print register("abcabcabcabcabcabc@abcabcabc.com","a", "b", "1234")
+print register("abcabcabcabcabcabc@abcabcabcabcabc.com","a", "b", "1234")
