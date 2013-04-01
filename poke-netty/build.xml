@@ -7,7 +7,6 @@
 
 	<target name="init">
 		<property name="lib.dir" location="${basedir}/lib" />
-		<property name="persistence_xml.dir" location="${basedir}/META-INF" />
 		<property name="src.dir" location="${basedir}/src" />
 		<property name="generated.dir" location="${basedir}/generated" />
 		<property name="test.dir" location="${basedir}/test" />
@@ -19,7 +18,7 @@
 			<fileset dir="${lib.dir}">
 				<include name="**/*.jar" />
 			</fileset>
-			<fileset dir="${persistence_xml.dir}">
+			<fileset dir="${build.dir}">
 				<include name="**/*.xml" />
 			</fileset>
 		</path>
@@ -32,6 +31,7 @@
 
 	<target name="build" depends="clean">
 		<mkdir dir="${build.dir}" />
+		<mkdir dir="{build.dir}/META-INF" />
 
 		<javac destdir="${build.dir}" debug="true" deprecation="false" optimize="false" failonerror="true">
 			<src path="${generated.dir}" />
@@ -42,6 +42,12 @@
 			<src path="${src.dir}" />
 			<classpath refid="project.classpath" />
 		</javac>
+		
+		  <copy todir="${build.dir}/META-INF" flatten="true">
+		       <resources>
+		          <file file="${src.dir}/META-INF/persistence.xml"/>
+		       </resources>
+		  </copy>
 	</target>
 
 	<target name="build.test" depends="build">
@@ -52,7 +58,13 @@
 	</target>
 
 	<!-- ================================================================= -->
-
+	<target name="server" depends="build">
+			<java fork="yes" maxmemory="1024m" classname="poke.server.Launcher.ServerLauncher">
+				<arg value="${basedir}/runtime/server.conf" />
+				<classpath refid="project.classpath" />
+			</java>
+	</target>
+	
 	<target name="client" depends="init">
 		<java fork="yes" classname="poke.demo.SimpleClient">
 			<classpath refid="project.classpath" />
@@ -65,11 +77,17 @@
 		</java>
 	</target>-->
 
-	<target name="server" depends="build">
-		<java fork="yes" maxmemory="1024m" classname="poke.server.Launcher.ServerLauncher">
-			<arg value="${basedir}/runtime/server.conf" />
-			<classpath refid="project.classpath" />
-		</java>
+	
+	<target name="test" depends="init">
+		<junit printsummary="yes" haltonfailure="yes">
+			<formatter type="xml"/>
+			<classpath refid="project.classpath"/>
+			<batchtest fork="yes" todir="${test.dir}">
+				<fileset dir="${test.dir}">
+					<include name="**/*.java"/>
+				</fileset>
+			</batchtest>
+		</junit>
 	</target>
 
 </project>
