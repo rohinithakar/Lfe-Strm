@@ -1,5 +1,6 @@
 package poke.db;
 
+import eye.Comm.Login;
 import eye.Comm.Register;
 import poke.server.conf.ServerConf;
 import poke.server.storage.jpa.UserOperation;
@@ -22,9 +23,8 @@ public class UserStorageImpl implements IUserStorage {
 
 	
 	@Override
-	public boolean doesUserExist(String emailId) throws DBException {
-		
-		return false;
+	public boolean login(String emailId, Login login) throws DBException {
+		return this.userOperation.login(emailId, login.getPassword());
 	}
 
 }

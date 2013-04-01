@@ -71,6 +71,7 @@ message Header {
 		IMGUPLOAD = 50;
 		IMGRETREIVE = 51;
 		REGISTER = 52;
+	       LOGIN = 53;
         }
         
      enum ReplyStatus {
@@ -87,6 +88,10 @@ message Register {
 	required string fname = 1;
 	required string lname = 2;
 	required string password = 3;
+}
+
+message Login {
+	required string password = 1;
 }
 
 message Image {
@@ -115,6 +120,7 @@ message Payload {
     optional Register reg = 5;
     optional Image imageup = 6;
     optional UserImageRequest imgreq = 7;
+    optional Login login = 8;
 }
 
 message PayloadReply {

@@ -5236,6 +5236,10 @@ public final class Comm {
        * <code>REGISTER = 52;</code>
        */
       REGISTER(12, 52),
+      /**
+       * <code>LOGIN = 53;</code>
+       */
+      LOGIN(13, 53),
       ;
 
       /**
@@ -5290,6 +5294,10 @@ public final class Comm {
        * <code>REGISTER = 52;</code>
        */
       public static final int REGISTER_VALUE = 52;
+      /**
+       * <code>LOGIN = 53;</code>
+       */
+      public static final int LOGIN_VALUE = 53;
 
 
       public final int getNumber() { return value; }
@@ -5309,6 +5317,7 @@ public final class Comm {
           case 50: return IMGUPLOAD;
           case 51: return IMGRETREIVE;
           case 52: return REGISTER;
+          case 53: return LOGIN;
           default: return null;
         }
       }
@@ -7175,6 +7184,485 @@ public final class Comm {
     }
 
     // @@protoc_insertion_point(class_scope:Register)
+  }
+
+  public interface LoginOrBuilder
+      extends com.google.protobuf.MessageOrBuilder {
+
+    // required string password = 1;
+    /**
+     * <code>required string password = 1;</code>
+     */
+    boolean hasPassword();
+    /**
+     * <code>required string password = 1;</code>
+     */
+    java.lang.String getPassword();
+    /**
+     * <code>required string password = 1;</code>
+     */
+    com.google.protobuf.ByteString
+        getPasswordBytes();
+  }
+  /**
+   * Protobuf type {@code Login}
+   */
+  public static final class Login extends
+      com.google.protobuf.GeneratedMessage
+      implements LoginOrBuilder {
+    // Use Login.newBuilder() to construct.
+    private Login(com.google.protobuf.GeneratedMessage.Builder<?> builder) {
+      super(builder);
+      this.unknownFields = builder.getUnknownFields();
+    }
+    private Login(boolean noInit) { this.unknownFields = com.google.protobuf.UnknownFieldSet.getDefaultInstance(); }
+
+    private static final Login defaultInstance;
+    public static Login getDefaultInstance() {
+      return defaultInstance;
+    }
+
+    public Login getDefaultInstanceForType() {
+      return defaultInstance;
+    }
+
+    private final com.google.protobuf.UnknownFieldSet unknownFields;
+    @java.lang.Override
+    public final com.google.protobuf.UnknownFieldSet
+        getUnknownFields() {
+      return this.unknownFields;
+    }
+    private Login(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      initFields();
+      int mutable_bitField0_ = 0;
+      com.google.protobuf.UnknownFieldSet.Builder unknownFields =
+          com.google.protobuf.UnknownFieldSet.newBuilder();
+      try {
+        boolean done = false;
+        while (!done) {
+          int tag = input.readTag();
+          switch (tag) {
+            case 0:
+              done = true;
+              break;
+            default: {
+              if (!parseUnknownField(input, unknownFields,
+                                     extensionRegistry, tag)) {
+                done = true;
+              }
+              break;
+            }
+            case 10: {
+              bitField0_ |= 0x00000001;
+              password_ = input.readBytes();
+              break;
+            }
+          }
+        }
+      } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+        throw e.setUnfinishedMessage(this);
+      } catch (java.io.IOException e) {
+        throw new com.google.protobuf.InvalidProtocolBufferException(
+            e.getMessage()).setUnfinishedMessage(this);
+      } finally {
+        this.unknownFields = unknownFields.build();
+        makeExtensionsImmutable();
+      }
+    }
+    public static final com.google.protobuf.Descriptors.Descriptor
+        getDescriptor() {
+      return eye.Comm.internal_static_Login_descriptor;
+    }
+
+    protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+        internalGetFieldAccessorTable() {
+      return eye.Comm.internal_static_Login_fieldAccessorTable
+          .ensureFieldAccessorsInitialized(
+              eye.Comm.Login.class, eye.Comm.Login.Builder.class);
+    }
+
+    public static com.google.protobuf.Parser<Login> PARSER =
+        new com.google.protobuf.AbstractParser<Login>() {
+      public Login parsePartialFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws com.google.protobuf.InvalidProtocolBufferException {
+        return new Login(input, extensionRegistry);
+      }
+    };
+
+    @java.lang.Override
+    public com.google.protobuf.Parser<Login> getParserForType() {
+      return PARSER;
+    }
+
+    private int bitField0_;
+    // required string password = 1;
+    public static final int PASSWORD_FIELD_NUMBER = 1;
+    private java.lang.Object password_;
+    /**
+     * <code>required string password = 1;</code>
+     */
+    public boolean hasPassword() {
+      return ((bitField0_ & 0x00000001) == 0x00000001);
+    }
+    /**
+     * <code>required string password = 1;</code>
+     */
+    public java.lang.String getPassword() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        return (java.lang.String) ref;
+      } else {
+        com.google.protobuf.ByteString bs = 
+            (com.google.protobuf.ByteString) ref;
+        java.lang.String s = bs.toStringUtf8();
+        if (bs.isValidUtf8()) {
+          password_ = s;
+        }
+        return s;
+      }
+    }
+    /**
+     * <code>required string password = 1;</code>
+     */
+    public com.google.protobuf.ByteString
+        getPasswordBytes() {
+      java.lang.Object ref = password_;
+      if (ref instanceof java.lang.String) {
+        com.google.protobuf.ByteString b = 
+            com.google.protobuf.ByteString.copyFromUtf8(
+                (java.lang.String) ref);
+        password_ = b;
+        return b;
+      } else {
+        return (com.google.protobuf.ByteString) ref;
+      }
+    }
+
+    private void initFields() {
+      password_ = "";
+    }
+    private byte memoizedIsInitialized = -1;
+    public final boolean isInitialized() {
+      byte isInitialized = memoizedIsInitialized;
+      if (isInitialized != -1) return isInitialized == 1;
+
+      if (!hasPassword()) {
+        memoizedIsInitialized = 0;
+        return false;
+      }
+      memoizedIsInitialized = 1;
+      return true;
+    }
+
+    public void writeTo(com.google.protobuf.CodedOutputStream output)
+                        throws java.io.IOException {
+      getSerializedSize();
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        output.writeBytes(1, getPasswordBytes());
+      }
+      getUnknownFields().writeTo(output);
+    }
+
+    private int memoizedSerializedSize = -1;
+    public int getSerializedSize() {
+      int size = memoizedSerializedSize;
+      if (size != -1) return size;
+
+      size = 0;
+      if (((bitField0_ & 0x00000001) == 0x00000001)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeBytesSize(1, getPasswordBytes());
+      }
+      size += getUnknownFields().getSerializedSize();
+      memoizedSerializedSize = size;
+      return size;
+    }
+
+    private static final long serialVersionUID = 0L;
+    @java.lang.Override
+    protected java.lang.Object writeReplace()
+        throws java.io.ObjectStreamException {
+      return super.writeReplace();
+    }
+
+    public static eye.Comm.Login parseFrom(
+        com.google.protobuf.ByteString data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eye.Comm.Login parseFrom(
+        com.google.protobuf.ByteString data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eye.Comm.Login parseFrom(byte[] data)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data);
+    }
+    public static eye.Comm.Login parseFrom(
+        byte[] data,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws com.google.protobuf.InvalidProtocolBufferException {
+      return PARSER.parseFrom(data, extensionRegistry);
+    }
+    public static eye.Comm.Login parseFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static eye.Comm.Login parseFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+    public static eye.Comm.Login parseDelimitedFrom(java.io.InputStream input)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input);
+    }
+    public static eye.Comm.Login parseDelimitedFrom(
+        java.io.InputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseDelimitedFrom(input, extensionRegistry);
+    }
+    public static eye.Comm.Login parseFrom(
+        com.google.protobuf.CodedInputStream input)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input);
+    }
+    public static eye.Comm.Login parseFrom(
+        com.google.protobuf.CodedInputStream input,
+        com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+        throws java.io.IOException {
+      return PARSER.parseFrom(input, extensionRegistry);
+    }
+
+    public static Builder newBuilder() { return Builder.create(); }
+    public Builder newBuilderForType() { return newBuilder(); }
+    public static Builder newBuilder(eye.Comm.Login prototype) {
+      return newBuilder().mergeFrom(prototype);
+    }
+    public Builder toBuilder() { return newBuilder(this); }
+
+    @java.lang.Override
+    protected Builder newBuilderForType(
+        com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+      Builder builder = new Builder(parent);
+      return builder;
+    }
+    /**
+     * Protobuf type {@code Login}
+     */
+    public static final class Builder extends
+        com.google.protobuf.GeneratedMessage.Builder<Builder>
+       implements eye.Comm.LoginOrBuilder {
+      public static final com.google.protobuf.Descriptors.Descriptor
+          getDescriptor() {
+        return eye.Comm.internal_static_Login_descriptor;
+      }
+
+      protected com.google.protobuf.GeneratedMessage.FieldAccessorTable
+          internalGetFieldAccessorTable() {
+        return eye.Comm.internal_static_Login_fieldAccessorTable
+            .ensureFieldAccessorsInitialized(
+                eye.Comm.Login.class, eye.Comm.Login.Builder.class);
+      }
+
+      // Construct using eye.Comm.Login.newBuilder()
+      private Builder() {
+        maybeForceBuilderInitialization();
+      }
+
+      private Builder(
+          com.google.protobuf.GeneratedMessage.BuilderParent parent) {
+        super(parent);
+        maybeForceBuilderInitialization();
+      }
+      private void maybeForceBuilderInitialization() {
+        if (com.google.protobuf.GeneratedMessage.alwaysUseFieldBuilders) {
+        }
+      }
+      private static Builder create() {
+        return new Builder();
+      }
+
+      public Builder clear() {
+        super.clear();
+        password_ = "";
+        bitField0_ = (bitField0_ & ~0x00000001);
+        return this;
+      }
+
+      public Builder clone() {
+        return create().mergeFrom(buildPartial());
+      }
+
+      public com.google.protobuf.Descriptors.Descriptor
+          getDescriptorForType() {
+        return eye.Comm.internal_static_Login_descriptor;
+      }
+
+      public eye.Comm.Login getDefaultInstanceForType() {
+        return eye.Comm.Login.getDefaultInstance();
+      }
+
+      public eye.Comm.Login build() {
+        eye.Comm.Login result = buildPartial();
+        if (!result.isInitialized()) {
+          throw newUninitializedMessageException(result);
+        }
+        return result;
+      }
+
+      public eye.Comm.Login buildPartial() {
+        eye.Comm.Login result = new eye.Comm.Login(this);
+        int from_bitField0_ = bitField0_;
+        int to_bitField0_ = 0;
+        if (((from_bitField0_ & 0x00000001) == 0x00000001)) {
+          to_bitField0_ |= 0x00000001;
+        }
+        result.password_ = password_;
+        result.bitField0_ = to_bitField0_;
+        onBuilt();
+        return result;
+      }
+
+      public Builder mergeFrom(com.google.protobuf.Message other) {
+        if (other instanceof eye.Comm.Login) {
+          return mergeFrom((eye.Comm.Login)other);
+        } else {
+          super.mergeFrom(other);
+          return this;
+        }
+      }
+
+      public Builder mergeFrom(eye.Comm.Login other) {
+        if (other == eye.Comm.Login.getDefaultInstance()) return this;
+        if (other.hasPassword()) {
+          bitField0_ |= 0x00000001;
+          password_ = other.password_;
+          onChanged();
+        }
+        this.mergeUnknownFields(other.getUnknownFields());
+        return this;
+      }
+
+      public final boolean isInitialized() {
+        if (!hasPassword()) {
+          
+          return false;
+        }
+        return true;
+      }
+
+      public Builder mergeFrom(
+          com.google.protobuf.CodedInputStream input,
+          com.google.protobuf.ExtensionRegistryLite extensionRegistry)
+          throws java.io.IOException {
+        eye.Comm.Login parsedMessage = null;
+        try {
+          parsedMessage = PARSER.parsePartialFrom(input, extensionRegistry);
+        } catch (com.google.protobuf.InvalidProtocolBufferException e) {
+          parsedMessage = (eye.Comm.Login) e.getUnfinishedMessage();
+          throw e;
+        } finally {
+          if (parsedMessage != null) {
+            mergeFrom(parsedMessage);
+          }
+        }
+        return this;
+      }
+      private int bitField0_;
+
+      // required string password = 1;
+      private java.lang.Object password_ = "";
+      /**
+       * <code>required string password = 1;</code>
+       */
+      public boolean hasPassword() {
+        return ((bitField0_ & 0x00000001) == 0x00000001);
+      }
+      /**
+       * <code>required string password = 1;</code>
+       */
+      public java.lang.String getPassword() {
+        java.lang.Object ref = password_;
+        if (!(ref instanceof java.lang.String)) {
+          java.lang.String s = ((com.google.protobuf.ByteString) ref)
+              .toStringUtf8();
+          password_ = s;
+          return s;
+        } else {
+          return (java.lang.String) ref;
+        }
+      }
+      /**
+       * <code>required string password = 1;</code>
+       */
+      public com.google.protobuf.ByteString
+          getPasswordBytes() {
+        java.lang.Object ref = password_;
+        if (ref instanceof String) {
+          com.google.protobuf.ByteString b = 
+              com.google.protobuf.ByteString.copyFromUtf8(
+                  (java.lang.String) ref);
+          password_ = b;
+          return b;
+        } else {
+          return (com.google.protobuf.ByteString) ref;
+        }
+      }
+      /**
+       * <code>required string password = 1;</code>
+       */
+      public Builder setPassword(
+          java.lang.String value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string password = 1;</code>
+       */
+      public Builder clearPassword() {
+        bitField0_ = (bitField0_ & ~0x00000001);
+        password_ = getDefaultInstance().getPassword();
+        onChanged();
+        return this;
+      }
+      /**
+       * <code>required string password = 1;</code>
+       */
+      public Builder setPasswordBytes(
+          com.google.protobuf.ByteString value) {
+        if (value == null) {
+    throw new NullPointerException();
+  }
+  bitField0_ |= 0x00000001;
+        password_ = value;
+        onChanged();
+        return this;
+      }
+
+      // @@protoc_insertion_point(builder_scope:Login)
+    }
+
+    static {
+      defaultInstance = new Login(true);
+      defaultInstance.initFields();
+    }
+
+    // @@protoc_insertion_point(class_scope:Login)
   }
 
   public interface ImageOrBuilder
@@ -9561,6 +10049,20 @@ public final class Comm {
      * <code>optional .UserImageRequest imgreq = 7;</code>
      */
     eye.Comm.UserImageRequestOrBuilder getImgreqOrBuilder();
+
+    // optional .Login login = 8;
+    /**
+     * <code>optional .Login login = 8;</code>
+     */
+    boolean hasLogin();
+    /**
+     * <code>optional .Login login = 8;</code>
+     */
+    eye.Comm.Login getLogin();
+    /**
+     * <code>optional .Login login = 8;</code>
+     */
+    eye.Comm.LoginOrBuilder getLoginOrBuilder();
   }
   /**
    * Protobuf type {@code Payload}
@@ -9694,6 +10196,19 @@ public final class Comm {
                 imgreq_ = subBuilder.buildPartial();
               }
               bitField0_ |= 0x00000040;
+              break;
+            }
+            case 66: {
+              eye.Comm.Login.Builder subBuilder = null;
+              if (((bitField0_ & 0x00000080) == 0x00000080)) {
+                subBuilder = login_.toBuilder();
+              }
+              login_ = input.readMessage(eye.Comm.Login.PARSER, extensionRegistry);
+              if (subBuilder != null) {
+                subBuilder.mergeFrom(login_);
+                login_ = subBuilder.buildPartial();
+              }
+              bitField0_ |= 0x00000080;
               break;
             }
           }
@@ -9911,6 +10426,28 @@ public final class Comm {
       return imgreq_;
     }
 
+    // optional .Login login = 8;
+    public static final int LOGIN_FIELD_NUMBER = 8;
+    private eye.Comm.Login login_;
+    /**
+     * <code>optional .Login login = 8;</code>
+     */
+    public boolean hasLogin() {
+      return ((bitField0_ & 0x00000080) == 0x00000080);
+    }
+    /**
+     * <code>optional .Login login = 8;</code>
+     */
+    public eye.Comm.Login getLogin() {
+      return login_;
+    }
+    /**
+     * <code>optional .Login login = 8;</code>
+     */
+    public eye.Comm.LoginOrBuilder getLoginOrBuilder() {
+      return login_;
+    }
+
     private void initFields() {
       emailid_ = "";
       finger_ = eye.Comm.Finger.getDefaultInstance();
@@ -9919,6 +10456,7 @@ public final class Comm {
       reg_ = eye.Comm.Register.getDefaultInstance();
       imageup_ = eye.Comm.Image.getDefaultInstance();
       imgreq_ = eye.Comm.UserImageRequest.getDefaultInstance();
+      login_ = eye.Comm.Login.getDefaultInstance();
     }
     private byte memoizedIsInitialized = -1;
     public final boolean isInitialized() {
@@ -9965,6 +10503,12 @@ public final class Comm {
           return false;
         }
       }
+      if (hasLogin()) {
+        if (!getLogin().isInitialized()) {
+          memoizedIsInitialized = 0;
+          return false;
+        }
+      }
       memoizedIsInitialized = 1;
       return true;
     }
@@ -9992,6 +10536,9 @@ public final class Comm {
       }
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         output.writeMessage(7, imgreq_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        output.writeMessage(8, login_);
       }
       getUnknownFields().writeTo(output);
     }
@@ -10029,6 +10576,10 @@ public final class Comm {
       if (((bitField0_ & 0x00000040) == 0x00000040)) {
         size += com.google.protobuf.CodedOutputStream
           .computeMessageSize(7, imgreq_);
+      }
+      if (((bitField0_ & 0x00000080) == 0x00000080)) {
+        size += com.google.protobuf.CodedOutputStream
+          .computeMessageSize(8, login_);
       }
       size += getUnknownFields().getSerializedSize();
       memoizedSerializedSize = size;
@@ -10144,6 +10695,7 @@ public final class Comm {
           getRegFieldBuilder();
           getImageupFieldBuilder();
           getImgreqFieldBuilder();
+          getLoginFieldBuilder();
         }
       }
       private static Builder create() {
@@ -10190,6 +10742,12 @@ public final class Comm {
           imgreqBuilder_.clear();
         }
         bitField0_ = (bitField0_ & ~0x00000040);
+        if (loginBuilder_ == null) {
+          login_ = eye.Comm.Login.getDefaultInstance();
+        } else {
+          loginBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
         return this;
       }
 
@@ -10270,6 +10828,14 @@ public final class Comm {
         } else {
           result.imgreq_ = imgreqBuilder_.build();
         }
+        if (((from_bitField0_ & 0x00000080) == 0x00000080)) {
+          to_bitField0_ |= 0x00000080;
+        }
+        if (loginBuilder_ == null) {
+          result.login_ = login_;
+        } else {
+          result.login_ = loginBuilder_.build();
+        }
         result.bitField0_ = to_bitField0_;
         onBuilt();
         return result;
@@ -10308,6 +10874,9 @@ public final class Comm {
         }
         if (other.hasImgreq()) {
           mergeImgreq(other.getImgreq());
+        }
+        if (other.hasLogin()) {
+          mergeLogin(other.getLogin());
         }
         this.mergeUnknownFields(other.getUnknownFields());
         return this;
@@ -10350,6 +10919,12 @@ public final class Comm {
         }
         if (hasImgreq()) {
           if (!getImgreq().isInitialized()) {
+            
+            return false;
+          }
+        }
+        if (hasLogin()) {
+          if (!getLogin().isInitialized()) {
             
             return false;
           }
@@ -11150,6 +11725,123 @@ public final class Comm {
           imgreq_ = null;
         }
         return imgreqBuilder_;
+      }
+
+      // optional .Login login = 8;
+      private eye.Comm.Login login_ = eye.Comm.Login.getDefaultInstance();
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Login, eye.Comm.Login.Builder, eye.Comm.LoginOrBuilder> loginBuilder_;
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public boolean hasLogin() {
+        return ((bitField0_ & 0x00000080) == 0x00000080);
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public eye.Comm.Login getLogin() {
+        if (loginBuilder_ == null) {
+          return login_;
+        } else {
+          return loginBuilder_.getMessage();
+        }
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public Builder setLogin(eye.Comm.Login value) {
+        if (loginBuilder_ == null) {
+          if (value == null) {
+            throw new NullPointerException();
+          }
+          login_ = value;
+          onChanged();
+        } else {
+          loginBuilder_.setMessage(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public Builder setLogin(
+          eye.Comm.Login.Builder builderForValue) {
+        if (loginBuilder_ == null) {
+          login_ = builderForValue.build();
+          onChanged();
+        } else {
+          loginBuilder_.setMessage(builderForValue.build());
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public Builder mergeLogin(eye.Comm.Login value) {
+        if (loginBuilder_ == null) {
+          if (((bitField0_ & 0x00000080) == 0x00000080) &&
+              login_ != eye.Comm.Login.getDefaultInstance()) {
+            login_ =
+              eye.Comm.Login.newBuilder(login_).mergeFrom(value).buildPartial();
+          } else {
+            login_ = value;
+          }
+          onChanged();
+        } else {
+          loginBuilder_.mergeFrom(value);
+        }
+        bitField0_ |= 0x00000080;
+        return this;
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public Builder clearLogin() {
+        if (loginBuilder_ == null) {
+          login_ = eye.Comm.Login.getDefaultInstance();
+          onChanged();
+        } else {
+          loginBuilder_.clear();
+        }
+        bitField0_ = (bitField0_ & ~0x00000080);
+        return this;
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public eye.Comm.Login.Builder getLoginBuilder() {
+        bitField0_ |= 0x00000080;
+        onChanged();
+        return getLoginFieldBuilder().getBuilder();
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      public eye.Comm.LoginOrBuilder getLoginOrBuilder() {
+        if (loginBuilder_ != null) {
+          return loginBuilder_.getMessageOrBuilder();
+        } else {
+          return login_;
+        }
+      }
+      /**
+       * <code>optional .Login login = 8;</code>
+       */
+      private com.google.protobuf.SingleFieldBuilder<
+          eye.Comm.Login, eye.Comm.Login.Builder, eye.Comm.LoginOrBuilder> 
+          getLoginFieldBuilder() {
+        if (loginBuilder_ == null) {
+          loginBuilder_ = new com.google.protobuf.SingleFieldBuilder<
+              eye.Comm.Login, eye.Comm.Login.Builder, eye.Comm.LoginOrBuilder>(
+                  login_,
+                  getParentForChildren(),
+                  isClean());
+          login_ = null;
+        }
+        return loginBuilder_;
       }
 
       // @@protoc_insertion_point(builder_scope:Payload)
@@ -16327,6 +17019,11 @@ public final class Comm {
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
       internal_static_Register_fieldAccessorTable;
   private static com.google.protobuf.Descriptors.Descriptor
+    internal_static_Login_descriptor;
+  private static
+    com.google.protobuf.GeneratedMessage.FieldAccessorTable
+      internal_static_Login_fieldAccessorTable;
+  private static com.google.protobuf.Descriptors.Descriptor
     internal_static_Image_descriptor;
   private static
     com.google.protobuf.GeneratedMessage.FieldAccessorTable
@@ -16396,45 +17093,46 @@ public final class Comm {
       "nt\022\022\n\nname_space\030\001 \001(\t\022\n\n\002id\030\002 \001(\003\022\037\n\010do" +
       "cument\030\003 \002(\0132\r.NameValueSet\"+\n\013DocumentS",
       "et\022\034\n\tdocuments\030\001 \003(\0132\t.Document\"*\n\014Name" +
-      "SpaceSet\022\032\n\006spaces\030\001 \003(\0132\n.NameSpace\"\336\003\n" +
+      "SpaceSet\022\032\n\006spaces\030\001 \003(\0132\n.NameSpace\"\351\003\n" +
       "\006Header\022#\n\nrouting_id\030\001 \002(\0162\017.Header.Rou" +
       "ting\022\022\n\noriginator\030\002 \002(\t\022\013\n\003tag\030\003 \001(\t\022\014\n" +
       "\004time\030\004 \001(\003\022\'\n\nreply_code\030\005 \001(\0162\023.Header" +
-      ".ReplyStatus\022\021\n\treply_msg\030\006 \001(\t\"\324\001\n\007Rout" +
+      ".ReplyStatus\022\021\n\treply_msg\030\006 \001(\t\"\337\001\n\007Rout" +
       "ing\022\n\n\006FINGER\020\002\022\t\n\005STATS\020\003\022\020\n\014NAMESPACEA" +
       "DD\020\n\022\021\n\rNAMESPACELIST\020\013\022\023\n\017NAMESPACEUPDA" +
       "TE\020\014\022\023\n\017NAMESPACEREMOVE\020\r\022\n\n\006DOCADD\020\024\022\013\n" +
       "\007DOCFIND\020\025\022\r\n\tDOCUPDATE\020\026\022\r\n\tDOCREMOVE\020\027",
       "\022\r\n\tIMGUPLOAD\0202\022\017\n\013IMGRETREIVE\0203\022\014\n\010REGI" +
-      "STER\0204\"m\n\013ReplyStatus\022\013\n\007SUCCESS\020\001\022\013\n\007FA" +
-      "ILURE\020\002\022\n\n\006NOAUTH\020\003\022\016\n\nMISSINGARG\020\004\022\020\n\014N" +
-      "OCONNECTION\020\005\022\026\n\022SERVER_UNAVAILABLE\020\006\":\n" +
-      "\010Register\022\r\n\005fname\030\001 \002(\t\022\r\n\005lname\030\002 \002(\t\022" +
-      "\020\n\010password\030\003 \002(\t\"\206\001\n\005Image\022\023\n\013actualIma" +
-      "ge\030\001 \002(\014\022\r\n\005title\030\002 \001(\t\022\020\n\010latitude\030\003 \001(" +
-      "\001\022\021\n\tlongitude\030\004 \001(\001\022\021\n\ttimestamp\030\005 \001(\003\022" +
-      "\r\n\005imgid\030\006 \001(\t\022\022\n\nowneremail\030\007 \001(\t\"#\n\020Us" +
-      "erImageRequest\022\017\n\007emailid\030\001 \002(\t\"&\n\016UserI",
-      "mageReply\022\024\n\004imgs\030\001 \003(\0132\006.Image\"\272\001\n\007Payl" +
-      "oad\022\017\n\007emailid\030\001 \002(\t\022\027\n\006finger\030\002 \001(\0132\007.F" +
-      "inger\022\026\n\003doc\030\003 \001(\0132\t.Document\022\031\n\005space\030\004" +
-      " \001(\0132\n.NameSpace\022\026\n\003reg\030\005 \001(\0132\t.Register" +
-      "\022\027\n\007imageup\030\006 \001(\0132\006.Image\022!\n\006imgreq\030\007 \001(" +
-      "\0132\021.UserImageRequest\"\233\001\n\014PayloadReply\022\027\n" +
-      "\004docs\030\001 \003(\0132\t.Document\022\032\n\006spaces\030\002 \003(\0132\n" +
-      ".NameSpace\022\030\n\005stats\030\003 \001(\0132\t.Document\022\031\n\006" +
-      "finger\030\004 \001(\0132\t.Document\022!\n\010imgreply\030\005 \001(" +
-      "\0132\017.UserImageReply\":\n\007Request\022\027\n\006header\030",
-      "\001 \002(\0132\007.Header\022\026\n\004body\030\002 \002(\0132\010.Payload\"@" +
-      "\n\010Response\022\027\n\006header\030\001 \002(\0132\007.Header\022\033\n\004b" +
-      "ody\030\002 \002(\0132\r.PayloadReply\",\n\tHeartbeat\022\016\n" +
-      "\006nodeId\030\001 \002(\t\022\017\n\007timeRef\030\002 \002(\003\"\225\001\n\007Netwo" +
-      "rk\022\016\n\006nodeId\030\001 \002(\t\022\037\n\006action\030\002 \002(\0162\017.Net" +
-      "work.Action\"Y\n\006Action\022\014\n\010NODEJOIN\020\001\022\r\n\tN" +
-      "ODELEAVE\020\002\022\014\n\010NODEDEAD\020\003\022\007\n\003MAP\0207\022\014\n\010ANN" +
-      "OUNCE\0208\022\r\n\010SHUTDOWN\020\347\007\"?\n\nManagement\022\027\n\005" +
-      "graph\030\001 \001(\0132\010.Network\022\030\n\004beat\030\002 \001(\0132\n.He" +
-      "artbeatB\007\n\003eyeH\001"
+      "STER\0204\022\t\n\005LOGIN\0205\"m\n\013ReplyStatus\022\013\n\007SUCC" +
+      "ESS\020\001\022\013\n\007FAILURE\020\002\022\n\n\006NOAUTH\020\003\022\016\n\nMISSIN" +
+      "GARG\020\004\022\020\n\014NOCONNECTION\020\005\022\026\n\022SERVER_UNAVA" +
+      "ILABLE\020\006\":\n\010Register\022\r\n\005fname\030\001 \002(\t\022\r\n\005l" +
+      "name\030\002 \002(\t\022\020\n\010password\030\003 \002(\t\"\031\n\005Login\022\020\n" +
+      "\010password\030\001 \002(\t\"\206\001\n\005Image\022\023\n\013actualImage" +
+      "\030\001 \002(\014\022\r\n\005title\030\002 \001(\t\022\020\n\010latitude\030\003 \001(\001\022" +
+      "\021\n\tlongitude\030\004 \001(\001\022\021\n\ttimestamp\030\005 \001(\003\022\r\n" +
+      "\005imgid\030\006 \001(\t\022\022\n\nowneremail\030\007 \001(\t\"#\n\020User",
+      "ImageRequest\022\017\n\007emailid\030\001 \002(\t\"&\n\016UserIma" +
+      "geReply\022\024\n\004imgs\030\001 \003(\0132\006.Image\"\321\001\n\007Payloa" +
+      "d\022\017\n\007emailid\030\001 \002(\t\022\027\n\006finger\030\002 \001(\0132\007.Fin" +
+      "ger\022\026\n\003doc\030\003 \001(\0132\t.Document\022\031\n\005space\030\004 \001" +
+      "(\0132\n.NameSpace\022\026\n\003reg\030\005 \001(\0132\t.Register\022\027" +
+      "\n\007imageup\030\006 \001(\0132\006.Image\022!\n\006imgreq\030\007 \001(\0132" +
+      "\021.UserImageRequest\022\025\n\005login\030\010 \001(\0132\006.Logi" +
+      "n\"\233\001\n\014PayloadReply\022\027\n\004docs\030\001 \003(\0132\t.Docum" +
+      "ent\022\032\n\006spaces\030\002 \003(\0132\n.NameSpace\022\030\n\005stats" +
+      "\030\003 \001(\0132\t.Document\022\031\n\006finger\030\004 \001(\0132\t.Docu",
+      "ment\022!\n\010imgreply\030\005 \001(\0132\017.UserImageReply\"" +
+      ":\n\007Request\022\027\n\006header\030\001 \002(\0132\007.Header\022\026\n\004b" +
+      "ody\030\002 \002(\0132\010.Payload\"@\n\010Response\022\027\n\006heade" +
+      "r\030\001 \002(\0132\007.Header\022\033\n\004body\030\002 \002(\0132\r.Payload" +
+      "Reply\",\n\tHeartbeat\022\016\n\006nodeId\030\001 \002(\t\022\017\n\007ti" +
+      "meRef\030\002 \002(\003\"\225\001\n\007Network\022\016\n\006nodeId\030\001 \002(\t\022" +
+      "\037\n\006action\030\002 \002(\0162\017.Network.Action\"Y\n\006Acti" +
+      "on\022\014\n\010NODEJOIN\020\001\022\r\n\tNODELEAVE\020\002\022\014\n\010NODED" +
+      "EAD\020\003\022\007\n\003MAP\0207\022\014\n\010ANNOUNCE\0208\022\r\n\010SHUTDOWN" +
+      "\020\347\007\"?\n\nManagement\022\027\n\005graph\030\001 \001(\0132\010.Netwo",
+      "rk\022\030\n\004beat\030\002 \001(\0132\n.HeartbeatB\007\n\003eyeH\001"
     };
     com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner assigner =
       new com.google.protobuf.Descriptors.FileDescriptor.InternalDescriptorAssigner() {
@@ -16489,62 +17187,68 @@ public final class Comm {
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Register_descriptor,
               new java.lang.String[] { "Fname", "Lname", "Password", });
-          internal_static_Image_descriptor =
+          internal_static_Login_descriptor =
             getDescriptor().getMessageTypes().get(8);
+          internal_static_Login_fieldAccessorTable = new
+            com.google.protobuf.GeneratedMessage.FieldAccessorTable(
+              internal_static_Login_descriptor,
+              new java.lang.String[] { "Password", });
+          internal_static_Image_descriptor =
+            getDescriptor().getMessageTypes().get(9);
           internal_static_Image_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Image_descriptor,
               new java.lang.String[] { "ActualImage", "Title", "Latitude", "Longitude", "Timestamp", "Imgid", "Owneremail", });
           internal_static_UserImageRequest_descriptor =
-            getDescriptor().getMessageTypes().get(9);
+            getDescriptor().getMessageTypes().get(10);
           internal_static_UserImageRequest_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_UserImageRequest_descriptor,
               new java.lang.String[] { "Emailid", });
           internal_static_UserImageReply_descriptor =
-            getDescriptor().getMessageTypes().get(10);
+            getDescriptor().getMessageTypes().get(11);
           internal_static_UserImageReply_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_UserImageReply_descriptor,
               new java.lang.String[] { "Imgs", });
           internal_static_Payload_descriptor =
-            getDescriptor().getMessageTypes().get(11);
+            getDescriptor().getMessageTypes().get(12);
           internal_static_Payload_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Payload_descriptor,
-              new java.lang.String[] { "Emailid", "Finger", "Doc", "Space", "Reg", "Imageup", "Imgreq", });
+              new java.lang.String[] { "Emailid", "Finger", "Doc", "Space", "Reg", "Imageup", "Imgreq", "Login", });
           internal_static_PayloadReply_descriptor =
-            getDescriptor().getMessageTypes().get(12);
+            getDescriptor().getMessageTypes().get(13);
           internal_static_PayloadReply_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_PayloadReply_descriptor,
               new java.lang.String[] { "Docs", "Spaces", "Stats", "Finger", "Imgreply", });
           internal_static_Request_descriptor =
-            getDescriptor().getMessageTypes().get(13);
+            getDescriptor().getMessageTypes().get(14);
           internal_static_Request_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Request_descriptor,
               new java.lang.String[] { "Header", "Body", });
           internal_static_Response_descriptor =
-            getDescriptor().getMessageTypes().get(14);
+            getDescriptor().getMessageTypes().get(15);
           internal_static_Response_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Response_descriptor,
               new java.lang.String[] { "Header", "Body", });
           internal_static_Heartbeat_descriptor =
-            getDescriptor().getMessageTypes().get(15);
+            getDescriptor().getMessageTypes().get(16);
           internal_static_Heartbeat_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Heartbeat_descriptor,
               new java.lang.String[] { "NodeId", "TimeRef", });
           internal_static_Network_descriptor =
-            getDescriptor().getMessageTypes().get(16);
+            getDescriptor().getMessageTypes().get(17);
           internal_static_Network_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Network_descriptor,
               new java.lang.String[] { "NodeId", "Action", });
           internal_static_Management_descriptor =
-            getDescriptor().getMessageTypes().get(17);
+            getDescriptor().getMessageTypes().get(18);
           internal_static_Management_fieldAccessorTable = new
             com.google.protobuf.GeneratedMessage.FieldAccessorTable(
               internal_static_Management_descriptor,

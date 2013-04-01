@@ -52,4 +52,14 @@ public class UserOperation {
 		return userinfo;
 	}
 	
+	public boolean login(String email, String password){
+		Query pquery = em.createNamedQuery("login");
+		pquery.setParameter("id",email);
+		pquery.setParameter("password",password);
+		List<?> presult = pquery.getResultList();
+		
+		em.close();
+		return (presult != null && presult.size() > 0);
+	}
+	
 }

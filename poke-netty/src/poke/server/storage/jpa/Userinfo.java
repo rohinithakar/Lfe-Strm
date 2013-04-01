@@ -14,7 +14,8 @@ import javax.persistence.*;
 @NamedQueries({@NamedQuery(name = "getPassword", query = "SELECT password from Userinfo password where password.email =:id"),
 @NamedQuery(name = "getUserid", query = "SELECT userid from Userinfo userid where userid.email =:id"),
 @NamedQuery(name = "getFirstname", query = "SELECT firstname from Userinfo firstname where firstname.email =:id"),
-@NamedQuery(name = "getLastname", query = "SELECT lastname from Userinfo lastname where lastname.email =:id")})
+@NamedQuery(name = "getLastname", query = "SELECT lastname from Userinfo lastname where lastname.email =:id"),
+@NamedQuery(name = "login", query = "SELECT login from Userinfo login where login.email =:id and login.password = :password")})
 
 public class Userinfo implements Serializable {
 	private static final long serialVersionUID = 1L;
