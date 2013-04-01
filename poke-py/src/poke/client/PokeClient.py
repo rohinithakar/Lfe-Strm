@@ -66,13 +66,22 @@ class PokeClient:
             data = fileObj.readAll()
         return data
     
+    def __readImageFile2(self, filePath):
+        try:
+            fin = open(filePath, "rb")
+            data = fin.read()
+            fin.close()
+        except IOError:
+            print("Image file %s not found" % filePath)
+        return data;
+    
     def uploadImage(self, emailid, imagePath, latitude, longitude, title ):
         img = comm_pb2.Image()
-        img.actualImage = self.__readImageFile(imagePath)
+        img.actualImage = self.__readImageFile2(imagePath)
         img.latitude = latitude
         img.longitude = longitude
         img.title = title
-        img.ownerEmail = emailid
+        img.owneremail = emailid
         message = self.__pm.uploadImage(emailid, img)
         resp = self.__sendRequest(message)
         if resp == None:
@@ -81,4 +90,5 @@ class PokeClient:
     
 pc = PokeClient(IP,TCP_PORT)
 print pc.register("abc@abc.com","a", "b", "1234")
-print pc.login("abc@abc.com",'123')
+print pc.login("abc@abc.com",'1234')
+print pc.uploadImage("abc@abc.com", "resource/upload/warty-final-ubuntu.png", 33.323232, -121.121212, "pythonTestImage")

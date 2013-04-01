@@ -428,6 +428,11 @@ public class PokeClient {
 					registerCb.registered(msg.getHeader().getReplyCode() == ReplyStatus.SUCCESS);
 				}
 				break;
+			case LOGIN:
+				if( loginCb != null ) {
+					loginCb.loggedIn(msg.getHeader().getReplyCode() == ReplyStatus.SUCCESS);
+				}
+				break;
 				default:
 					throw new RuntimeException("Unsupported Routing Id: " + routingId );
 			}
