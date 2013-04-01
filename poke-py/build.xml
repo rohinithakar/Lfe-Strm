@@ -1,9 +1,11 @@
-<project name="poke-py" default="compile">
+<project name="poke-py" default="run.client">
+	<property name="src.dir" value="src"/>
+	<property name="lib.dir" value="lib"/>
 
-  <property name="src.dir" value="src"/>
-
-  <target name="compile">
-    <py-compile dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
-  </target>
-
+	<target name="run.client">
+	  <exec executable="/usr/bin/python">
+	  	<env key="PYTHONPATH" value="${src.dir}:${lib.dir}/protobuf-2.5.0-py2.7.egg"/>	
+	    <arg value="src/poke/client/PokeClient.py"/>
+	  </exec>
+	</target>
 </project>
