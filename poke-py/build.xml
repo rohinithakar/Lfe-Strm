@@ -1,0 +1,9 @@
+<project name="poke-py" default="compile">
+
+  <property name="src.dir" value="src"/>
+
+  <target name="compile">
+    <py-compile dir="${src.dir}" pythonpath="${src.dir}" optimize="0"/>
+  </target>
+
+</project>
