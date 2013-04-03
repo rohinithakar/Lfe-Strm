@@ -32,7 +32,7 @@ public class ImageStorageImpl implements IImageStorage {
 	
 	@Override
 	public boolean storeImage(String emailId, Image img) throws DBException {
-		return imageOperation.uploadImage(emailId, img.getTitle(), img.toByteArray(),
+		return imageOperation.uploadImage(emailId, img.getTitle(), img.getActualImage().toByteArray(),
 					img.getLatitude(), img.getLongitude(), this.server.getProperty("pu.name"));
 	}
 

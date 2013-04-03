@@ -1,5 +1,8 @@
 package poke.demo;
 
+import java.awt.image.BufferedImage;
+import java.awt.image.DataBufferByte;
+import java.awt.image.WritableRaster;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
@@ -7,6 +10,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.List;
+
+import javax.imageio.ImageIO;
 
 import com.google.protobuf.ByteString;
 
@@ -31,14 +36,15 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	
 	public void register() throws InterruptedException {
 		client.setRegistrationCallback(this);
+		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
+		client.register("a", "b", "abcabcabcabcabcabc@abcabcabc.com", "1234");
 		//below request will be processed by server: id = one and port = 5571
 		client.register("a", "b", "a@abc.com", "1234");
 		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
 		client.register("a", "b", "abcabc@abc.com", "1234");
 		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
 		client.register("a", "b", "abcabcabcabc@abcabc.com", "1234");
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
-		client.register("a", "b", "abcabcabcabcabcabc@abcabcabc.com", "1234");
+		
 	}
 	
 	@Override
@@ -85,32 +91,32 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		image.setOwneremail("a@abc.com");
 		image.setLatitude(37.335363);
 		image.setLongitude(-121.887068);
-		image.setTitle("testFrom3rdStreet.png");
+		image.setTitle("testFrom3rdStreet");
 		client.uploadImage("a@abc.com", image);
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
-		image = Image.newBuilder();
-		image.setActualImage(bs);
-		image.setOwneremail("abcabc@abc.com");
-		image.setLatitude(37.335169);
-		image.setLongitude(-121.88107);
-		image.setTitle("testFromSJSU.png");
-		client.uploadImage("abcabc@abc.com", image);
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
-		image = Image.newBuilder();
-		image.setActualImage(bs);
-		image.setOwneremail("abcabcabcabc@abcabc.com");
-		image.setLatitude(37.335686);
-		image.setLongitude(-121.885469);
-		image.setTitle("testFromMLKLibrary.png");
-		client.uploadImage("abcabcabcabc@abcabc.com", image);
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
-		image = Image.newBuilder();
-		image.setActualImage(bs);
-		image.setOwneremail("abcabcabcabcabcabc@abcabcabc.com");
-		image.setLatitude(37.337187);
-		image.setLongitude(-121.886871);
-		image.setTitle("testFromSJCityHall.png");
-		client.uploadImage("abcabcabcabcabcabc@abcabcabc.com", image);
+//		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+//		image = Image.newBuilder();
+//		image.setActualImage(bs);
+//		image.setOwneremail("abcabc@abc.com");
+//		image.setLatitude(37.335169);
+//		image.setLongitude(-121.88107);
+//		image.setTitle("testFromSJSU.png");
+//		client.uploadImage("abcabc@abc.com", image);
+//		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
+//		image = Image.newBuilder();
+//		image.setActualImage(bs);
+//		image.setOwneremail("abcabcabcabc@abcabc.com");
+//		image.setLatitude(37.335686);
+//		image.setLongitude(-121.885469);
+//		image.setTitle("testFromMLKLibrary.png");
+//		client.uploadImage("abcabcabcabc@abcabc.com", image);
+//		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
+//		image = Image.newBuilder();
+//		image.setActualImage(bs);
+//		image.setOwneremail("abcabcabcabcabcabc@abcabcabc.com");
+//		image.setLatitude(37.337187);
+//		image.setLongitude(-121.886871);
+//		image.setTitle("testFromSJCityHall.png");
+//		client.uploadImage("abcabcabcabcabcabc@abcabcabc.com", image);
 	}
 	
 	@Override
@@ -125,7 +131,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	}
 	
 	private ByteString getImageByteString () throws IOException {
-		 File imgPath = new File("resources/warty-final-ubuntu.png");
+		File imgPath = new File("resources/warty-final-ubuntu.png");
 		 byte [] fileData = new byte[(int)imgPath.length()];
 		 DataInputStream dis = new DataInputStream((new FileInputStream(imgPath)));
 		 dis.readFully(fileData);
@@ -138,12 +144,12 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 		client.setImageRetrieveCallback(this);
 		//below request will be processed by server: id = one and port = 5571
 		client.getImages("a@abc.com");
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
-		client.getImages("abcabc@abc.com");
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
-		client.getImages("abcabcabcabc@abcabc.com");
-		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
-		client.getImages("abcabcabcabcabcabc@abcabcabc.com");
+//		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = two and port = 5572
+//		client.getImages("abcabc@abc.com");
+//		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = three and port = 5573
+//		client.getImages("abcabcabcabc@abcabc.com");
+//		//below request will be redirected by server: id = one and port = 5571 and processed by server: id = four and port = 5574
+//		client.getImages("abcabcabcabcabcabc@abcabcabc.com");
 	}
 
 
@@ -155,13 +161,11 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 	      		System.out.println("Image timestamp: "+img.getTimestamp());
 	      		System.out.println("Image Latitude: "+img.getLatitude());
 	      		System.out.println("Image Longitude: "+img.getLongitude());
-	      		String name = img.getOwneremail()+"_"+img.getTitle();
-	      		if(!name.endsWith(".png")){
-	      			name += ".png";
-	      		}
+	      		String name = img.getOwneremail()+"_"+img.getTitle()+".jpg";
+	      
 	      		DataOutputStream dis = new DataOutputStream((new FileOutputStream(new File("resources/retrieved/"+name))));
-				dis.write(img.getActualImage().toByteArray());
-				dis.flush();
+				img.getActualImage().writeTo(dis);
+				//dis.flush();
 				dis.close();
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -179,7 +183,7 @@ public class SimpleClient implements ImageUploadCallback, RegisterCallback, Imag
 
 	public static void main(String args[]) throws Exception {
 		SimpleClient client = new SimpleClient();
-		client.login();
+		client.retrieveImage();
 	}
 
 }
