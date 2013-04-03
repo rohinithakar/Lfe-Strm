@@ -1,5 +1,7 @@
 package poke.server.hash;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.List;
 import java.util.NavigableMap;
 import java.util.TreeMap;
@@ -44,6 +46,7 @@ public class HashingService {
 			if( maxRange < toRange ) {
 				maxRange = toRange;
 			}
+			
 			map.put(toRange, gconf.getProperty("node.id"));
 		}
 	}
@@ -55,7 +58,30 @@ public class HashingService {
 	 * @return
 	 */
 	public String hash(String emailId) {
-		int hashValue = emailId.length() * 100;
+		//int hashValue = emailId.length() * 100;
+		String hexMD5 = getMD5hex(emailId);
+		int hashValue = (int) hexMD5.charAt(0);
 		return map.get(map.ceilingKey(hashValue));
+	}
+	
+	private String getMD5hex(String email){
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("MD5");
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+			return null;
+		}
+		md.update(email.getBytes());
+		byte[] digest = md.digest();
+		StringBuffer sb = new StringBuffer();
+		for (byte b : digest) {
+			sb.append(Integer.toHexString((int) (b & 0xff)));
+		}
+
+		System.out.println("original:" + email);
+		System.out.println("digested:" + digest);
+		System.out.println("digested(hex):" + sb.toString());
+		return sb.toString();
 	}
 }
