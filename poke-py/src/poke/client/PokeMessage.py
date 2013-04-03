@@ -18,6 +18,7 @@ class PokeMessage:
         reg.__setattr__("lname",lname)
         reg.__setattr__("password",password)
         p.reg.MergeFrom(reg)    
+
         r.body.MergeFrom(p)
     
         #Header with routing Info
@@ -30,10 +31,9 @@ class PokeMessage:
 
     def getImages(self, email):
         r = comm_pb2.Request()
-        p=comm_pb2.Payload()
+        p = comm_pb2.Payload()
         p.__setattr__("emailid",email)
         r.body.MergeFrom(p)
-               
         h=comm_pb2.Header()
         h.__setattr__("originator",self.__clientName)
         h.__setattr__("time",int(time.time()))
