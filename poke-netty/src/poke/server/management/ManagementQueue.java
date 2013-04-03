@@ -16,6 +16,7 @@
 package poke.server.management;
 
 import java.net.SocketAddress;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.LinkedBlockingDeque;
 
 import org.jboss.netty.channel.Channel;
@@ -35,16 +36,18 @@ import eye.Comm.Management;
 public class ManagementQueue {
 	protected static Logger logger = LoggerFactory.getLogger("management");
 
-	protected static LinkedBlockingDeque<ManagementQueueEntry> inbound = new LinkedBlockingDeque<ManagementQueueEntry>();
-	protected static LinkedBlockingDeque<ManagementQueueEntry> outbound = new LinkedBlockingDeque<ManagementQueueEntry>();
+	protected LinkedBlockingDeque<ManagementQueueEntry> inbound = new LinkedBlockingDeque<ManagementQueueEntry>();
+	protected LinkedBlockingDeque<ManagementQueueEntry> outbound = new LinkedBlockingDeque<ManagementQueueEntry>();
 
 	// TODO static is problematic
-	private static OutboundMgmtWorker oworker;
-	private static InboundMgmtWorker iworker;
+	private OutboundMgmtWorker oworker;
+	private InboundMgmtWorker iworker;
 
 	// not the best method to ensure uniqueness
-	private static ThreadGroup tgroup = new ThreadGroup("ManagementQueue-"
+	private ThreadGroup tgroup = new ThreadGroup("ManagementQueue-"
 			+ System.nanoTime());
+	
+	private Server svr;
 
 //	public static void startup() {
 //		if (iworker != null)
@@ -56,10 +59,13 @@ public class ManagementQueue {
 //		oworker.start();
 //	}
 	
-	public static void startup(Server svr) {
-		if (iworker != null)
+	public ManagementQueue(Server svr) {
+		this.svr = svr;
+	}
+	
+	public void startup() {
+		if( iworker != null ) 
 			return;
-
 		iworker = new InboundMgmtWorker(svr, tgroup, 1);
 		iworker.start();
 		oworker = new OutboundMgmtWorker(svr, tgroup, 1);
@@ -70,7 +76,7 @@ public class ManagementQueue {
 		// TODO shutdon workers
 	}
 
-	public static void enqueueRequest(Management req, Channel ch,
+	public void enqueueRequest(Management req, Channel ch,
 			SocketAddress sa) {
 		try {
 			ManagementQueueEntry entry = new ManagementQueueEntry(req, ch, sa);
@@ -80,7 +86,7 @@ public class ManagementQueue {
 		}
 	}
 
-	public static void enqueueResponse(Management reply, Channel ch) {
+	public void enqueueResponse(Management reply, Channel ch) {
 		try {
 			ManagementQueueEntry entry = new ManagementQueueEntry(reply, ch,
 					null);

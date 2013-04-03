@@ -54,7 +54,7 @@ public class ManagementHandler extends SimpleChannelUpstreamHandler {
 	@Override
 	public void messageReceived(ChannelHandlerContext ctx, MessageEvent e) {
 		logger.info("message rcv: " + e.getRemoteAddress());
-		ManagementQueue.enqueueRequest((eye.Comm.Management) e.getMessage(),
+		svr.mgmtQ.enqueueRequest((eye.Comm.Management) e.getMessage(),
 				e.getChannel(), e.getRemoteAddress());
 	}
 
