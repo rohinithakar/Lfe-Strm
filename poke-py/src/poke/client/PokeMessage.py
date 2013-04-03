@@ -37,7 +37,7 @@ class PokeMessage:
         h=comm_pb2.Header()
         h.__setattr__("originator",self.__clientName)
         h.__setattr__("time",int(time.time()))
-        h.__setattr__("routing_id",int(h.__getattribute__("REGISTER")))  #comm_pb2.Header.DESCRIPTOR.__getattribute__("REGISTER")
+        h.__setattr__("routing_id",int(h.__getattribute__("IMGRETREIVE")))  #comm_pb2.Header.DESCRIPTOR.__getattribute__("REGISTER")
         
         r.header.MergeFrom(h)        
         return r.SerializeToString()
