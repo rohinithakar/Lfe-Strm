@@ -34,7 +34,7 @@ import eye.Comm.Management;
 public class ServerHeartbeat extends Thread {
 	protected Logger logger;
 	protected static Map<String, ServerHeartbeat> allHeartbeats = new HashMap<String, ServerHeartbeat>();
-	static final int sHeartRate = 1000 * 60 * 5; // msec
+	static final int sHeartRate = 1000 * 5; // msec
 
 	String nodeId;
 	Server svr;
@@ -60,7 +60,7 @@ public class ServerHeartbeat extends Thread {
 	public void addChannel(String remotenodeId, Channel ch, SocketAddress sa) {
 		logger.info("**********add channel called");
 		if (!group.containsKey(ch)) {
-			HeartData heart = new HeartData(remotenodeId, ch, sa);
+			HeartData heart = new HeartData(remotenodeId, ch, sa, svr);
 			svr.updateRemoteNodeStatus(remotenodeId, true);
 			group.put(ch, heart);
 
@@ -102,7 +102,7 @@ public class ServerHeartbeat extends Thread {
 						if (ch.isOpen()) {
 							HeartData hd = group.get(ch);
 							ch.write(msg, hd.sa);
-							logger.info("beat: " + hd.nodeId);
+							logger.trace("beat: " + hd.nodeId);
 						}
 					}
 				}
@@ -120,15 +120,17 @@ public class ServerHeartbeat extends Thread {
 	}
 
 	public static class HeartData {
-		public HeartData(String nodeId, Channel channel, SocketAddress sa) {
+		public HeartData(String nodeId, Channel channel, SocketAddress sa, Server svr) {
 			this.nodeId = nodeId;
 			this.channel = channel;
 			this.sa = sa;
+			this.svr = svr;
 		}
 
 		public String nodeId;
 		public SocketAddress sa;
 		public Channel channel;
+		public Server svr;
 	}
 
 	public class CloseHeartListener implements ChannelFutureListener {
@@ -142,6 +144,8 @@ public class ServerHeartbeat extends Thread {
 		public void operationComplete(ChannelFuture future) throws Exception {
 			logger.warn("channel closing for node '" + heart.nodeId + "'");
 			group.remove(future.getChannel());
+			// Update remote node status when it disconnects
+			svr.updateRemoteNodeStatus(heart.nodeId, false);
 		}
 	}
 }

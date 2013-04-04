@@ -31,12 +31,10 @@ public class ImageReplyResource implements Resource {
 
 		try {
 
-			logger.info("poke: " + request.getBody().getFinger().getTag());
-
 			eye.Comm.UserImageRequest userImageRequest = request.getBody().getImgreq();
 
 			//fetch registration fields from request
-			logger.info("email_id: " + userImageRequest.getEmailid());
+			logger.debug("email_id: " + userImageRequest.getEmailid());
 
 			Response.Builder r = Response.newBuilder();
 			r.setHeader(ResourceUtil.buildHeaderFrom(request.getHeader(),
@@ -61,7 +59,7 @@ public class ImageReplyResource implements Resource {
 			r.setHeader(header.build());
 
 			reply = r.build();
-			logger.info("Images Retrieved Successfully...");
+			logger.debug("Images Retrieved Successfully... " + email);
 		} catch (DBException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
