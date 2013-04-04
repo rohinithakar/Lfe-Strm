@@ -43,19 +43,19 @@ public class OutboundMgmtWorker extends Thread {
 		this.workerId = workerId;
 		this.svr = svr;
 
-		if (ManagementQueue.outbound == null)
+		if (svr.mgmtQ.outbound == null)
 			throw new RuntimeException("management worker detected null queue");
 	}
 
 	@Override
 	public void run() {
 		while (true) {
-			if (!forever && ManagementQueue.outbound.size() == 0)
+			if (!forever && svr.mgmtQ.outbound.size() == 0)
 				break;
 
 			try {
 				// block until a message is enqueued
-				ManagementQueueEntry msg = ManagementQueue.outbound.take();
+				ManagementQueueEntry msg = svr.mgmtQ.outbound.take();
 				if (msg.channel.isWritable()) {
 					boolean rtn = false;
 					if (msg.channel != null && msg.channel.isOpen()
@@ -66,11 +66,11 @@ public class OutboundMgmtWorker extends Thread {
 						cf.awaitUninterruptibly();
 						rtn = cf.isSuccess();
 						if (!rtn)
-							ManagementQueue.outbound.putFirst(msg);
+							svr.mgmtQ.outbound.putFirst(msg);
 					}
 
 				} else
-					ManagementQueue.outbound.putFirst(msg);
+					svr.mgmtQ.outbound.putFirst(msg);
 			} catch (InterruptedException ie) {
 				break;
 			} catch (Exception e) {

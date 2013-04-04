@@ -44,8 +44,10 @@ public class ImageUploadResource implements Resource {
 	 */
 	public Response process(Request request) {
 
+		
 		String email = request.getBody().getEmailid();
 		Image img = request.getBody().getImageup();
+		logger.debug("Image Upload Resource called for " + email);
 
 		IImageStorage imageStorage = StorageFactory.getImageStorage(this.param);
 		Response.Builder r = Response.newBuilder();
@@ -69,8 +71,8 @@ public class ImageUploadResource implements Resource {
 		r.setBody(br.build());
 
 		Response reply = r.build();
-		logger.info("Hellooo sweta");
 
+		logger.debug("Image replied for " + email);
 		return reply;
 	}
 

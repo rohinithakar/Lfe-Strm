@@ -37,7 +37,7 @@ public class InboundMgmtWorker extends Thread {
 		this.workerId = workerId;
 		this.svr = svr;
 
-		if (ManagementQueue.outbound == null)
+		if (svr.mgmtQ.outbound == null)
 			throw new RuntimeException("connection worker detected null queue");
 	}
 	
@@ -52,12 +52,12 @@ public class InboundMgmtWorker extends Thread {
 	@Override
 	public void run() {
 		while (true) {
-			if (!forever && ManagementQueue.inbound.size() == 0)
+			if (!forever && svr.mgmtQ.inbound.size() == 0)
 				break;
 
 			try {
 				// block until a message is enqueued
-				ManagementQueueEntry msg = ManagementQueue.inbound.take();
+				ManagementQueueEntry msg = svr.mgmtQ.inbound.take();
 				logger.info("Inbound message received");
 				Management req = (Management) msg.req;
 				if (req.hasBeat()) {

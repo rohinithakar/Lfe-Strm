@@ -65,6 +65,7 @@ public class Server {
 	protected ChannelFactory cf, mgmtCF;
 	public ServerConf conf;
 	protected ServerHeartbeat heartbeat;
+	public ManagementQueue mgmtQ;
 	private ConcurrentHashMap<String, Boolean> serverStatus = new ConcurrentHashMap<String, Boolean>();
 	
 	public String id = null;	
@@ -195,7 +196,8 @@ public class Server {
 		createManagementBoot(mport);
 		
 		// start management
-		ManagementQueue.startup(this);
+		mgmtQ = new ManagementQueue(this);
+		mgmtQ.startup();
 
 		// start heartbeat
 		heartbeat = ServerHeartbeat.getInstance(this);
