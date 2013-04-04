@@ -44,23 +44,14 @@ public class ManagementQueue {
 	private InboundMgmtWorker iworker;
 
 	// not the best method to ensure uniqueness
-	private ThreadGroup tgroup = new ThreadGroup("ManagementQueue-"
-			+ System.nanoTime());
+	private ThreadGroup tgroup;
 	
 	private Server svr;
 
-//	public static void startup() {
-//		if (iworker != null)
-//			return;
-//
-//		iworker = new InboundMgmtWorker(tgroup, 1);
-//		iworker.start();
-//		oworker = new OutboundMgmtWorker(tgroup, 1);
-//		oworker.start();
-//	}
-	
 	public ManagementQueue(Server svr) {
 		this.svr = svr;
+		tgroup = new ThreadGroup("ManagementQueue-"
+				+ svr.id + "-" + System.nanoTime());
 	}
 	
 	public void startup() {
